@@ -1,3 +1,32 @@
 .calendar{
+background: white;
+width: 50%;
+margin-left: 50px;
+background: linear-gradient(45deg, #dca 12%, transparent 0, transparent 88%, #dca 0),
+linear-gradient(135deg, transparent 37%, #a85 0, #a85 63%, transparent 0),
+linear-gradient(45deg, transparent 37%, #dca 0, #dca 63%, transparent 0) #753;
+background-size: 25px 25px;
 
+  .head-calendar{
+    background: rgba(255,255,255, 0.9);
+
+    display: flex;
+    justify-content: center;
+  }
+  .wrapper-day-calendar{
+    background: rgb(255,255,255);
+    padding: 10px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1px;
+
+    div{
+      box-shadow:0 0 0 1px #5C9F61;
+
+    }
+    .now-day{
+      background: rgba(92, 159, 97, 0.3);
+    }
+  }
 }
