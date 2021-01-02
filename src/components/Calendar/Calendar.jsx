@@ -6,12 +6,12 @@ const CALENDAR_ID = 'bosba9d@gmail.com'
 const API_KEY = 'AIzaSyAhfRY8AD5ylbweL7dx6MjXOvRFq1jz6o0'
 let url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`
 
-fetch(url)
+const resultFetch = fetch(url)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
-    console.log(data);
+    return data.items;
   });
 
  // создание календаря на месяц
@@ -41,13 +41,10 @@ export default function Calendar() {
   let beforeData;
 
  function createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth) {
-   //теперяшний день
-   //день недели полученный из объекта
    (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
-   //получить количество дней
-   //с определенной позиции написать месяц
    for (var i = 0; i < nowDaysInMonth; i++) {
-     dataGrid[position + i] = i + 1;
+     dataGrid[position + i] = i + 1 ;
+
    }
    for (var i = 0; i < dataGrid.length; i++) {
      let className = 'day ';
@@ -60,9 +57,8 @@ export default function Calendar() {
    }
 
  }
- // инициализация календаря
+
  createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth);
- // дни недели
 
   const daysForWeekElem = [];
   for (var i = 0; i < 7; i++) {
@@ -72,8 +68,6 @@ export default function Calendar() {
     </div>
     daysForWeekElem.push(item);
   }
-
-
 
 
  function arrowLeftCalendar() {
@@ -95,6 +89,44 @@ export default function Calendar() {
    setdaysInMonth(now.daysInMonth());
    createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth);
  }
+
+
+useEffect(() => {
+  resultFetch.then((data) => {
+    console.log(data);
+    const arrayWithData = []
+    data.map((item) => {
+      createDataItem(item);
+    })
+    function createDataItem(dateOne) {
+      let dateOneStart =  new Date(dateOne['start']['dateTime']);
+      let dateOneEnd =  new Date(dateOne['end']['dateTime']);
+      let sammary = dateOne['summary'];
+      let description = dateOne['description'];
+      //Начало
+      let start = dateOneStart.getDate();
+      dateOneStart.getHours();
+      dateOneStart.getMinutes();
+      //Окончание
+      let end = dateOneEnd.getDate();
+      dateOneEnd.getHours();
+      dateOneEnd.getMinutes();
+      let dataLoop = {sammary: sammary,
+        description: description}
+      for (var i = start; i <= end; i++) {
+          if (arrayWithData.indexOf(i) === -1) {
+            arrayWithData[i] = dataLoop;
+          }
+          else {
+            arrayWithData[i].push(dataLoop);
+
+          }
+        }
+      }
+      // console.log(arrayWithData);
+
+  })
+}, [stateMouth])
 
   return(
     <div className="calendar">
