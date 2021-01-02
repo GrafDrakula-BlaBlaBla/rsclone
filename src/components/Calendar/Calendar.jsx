@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import './createMounth.jsx';
 import './_Calendar.scss';
 
 const CALENDAR_ID = 'bosba9d@gmail.com'
@@ -13,52 +14,55 @@ fetch(url)
     console.log(data);
   });
 
-  Date.prototype.daysInMonth = function() {
-  		return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
-  	};
+ // создание календаря на месяц
 
+ const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
+ 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+ const dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 
 export default function Calendar() {
-  const nameMonth = [ 'Января', 'Февраля', 'Марта', 'Апреля', 'Мая',
-  'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
-  const dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
-  const now = new Date();
-  const stateMouth = now.getMonth();
-  const stateYear = now.getFullYear();
-  //номер дня
-  const nowDay = now.getDate();
+  let now = new Date();
   const gridMount = [];
-  //день недели
-  const nowDayOfWeek = now.getDay();
-
   let dataGrid = [];
   dataGrid.length = 35;
 
-  if(nowDay/7 < 1){
-      let position = 0;
-      (now.daysInMonth() != 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
 
-      for (var i = 0; i < now.daysInMonth(); i++) {
-        dataGrid[position + i] = i + 1;
-      }
+   Date.prototype.daysInMonth = function() {
+     return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
+   };
+  const [nowDay, setDay] = useState(now.getDate());
+  let [stateMouth, setMouth] = useState(now.getMonth());
+  const [stateYear, setYear] = useState(now.getFullYear());
+  const firstDayForWeek = new Date(stateYear, stateMouth, 1);
+  const [nowDayOfWeek, setDayOfWeek] = useState(firstDayForWeek.getDay());
+  const [nowDaysInMonth, setdaysInMonth] = useState(now.daysInMonth());
+
+  let position;
   let beforeData;
-   stateMouth != 0 ? beforeData =  new Date(stateYear, stateMouth - 1, 1) :  beforeData =  new Date(stateYear-1, 11, 1);
-   let beforeMouth = beforeData.daysInMonth();
-    for (var i = position-1; i >= 0; i--) {
-    dataGrid[i] = beforeMouth;
-    beforeMouth = beforeMouth -1;
-   }
-  }
-  for (var i = 0; i < dataGrid.length; i++) {
-    let className = 'day ';
-    className += (nowDay == dataGrid[i]) ? 'now-day' : '';
-    let item =
-    <div className={className}  >
-      <div>{dataGrid[i]}</div>
-    </div>
-    gridMount.push(item);
-  }
 
+ function createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth) {
+   //теперяшний день
+   //день недели полученный из объекта
+   (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
+   //получить количество дней
+   //с определенной позиции написать месяц
+   for (var i = 0; i < nowDaysInMonth; i++) {
+     dataGrid[position + i] = i + 1;
+   }
+   for (var i = 0; i < dataGrid.length; i++) {
+     let className = 'day ';
+     className += (nowDay === dataGrid[i]) ? 'now-day' : '';
+     let item =
+     <div className={className}  >
+     <div>{dataGrid[i]}</div>
+     </div>
+     gridMount.push(item);
+   }
+
+ }
+ // инициализация календаря
+ createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth);
+ // дни недели
 
   const daysForWeekElem = [];
   for (var i = 0; i < 7; i++) {
@@ -70,11 +74,34 @@ export default function Calendar() {
   }
 
 
+
+
+ function arrowLeftCalendar() {
+   stateMouth == 0 ? now = new Date(stateYear - 1, 11, 1) : now =  new Date(stateYear, stateMouth-1, 1);
+   setMouth(now.getMonth());
+   setYear(now.getFullYear());
+   setDay(now.getDate());
+   setDayOfWeek(now.getDay());
+   setdaysInMonth(now.daysInMonth());
+   createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth);
+ }
+
+ function arrowRightCalendar() {
+   stateMouth == 11 ? now = new Date(stateYear + 1, 1, 1) : now =  new Date(stateYear, stateMouth + 1, 1);
+   setMouth(now.getMonth());
+   setYear(now.getFullYear());
+   setDay(now.getDate());
+   setDayOfWeek(now.getDay());
+   setdaysInMonth(now.daysInMonth());
+   createOneMounth(stateMouth, stateYear, nowDay, nowDayOfWeek, nowDaysInMonth);
+ }
+
   return(
     <div className="calendar">
-      <div className="head-calendar"> <div>&#129152;</div> {nowDay} {nameMonth[stateMouth]} <div>&#129154;</div></div>
-      <div class="wrapper-day-calendar">
-        {daysForWeekElem}
+      <div className="head-calendar"> <div className="button-click-calendar" onClick={arrowLeftCalendar}>&#129152;</div>
+      {nameMonth[stateMouth]} { stateYear }<div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div></div>
+      <div className="wrapper-day-for-week">{daysForWeekElem}</div>
+      <div className="wrapper-day-calendar">
         {gridMount}
       </div>
     </div>
