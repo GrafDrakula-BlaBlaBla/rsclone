@@ -1,0 +1,107 @@
+.reg-btn {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  margin-top: 5px;
+  background: url('../../modules/assets/enter.svg') 0 0 / cover no-repeat;
+  cursor: pointer;
+  transition: 0.15s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.reg-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .reg-modal__main {
+    width: 504px;
+    height: 588px;
+    background: rgba(270, 270, 270, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .main-top {
+      height: 40px;
+      padding-top: 20px;
+      .reg-modal__title {
+        font-size: 1.25em;
+        font-weight: 700;
+      }
+    }
+
+    .main-center {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 88px;
+
+      .reg-modal__social-login {
+        width: 214px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 52px;
+
+        .social-icon {
+          width: 34px;
+          height: 34px;
+          cursor: pointer;
+        }
+      }
+
+      .reg-modal__folders {
+        display: flex;
+        flex-direction: column;
+        justify-content: column;
+        align-items: center;
+        margin-bottom: 42px;
+
+        .reg-folder {
+          width: 252px;
+          height: 36px;
+          margin-bottom: 36px;
+          border-radius: 25px;
+          border: 0;
+          background-color: rgba(0, 0, 0, 0.15);
+          color: black;
+          font-size: 1.1em;
+          padding: 0 14px;
+        }
+      }
+
+      .reg-modal__btn {
+        width: 216px;
+        height: 40px;
+        background-color: #5c9f61;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1.25em;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+          opacity: 0.5;
+        }
+
+        &:active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
