@@ -1,18 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import './createMounth.jsx';
+import OneDay from  './OneDay.jsx';
+import resultFetch from  './RequestCalendar.jsx';
 import './_Calendar.scss';
-
-const CALENDAR_ID = 'bosba9d@gmail.com'
-const API_KEY = 'AIzaSyAhfRY8AD5ylbweL7dx6MjXOvRFq1jz6o0'
-let url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`
-
-const resultFetch = fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    return data.items;
-  });
 
  // создание календаря на месяц
 
@@ -92,50 +81,53 @@ export default function Calendar() {
 
 
 useEffect(() => {
-  resultFetch.then((data) => {
-    console.log(data);
-    const arrayWithData = []
-    data.map((item) => {
-      createDataItem(item);
-    })
-    function createDataItem(dateOne) {
-      let dateOneStart =  new Date(dateOne['start']['dateTime']);
-      let dateOneEnd =  new Date(dateOne['end']['dateTime']);
-      let sammary = dateOne['summary'];
-      let description = dateOne['description'];
-      //Начало
-      let start = dateOneStart.getDate();
-      dateOneStart.getHours();
-      dateOneStart.getMinutes();
-      //Окончание
-      let end = dateOneEnd.getDate();
-      dateOneEnd.getHours();
-      dateOneEnd.getMinutes();
-      let dataLoop = {sammary: sammary,
-        description: description}
-      for (var i = start; i <= end; i++) {
-          if (arrayWithData.indexOf(i) === -1) {
-            arrayWithData[i] = dataLoop;
-          }
-          else {
-            arrayWithData[i].push(dataLoop);
-
-          }
-        }
-      }
-      // console.log(arrayWithData);
-
-  })
+  // resultFetch.then((data) => {
+  //   console.log(data);
+  //   const arrayWithData = []
+  //   data.map((item) => {
+  //     createDataItem(item);
+  //   })
+  //   function createDataItem(dateOne) {
+  //     let dateOneStart =  new Date(dateOne['start']['dateTime']);
+  //     let dateOneEnd =  new Date(dateOne['end']['dateTime']);
+  //     let sammary = dateOne['summary'];
+  //     let description = dateOne['description'];
+  //     //Начало
+  //     let start = dateOneStart.getDate();
+  //     dateOneStart.getHours();
+  //     dateOneStart.getMinutes();
+  //     //Окончание
+  //     let end = dateOneEnd.getDate();
+  //     dateOneEnd.getHours();
+  //     dateOneEnd.getMinutes();
+  //     let dataLoop = {sammary: sammary,
+  //       description: description}
+  //     for (var i = start; i <= end; i++) {
+  //         if (arrayWithData.indexOf(i) === -1) {
+  //           arrayWithData[i] = dataLoop;
+  //         }
+  //         else {
+  //           arrayWithData[i].push(dataLoop);
+  //
+  //         }
+  //       }
+  //     }
+  //     console.log(arrayWithData);
+  //
+  // })
 }, [stateMouth])
 
   return(
     <div className="calendar">
+    <div>
       <div className="head-calendar"> <div className="button-click-calendar" onClick={arrowLeftCalendar}>&#129152;</div>
       {nameMonth[stateMouth]} { stateYear }<div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div></div>
       <div className="wrapper-day-for-week">{daysForWeekElem}</div>
       <div className="wrapper-day-calendar">
-        {gridMount}
+      {gridMount}
       </div>
+    </div>
+      <OneDay mouth={stateMouth} day={nowDay}/ >
     </div>
   );
 }

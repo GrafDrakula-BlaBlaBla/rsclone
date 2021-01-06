@@ -10,7 +10,9 @@ function App() {
       <Header />
       <div className="main-section">
         <Map/>
+
         <Calendar/>
+        
       </div>
       <Footer />
     </div>
