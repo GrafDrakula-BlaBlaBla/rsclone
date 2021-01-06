@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Header />
       <div className="main-section">
-        <Calendar/>
         <Map/>
+        <Calendar/>
       </div>
       <Footer />
     </div>
