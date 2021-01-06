@@ -2,6 +2,7 @@ import "./App.scss";
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Calendar from './Calendar/Calendar';
+import Map from './Map/Map';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <div className="main-section">
         <Calendar/>
+        <Map/>
       </div>
       <Footer />
     </div>
