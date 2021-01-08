@@ -1,5 +1,10 @@
 .calendar{
-background: white;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 10px 0;
+font-family: Noto Sans JP, sans-serif;
+background: rgba(255,255,255, 0.9) ;
 width: 50%;
 margin-right: 50px;
   .wrapper-calendar-mounth{
@@ -52,7 +57,6 @@ margin-right: 50px;
   }
 }
 <<<<<<< Updated upstream
-=======
 
 .wrapper-one-day-header{
   margin-top: 10px;

@@ -3,18 +3,6 @@ import OneDay from  './OneDay.jsx';
 import arrayDataEvents from './ArrayDataEvents.jsx';
 import './_Calendar.scss';
 
-const CALENDAR_ID = 'bosba9d@gmail.com'
-const API_KEY = 'AIzaSyAhfRY8AD5ylbweL7dx6MjXOvRFq1jz6o0'
-let url = `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}`
-
-const resultFetch = fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    return data.items;
-  });
-
  // создание календаря на месяц
 
  const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
@@ -132,7 +120,6 @@ export default function Calendar() {
 useEffect(() => {
 <<<<<<< Updated upstream
 
-=======
   // console.log(dataGrid);
   // console.log(gridMount);
   // console.log("use");
@@ -150,6 +137,8 @@ useEffect(() => {
       <div className="wrapper-day-calendar">
         {gridMount}
       </div>
+    </div>
+      <OneDay mouth={stateMouth} day={nowDay}/ >
     </div>
   );
 }
