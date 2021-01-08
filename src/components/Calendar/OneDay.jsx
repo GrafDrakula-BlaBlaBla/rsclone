@@ -1,62 +1,54 @@
 import React, {useEffect, useState} from 'react';
-import resultFetch from  './RequestCalendar.jsx';
 import './_Calendar.scss';
 import user from './user.svg';
+import arrayDataEvents from './ArrayDataEvents.jsx';
 
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-resultFetch.then((data) => {
-  console.log(data);
-  const arrayWithData = []
-  data.map((item) => {
-    createDataItem(item);
-  })
-  function createDataItem(dateOne) {
-    let dateOneStart =  new Date(dateOne['start']['dateTime']);
-    let dateOneEnd =  new Date(dateOne['end']['dateTime']);
-    let sammary = dateOne['summary'];
-    let description = dateOne['description'];
-    //Начало
-    let start = dateOneStart.getDate();
-    dateOneStart.getHours();
-    dateOneStart.getMinutes();
-    //Окончание
-    let end = dateOneEnd.getDate();
-    dateOneEnd.getHours();
-    dateOneEnd.getMinutes();
-    let dataLoop = {sammary: sammary,
-      description: description}
-    for (var i = start; i <= end; i++) {
-        if (arrayWithData.indexOf(i) === -1) {
-          arrayWithData[i] = dataLoop;
-        }
-        else {
-          arrayWithData[i].push(dataLoop);
-
-        }
-      }
-    }
-    console.log(arrayWithData);
-
-})
 
 
 export default function OneDay(mouth, day) {
 
-console.log(mouth);
+let [listEventsOneDay, listOneDay] = useState([]);
+let [numberOfEvents, changeNumberOfEvents] = useState();
+
+  arrayDataEvents.then((data) => {
+
+      if(data[mouth.day] == undefined){
+        return (
+          listEventsOneDay =  <li>Мероприятий нет</li>);
+
+      }else{
+
+          listEventsOneDay = data[mouth.day].map( ( item ) => {
+            return (
+                <li key={item.id}><img src={ user } /><p>Имя</p><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
+            })
+          let wordForm = function( num, word ){
+              	let cases = [2, 0, 1, 1, 1, 2];
+              	return word[ (num%100>4 && num%100<20)? 2 : cases[(num%10<5)?num%10:5] ];
+              }
+
+            numberOfEvents = data[mouth.day].length + wordForm(data[mouth.day].length, [' мероприятие', ' мероприятия', ' мероприятий']);
+      }
+  })
+useEffect(() => {
+
+      listOneDay(listEventsOneDay);
+      changeNumberOfEvents(numberOfEvents);
+  }, [listEventsOneDay])
+
   return(
     <div>
       <div className="wrapper-one-day-header">
         <p>Сегодня</p>
         <p> {mouth.day} {nameMonth[mouth.mouth]}</p>
-        <p>мероприятий</p>
+        <p> { numberOfEvents } </p>
       </div>
       <div >
         <ul className="list-events-one-day">
-          <li><img src={ user } /><p>Аня</p><p>Сбор мусора</p> <a href="#">Присоединиться</a></li>
-          <li><img src={ user } /><p>Аня</p><p>Сбор мусора</p> <a href="#">Присоединиться</a></li>
-          <li><img src={ user } /><p>Аня</p><p>Сбор мусора</p> <a href="#">Присоединиться</a></li>
+          { listEventsOneDay }
         </ul>
       </div>
       <div className="button-create-new-evernt">
