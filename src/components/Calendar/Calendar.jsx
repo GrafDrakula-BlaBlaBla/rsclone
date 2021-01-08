@@ -87,8 +87,7 @@ export default function Calendar() {
 
 function changeMounth(data) {
     changeGridMount(data);
-    console.log("hello");
-}
+  }
 
 useEffect(() => {
   // Данные пришли => надеть структуру на данные
