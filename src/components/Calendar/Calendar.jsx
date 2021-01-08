@@ -130,7 +130,14 @@ export default function Calendar() {
   })
 
 useEffect(() => {
+<<<<<<< Updated upstream
 
+=======
+  // console.log(dataGrid);
+  // console.log(gridMount);
+  // console.log("use");
+  // changeGridMount(gridMount);
+>>>>>>> Stashed changes
 
 }, [gridMount])
 

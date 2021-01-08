@@ -51,3 +51,50 @@ margin-right: 50px;
     }
   }
 }
+<<<<<<< Updated upstream
+=======
+
+.wrapper-one-day-header{
+  margin-top: 10px;
+  padding: 0 10px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-create-new-evernt{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 10px;
+  a{
+    background: #5C9F61;
+    text-decoration: none;
+    color: white;
+    padding: 10px 30px;
+    }
+}
+
+.list-events-one-day{
+  display: flex;
+  flex-direction: column;
+    li{
+      width: calc(100% - 20px);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin: 10px 0;
+      background: white;
+      img{
+        width: 40px;
+      }
+      a{
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+}
+>>>>>>> Stashed changes
