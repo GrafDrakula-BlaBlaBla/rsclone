@@ -20,7 +20,6 @@ let [numberOfEvents, changeNumberOfEvents] = useState();
           listEventsOneDay =  <li>Мероприятий нет</li>);
 
       }else{
-
           listEventsOneDay = data[mouth.day].map( ( item ) => {
             return (
                 <li key={item.id}><img src={ user } /><p>Имя</p><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
@@ -33,11 +32,13 @@ let [numberOfEvents, changeNumberOfEvents] = useState();
             numberOfEvents = data[mouth.day].length + wordForm(data[mouth.day].length, [' мероприятие', ' мероприятия', ' мероприятий']);
       }
   })
+
 useEffect(() => {
 
       listOneDay(listEventsOneDay);
       changeNumberOfEvents(numberOfEvents);
-  }, [listEventsOneDay])
+
+  }, [listEventsOneDay, numberOfEvents])
 
   return(
     <div>
