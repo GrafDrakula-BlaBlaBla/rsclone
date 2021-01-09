@@ -106,10 +106,12 @@ function changeMounth(data) {
 function createEventsElem(indexDataGrid, data) {
   let arrayEventsOneDayCaltnlar = [];
   for (var i = 0; i < data[indexDataGrid].length; i++) {
+    let idEvent = data[indexDataGrid][i]["id"];
+    console.log();
     let item =
-        <div className="one-event-calendar">
+        <button className="one-event-calendar btn btn-primary" type="button" data-toggle="modal" data-target= { idEvent }>
           {data[indexDataGrid][i]['sammary'] }
-        </div>
+        </button>
         arrayEventsOneDayCaltnlar.push(item);
       }
     return arrayEventsOneDayCaltnlar;
@@ -124,35 +126,32 @@ function createDataMonth() {
 
         let className = 'day';
 
-       console.log(data[stateYear].hasOwnProperty(stateMouth));
-
        if(data[stateYear].hasOwnProperty(stateMouth)){
 
-         if(data[stateYear][stateMouth].hasOwnProperty(index)){
+           if(data[stateYear][stateMouth].hasOwnProperty(index)){
 
-           dataGrid[index] = <div className={ className }>
-           <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
+             dataGrid[index] = <div className={ className }>
+             <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
 
-         }else{
+           }else{
+             let itemWithoutData =
+             <div className={ className } >
+              <div>{ item }</div>
+             </div>
+             dataGrid[index] = itemWithoutData;
+           }
+           return dataGrid[index];
+
+         } else {
 
            let itemWithoutData =
            <div className={ className }>
             <div>{ item }</div>
            </div>
            dataGrid[index] = itemWithoutData;
+           return dataGrid[index];
          }
-         return dataGrid[index];
-
-       } else{
-
-         let itemWithoutData =
-         <div className={ className }>
-          <div>{ item }</div>
-         </div>
-         dataGrid[index] = itemWithoutData;
-         return dataGrid[index];
-       }
-      })
+        })
       changeGridMount(wrapperData);
   })
 }
@@ -191,7 +190,7 @@ useEffect(() => {
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
           <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>
-          {nameMonth[stateMouth]} { stateYear }
+          { nameMonth[stateMouth] } { stateYear }
           <div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div>
         </div>
         <div className="wrapper-day-for-week">{daysForWeekElem}</div>
@@ -199,7 +198,7 @@ useEffect(() => {
           {gridMount}
         </div>
       </div>
-      <OneDay mouth={stateMouth} day={nowDay}/ >
+      <OneDay mouth={ stateMouth } day={ nowDay }/ >
     </div>
 
   );
