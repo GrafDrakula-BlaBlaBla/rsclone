@@ -31,7 +31,7 @@ font-size: 1.25rem;
     grid-template-rows: repeat(1, 20px);
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 5px 10px;
-    margin: 10px 0;
+
     background:  #5C9F61;
     color: white;
     text-align: center;
@@ -39,20 +39,26 @@ font-size: 1.25rem;
     }
   .wrapper-day-calendar{
     background: rgb(255,255,255);
-    padding: 0px 10px;
+    padding: 10px 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
     height: 100%;
-    padding-bottom: 10px;
 
     .day{
       div{
         background: #5C9F61;
-
+        font-size: 1rem;
         color: white;
-        text-align: right;
+        text-align: center;
+
         }
+      .one-event-calendar{
+        text-align: left;
+        background: white;
+        color: black;
+        padding: 5px;
+      }
     }
     div{
       box-shadow:0 0 0 1px grey;

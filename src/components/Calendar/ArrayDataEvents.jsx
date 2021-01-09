@@ -9,8 +9,10 @@ const arrayDataEvents = resultFetch.then((data) => {
 
   })
   function createDataItem(dateOne) {
+
     let dateOneStart =  dateOne['start'].hasOwnProperty('dateTime') ? new Date(dateOne['start']['dateTime']) : new Date(dateOne['start']['date']);
     let dateOneEnd =  dateOne['end'].hasOwnProperty('dateTime') ? new Date(dateOne['end']['dateTime']) : new Date(dateOne['end']['date']);
+
     let sammary = dateOne['summary'];
     let description = dateOne['description'];
     let location = dateOne['location'];
@@ -18,16 +20,24 @@ const arrayDataEvents = resultFetch.then((data) => {
 
     //Начало
     let start = dateOneStart.getDate();
-    dateOneStart.getHours();
-    dateOneStart.getMinutes();
+    let startHours = dateOneStart.getHours();
+    let startMinutes = dateOneStart.getMinutes();
+    let startMonth = dateOneStart.getMonth();
     //Окончание
     let end = dateOneEnd.getDate();
-    dateOneEnd.getHours();
-    dateOneEnd.getMinutes();
+    let endHours = dateOneEnd.getHours();
+    let endMinutes = dateOneEnd.getMinutes();
+    let endMonth = dateOneEnd.getMonth();
 
     let dataLoop = {
       start: start,
+      startHours: startHours,
+      startMinutes: startMinutes,
+      startMonth: startMonth,
       end: end,
+      endHours: endHours,
+      endMinutes: endMinutes,
+      endMonth: endMonth,
       sammary: sammary,
       description: description,
       location: location,

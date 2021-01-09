@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import OneDay from  './OneDay.jsx';
 import arrayDataEvents from './ArrayDataEvents.jsx';
+import arrayDataAllEvents from './arrayAllTime.jsx';
 import './_Calendar.scss';
 
  // создание календаря на месяц
@@ -10,8 +11,9 @@ import './_Calendar.scss';
  const dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 
 export default function Calendar() {
-  let now = new Date();
 
+
+  let [now, changeDay] = useState(new Date());
 
    Date.prototype.daysInMonth = function() {
      return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
@@ -52,9 +54,10 @@ export default function Calendar() {
 
 // Создание структуры
 
-  function createOneMounth( nowDayOfWeek, nowDaysInMonth) {
+  function createOneMounth( nowDayOfWeek, nowDaysInMonth ) {
     let position;
     (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
+
     // создание сетки дней (массив с пустыми индексами) СТРУКТУРА
     for (var i = 0; i < nowDaysInMonth; i++) {
       dataGrid[position + i] = i + 1 ;
@@ -65,18 +68,22 @@ export default function Calendar() {
   createOneMounth( nowDayOfWeek, nowDaysInMonth);
 
  function arrowLeftCalendar() {
+
    stateMouth == 0 ? now = new Date(stateYear - 1, 11, 1) : now =  new Date(stateYear, stateMouth-1, 1);
+   changeDay(now);
    setMouth(now.getMonth());
    setYear(now.getFullYear());
    setDay(now.getDate());
    setDayOfWeek(now.getDay());
    setdaysInMonth(now.daysInMonth());
    createOneMounth( nowDayOfWeek, nowDaysInMonth);
+
  }
 
  function arrowRightCalendar() {
 
-   stateMouth == 11 ? now = new Date(stateYear + 1, 1, 1) : now =  new Date(stateYear, stateMouth + 1, 1);
+   stateMouth == 11 ? now = new Date(stateYear + 1, 0, 1) : now =  new Date(stateYear, stateMouth + 1, 1);
+   changeDay(now);
    setMouth(now.getMonth());
    setYear(now.getFullYear());
    setDay(now.getDate());
@@ -85,32 +92,34 @@ export default function Calendar() {
    createOneMounth( nowDayOfWeek, nowDaysInMonth);
  }
 
+// Обновление пустой структуры на календарь с данными
 function changeMounth(data) {
+
     changeGridMount(data);
+
   }
+
+// Создание элемента мероприятия
+function createEventsElem(indexDataGrid, data) {
+  let arrayEventsOneDayCaltnlar = [];
+  for (var i = 0; i < data[indexDataGrid].length; i++) {
+    let item =
+        <div className="one-event-calendar">
+          {data[indexDataGrid][i]['sammary'] }
+        </div>
+        arrayEventsOneDayCaltnlar.push(item);
+      }
+    return arrayEventsOneDayCaltnlar;
+}
 
 useEffect(() => {
   // Данные пришли => надеть структуру на данные
-    arrayDataEvents.then((data) => {
-
-      function createEventsElem(indexDataGrid) {
-        let arrayEventsOneDayCaltnlar = [];
-        for (var i = 0; i < data[indexDataGrid].length; i++) {
-          let item =
-              <div>
-                { data[indexDataGrid][i]['sammary'] }
-              </div>
-              arrayEventsOneDayCaltnlar.push(item);
-            }
-          return arrayEventsOneDayCaltnlar;
-      }
-
+    arrayDataAllEvents.then((data) => {
       // Перебор структуры
         let wrapperData = dataGrid.map(( item, index) => {
-          let className = 'day ';
-           if(data.hasOwnProperty(index)){
-
-             dataGrid[index] = <div className={ className }> {index} { createEventsElem(index) } </div>;
+          let className = 'day';
+           if(data[stateYear][stateMouth].hasOwnProperty(index)){
+             dataGrid[index] = <div className={ className }> <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
               }else{
                 let itemWithoutData =
                   <div className={ className }>
@@ -122,13 +131,15 @@ useEffect(() => {
         })
         changeMounth(wrapperData);
     })
+
 }, [])
 
   return(
     <div className="calendar">
+
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
-          <div className="button-click-calendar" onClick={arrowLeftCalendar}>&#129152;</div>
+          <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>
           {nameMonth[stateMouth]} { stateYear }
           <div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div>
         </div>
