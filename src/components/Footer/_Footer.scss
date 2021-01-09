@@ -1,0 +1,25 @@
+.footer {
+  width: 50px;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  .github-btn {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background: 0;
+    cursor: pointer;
+    transition: 0.15s;
+    margin-bottom: 5px;
+    background: url('../../modules/assets/github-logo.svg') 0 0 / cover
+      no-repeat;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
