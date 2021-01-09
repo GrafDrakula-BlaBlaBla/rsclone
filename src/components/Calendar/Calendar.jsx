@@ -121,17 +121,37 @@ function createDataMonth() {
 
     // Перебор структуры
       let wrapperData = dataGrid.map(( item, index) => {
+
         let className = 'day';
+
+       console.log(data[stateYear].hasOwnProperty(stateMouth));
+
+       if(data[stateYear].hasOwnProperty(stateMouth)){
+
          if(data[stateYear][stateMouth].hasOwnProperty(index)){
-           dataGrid[index] = <div className={ className }> <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
-            }else{
-              let itemWithoutData =
-                <div className={ className }>
-                  <div>{ item }</div>
-                </div>
-            dataGrid[index] = itemWithoutData;
-          }
-          return dataGrid[index];
+
+           dataGrid[index] = <div className={ className }>
+           <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
+
+         }else{
+
+           let itemWithoutData =
+           <div className={ className }>
+            <div>{ item }</div>
+           </div>
+           dataGrid[index] = itemWithoutData;
+         }
+         return dataGrid[index];
+
+       } else{
+
+         let itemWithoutData =
+         <div className={ className }>
+          <div>{ item }</div>
+         </div>
+         dataGrid[index] = itemWithoutData;
+         return dataGrid[index];
+       }
       })
       changeGridMount(wrapperData);
   })
