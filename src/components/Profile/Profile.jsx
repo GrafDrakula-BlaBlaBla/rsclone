@@ -4,15 +4,16 @@ import userImg from '../../modules/assets/user.svg';
 import emptyStarIcon from '../../modules/assets/empty-star.svg';
 import starIcon from '../../modules/assets/star.svg';
 import EventsHistory from './EventsHistory/EventsHistory';
+import EventsList from './EventsList/EventsList';
 
 export default function Profile() {
   return (
     <div className="profile-page">
-      <div className="profile-top">
-        <span className="profile-title">Профель</span>
-      </div>
-      <div className="profile-main">
-        <div className="profile-left-section">
+      <div className="profile-section">
+        <div className="profile-top">
+          <span className="profile-title">Профиль</span>
+        </div>
+        <div className="profile-main">
           <div className="profile-info">
             <div className="user-pic">
               <img className="user-pic-img" src={ userImg } alt="user"/>
@@ -30,7 +31,9 @@ export default function Profile() {
           </div>
           <EventsHistory />
         </div>
-        <div className="profile-right-section"></div>
+      </div>
+      <div className="event-list-section">
+        <EventsList />
       </div>
     </div>
   );

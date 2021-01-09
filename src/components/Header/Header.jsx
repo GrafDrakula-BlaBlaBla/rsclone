@@ -1,6 +1,6 @@
 import React from 'react';
 import './_Header.scss';
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function change() {
   document.getElementById("header").classList.toggle("open");
@@ -14,9 +14,9 @@ export default function Header() {
           <ul className="menu-list">
             <li className="menu-item" ><Link className="item-link" to="/">Main</Link></li>
             <li className="menu-item" ><Link className="item-link" to="/profile"><span>Профель</span></Link></li>
+            {/* <li className="menu-item" ><Link className="item-link" to="/"></Link></li>
             <li className="menu-item" ><Link className="item-link" to="/"></Link></li>
-            <li className="menu-item" ><Link className="item-link" to="/"></Link></li>
-            <li className="menu-item" ><Link className="item-link" to="/"></Link></li>
+            <li className="menu-item" ><Link className="item-link" to="/"></Link></li> */}
           </ul>
       </div>
       <button className="change-lang-btn">ru</button>
