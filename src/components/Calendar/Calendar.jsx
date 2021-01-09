@@ -62,6 +62,7 @@ export default function Calendar() {
     for (var i = 0; i < nowDaysInMonth; i++) {
       dataGrid[position + i] = i + 1 ;
       }
+
       return dataGrid;
     }
 
@@ -76,7 +77,8 @@ export default function Calendar() {
    setDay(now.getDate());
    setDayOfWeek(now.getDay());
    setdaysInMonth(now.daysInMonth());
-   createOneMounth( nowDayOfWeek, nowDaysInMonth);
+   let grid = createOneMounth( nowDayOfWeek, nowDaysInMonth );
+   changeDataGrid(grid);
 
  }
 
@@ -89,7 +91,8 @@ export default function Calendar() {
    setDay(now.getDate());
    setDayOfWeek(now.getDay());
    setdaysInMonth(now.daysInMonth());
-   createOneMounth( nowDayOfWeek, nowDaysInMonth);
+   let grid = createOneMounth( nowDayOfWeek, nowDaysInMonth);
+   changeDataGrid(grid);
  }
 
 // Обновление пустой структуры на календарь с данными
@@ -111,6 +114,34 @@ function createEventsElem(indexDataGrid, data) {
       }
     return arrayEventsOneDayCaltnlar;
 }
+
+function createDataMonth() {
+
+  arrayDataAllEvents.then((data) => {
+
+    // Перебор структуры
+      let wrapperData = dataGrid.map(( item, index) => {
+        let className = 'day';
+         if(data[stateYear][stateMouth].hasOwnProperty(index)){
+           dataGrid[index] = <div className={ className }> <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
+            }else{
+              let itemWithoutData =
+                <div className={ className }>
+                  <div>{ item }</div>
+                </div>
+            dataGrid[index] = itemWithoutData;
+          }
+          return dataGrid[index];
+      })
+      changeGridMount(wrapperData);
+  })
+}
+
+useEffect(() => {
+
+let result = createDataMonth();
+
+}, [stateMouth])
 
 useEffect(() => {
   // Данные пришли => надеть структуру на данные
