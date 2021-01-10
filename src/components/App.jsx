@@ -1,8 +1,7 @@
 import "./App.scss";
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import Calendar from './Calendar/Calendar';
-import Map from './Map/Map';
+import Initiatives from './Initiatives/Initiatives';
 import Profile from './Profile/Profile';
 import {
   BrowserRouter as Router,
@@ -16,11 +15,10 @@ function App() {
       <div className="App">
         <Header />
         <div className="main-section">
-          <Map/>
-          <Calendar/>
           <Switch>
             <Route path="/" exact><div>Main</div></Route>
             <Route path="/profile" component={ Profile } />
+            <Route path="/initiatives" component={ Initiatives } />
           </Switch>
         </div>
 
