@@ -1,9 +1,7 @@
 #header {
   width: 50px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  height: 100%;
+  position: fixed;
   background-color: white;
 
   .menu-burger-btn {
@@ -43,6 +41,12 @@
         margin-bottom: 16px;
         font-size: 1.1em;
         cursor: pointer;
+
+        .item-link {
+          text-decoration: none;
+          color: black;
+        }
+
         &:hover {
           opacity: 0.7;
         }
