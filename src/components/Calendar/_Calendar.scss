@@ -67,9 +67,13 @@ font-size: 1.25rem;
         padding: 5px;
         border: none;
         width: 100%;
-    
+
       }
       .one-event-calendar:hover{
+        cursor: pointer;
+      }
+
+      .namber-day:hover{
         cursor: pointer;
       }
     }

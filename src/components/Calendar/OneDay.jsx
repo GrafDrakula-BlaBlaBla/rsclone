@@ -12,13 +12,14 @@ export default function OneDay(mouth, day) {
 
 let [listEventsOneDay, listOneDay] = useState([]);
 let [numberOfEvents, changeNumberOfEvents] = useState();
+let [dayInBlock, cnahgeDay] = useState(mouth.day);
+// console.log(mouth.day);
 
-
-useEffect(() => {
-
+function changeBlockOneDay() {
   arrayDataEvents.then((data) => {
 
     if(data[mouth.day] == undefined){
+      console.log(mouth.day);
       return (
         listEventsOneDay =  <li>Мероприятий нет</li>);
 
@@ -34,13 +35,22 @@ useEffect(() => {
 
           numberOfEvents = data[mouth.day].length + wordForm(data[mouth.day].length, [' мероприятие', ' мероприятия', ' мероприятий']);
         }
-
         listOneDay(listEventsOneDay);
         changeNumberOfEvents(numberOfEvents);
       })
+}
+useEffect(() => {
 
-  }, [])
+  changeBlockOneDay()
 
+    }, [])
+
+useEffect( ( ) => {
+
+  changeBlockOneDay(mouth.day)
+  listOneDay(listEventsOneDay);
+  changeNumberOfEvents(numberOfEvents);
+}, [ mouth ])
   return(
     <div className="wrapper-one-day">
       <div>

@@ -131,12 +131,12 @@ function createDataMonth() {
            if(data[stateYear][stateMouth].hasOwnProperty(item)){
 
              dataGrid[index] = <div className={ className }>
-             <div>{ item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
+             <div className="namber-day"> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
 
            } else {
              let itemWithoutData =
              <div className={ className } >
-              <div>{ item } </div>
+              <div className="namber-day">{ item } </div>
              </div>
              dataGrid[index] = itemWithoutData;
            }
@@ -146,7 +146,7 @@ function createDataMonth() {
 
            let itemWithoutData =
            <div className= { className } >
-            <div>{ item } </div>
+            <div className="namber-day">{ item } </div>
            </div>
            dataGrid[index] = itemWithoutData;
            return dataGrid[index];
@@ -166,19 +166,17 @@ useEffect(() => {
   // Данные пришли => надеть структуру на данные
     arrayDataAllEvents.then((data) => {
       // Перебор структуры
-      console.log(dataGrid);
-      console.log(data[stateYear][stateMouth]);
         let wrapperData = dataGrid.map(( item, index) => {
           let className = 'day';
            if(data[stateYear][stateMouth].hasOwnProperty(item)){
 
-             dataGrid[index] = <div className={ className }> <div> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
+             dataGrid[index] = <div className={ className }> <div className="namber-day" >  { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
 
               }else{
 
                 let itemWithoutData =
                   <div className={ className }>
-                    <div>{ item }</div>
+                    <div className="namber-day">{ item }</div>
                   </div>
               dataGrid[index] = itemWithoutData;
             }
@@ -189,9 +187,9 @@ useEffect(() => {
 
 }, [])
 
-function clickCalendar(e) {
-console.log(e);
-}
+function clickCalendar( clickCalendarEvent ) {
+  setDay(clickCalendarEvent.target.textContent)
+  }
   return(
     <div className="calendar">
 
