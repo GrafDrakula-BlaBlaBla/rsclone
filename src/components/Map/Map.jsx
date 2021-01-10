@@ -3,21 +3,21 @@ import './_Map.scss';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 export default function Map() {
-  const position = [53, 28];
-  const zoom = 2
+
   return(
     <div className="map-contener">
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      </MapContainer>
+
+      <MapContainer center={[53.902284, 27.561831]} zoom={7} scrollWheelZoom={true}>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=ab46a637-81e8-4df5-9f58-48897cbf8160"
+        />
+        <Marker position={[53.902284, 27.561831]}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+        </MapContainer>
     </div>
   );
 }

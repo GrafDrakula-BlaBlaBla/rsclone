@@ -42,16 +42,18 @@ useEffect(() => {
   }, [])
 
   return(
-    <div>
-      <div className="wrapper-one-day-header">
-        <p>Сегодня</p>
-        <p> {mouth.day} {nameMonth[mouth.mouth]}</p>
-        <p> { numberOfEvents } </p>
-      </div>
-      <div >
-        <ul className="list-events-one-day">
-          { listEventsOneDay }
-        </ul>
+    <div className="wrapper-one-day">
+      <div>
+        <div className="wrapper-one-day-header">
+          <p>Сегодня</p>
+          <p> {mouth.day} {nameMonth[mouth.mouth]}</p>
+          <p> { numberOfEvents } </p>
+        </div>
+        <div >
+          <ul className="list-events-one-day">
+            { listEventsOneDay }
+          </ul>
+        </div>
       </div>
       <div className="button-create-new-evernt">
         <a href="#" >Создать</a>

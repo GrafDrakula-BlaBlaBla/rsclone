@@ -107,7 +107,7 @@ function createEventsElem(indexDataGrid, data) {
   let arrayEventsOneDayCaltnlar = [];
   for (var i = 0; i < data[indexDataGrid].length; i++) {
     let idEvent = data[indexDataGrid][i]["id"];
-    console.log();
+
     let item =
         <button className="one-event-calendar btn btn-primary" type="button" data-toggle="modal" data-target= { idEvent }>
           {data[indexDataGrid][i]['sammary'] }
@@ -128,15 +128,15 @@ function createDataMonth() {
 
        if(data[stateYear].hasOwnProperty(stateMouth)){
 
-           if(data[stateYear][stateMouth].hasOwnProperty(index)){
+           if(data[stateYear][stateMouth].hasOwnProperty(item)){
 
              dataGrid[index] = <div className={ className }>
-             <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
+             <div>{ item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
 
-           }else{
+           } else {
              let itemWithoutData =
              <div className={ className } >
-              <div>{ item }</div>
+              <div>{ item } </div>
              </div>
              dataGrid[index] = itemWithoutData;
            }
@@ -145,8 +145,8 @@ function createDataMonth() {
          } else {
 
            let itemWithoutData =
-           <div className={ className }>
-            <div>{ item }</div>
+           <div className= { className } >
+            <div>{ item } </div>
            </div>
            dataGrid[index] = itemWithoutData;
            return dataGrid[index];
@@ -158,7 +158,7 @@ function createDataMonth() {
 
 useEffect(() => {
 
-let result = createDataMonth();
+createDataMonth();
 
 }, [stateMouth])
 
@@ -166,11 +166,16 @@ useEffect(() => {
   // Данные пришли => надеть структуру на данные
     arrayDataAllEvents.then((data) => {
       // Перебор структуры
+      console.log(dataGrid);
+      console.log(data[stateYear][stateMouth]);
         let wrapperData = dataGrid.map(( item, index) => {
           let className = 'day';
-           if(data[stateYear][stateMouth].hasOwnProperty(index)){
-             dataGrid[index] = <div className={ className }> <div>{index} </div> { createEventsElem(index, data[stateYear][stateMouth]) } </div>;
+           if(data[stateYear][stateMouth].hasOwnProperty(item)){
+
+             dataGrid[index] = <div className={ className }> <div> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
+
               }else{
+
                 let itemWithoutData =
                   <div className={ className }>
                     <div>{ item }</div>
@@ -184,6 +189,9 @@ useEffect(() => {
 
 }, [])
 
+function clickCalendar(e) {
+console.log(e);
+}
   return(
     <div className="calendar">
 
@@ -194,7 +202,7 @@ useEffect(() => {
           <div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div>
         </div>
         <div className="wrapper-day-for-week">{daysForWeekElem}</div>
-        <div className="wrapper-day-calendar">
+        <div className="wrapper-day-calendar" onClick={clickCalendar} >
           {gridMount}
         </div>
       </div>

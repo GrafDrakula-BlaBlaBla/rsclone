@@ -6,13 +6,20 @@ padding: 10px 0;
 font-family: Noto Sans JP, sans-serif;
 background: rgba(255,255,255, 0.9) ;
 width: 50%;
+height: 100%;
 margin-right: 50px;
 font-size: 1.25rem;
 
+  .wrapper-one-day{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .wrapper-calendar-mounth{
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 50%;
   }
 
   .button-click-calendar:hover{
@@ -60,7 +67,7 @@ font-size: 1.25rem;
         padding: 5px;
         border: none;
         width: 100%;
-
+    
       }
       .one-event-calendar:hover{
         cursor: pointer;
