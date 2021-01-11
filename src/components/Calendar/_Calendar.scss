@@ -76,6 +76,7 @@ font-size: 1.25rem;
 
       .namber-day:hover{
         cursor: pointer;
+        background: RGBA(92,159,97,0.8);
       }
     }
     div{
@@ -112,6 +113,9 @@ margin-top: 10px;
   flex-direction: column;
   overflow: auto;
   height: 250px;
+    .no-events{
+      justify-content: center;
+    }
     li{
       display: flex;
       flex-direction: row;

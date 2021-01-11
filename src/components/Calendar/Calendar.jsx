@@ -68,7 +68,7 @@ export default function Calendar() {
     }
 
   createOneMounth( nowDayOfWeek, nowDaysInMonth);
-
+// переключение в лево
  function arrowLeftCalendar() {
 
    stateMouth == 0 ? now = new Date(stateYear - 1, 11, 1) : now =  new Date(stateYear, stateMouth-1, 1);
@@ -83,6 +83,7 @@ export default function Calendar() {
    stateCalendar.changeStateDayMounthYear(now.getDate(), now.getMonth(), now.getFullYear())
    stateCalendar.changeBlockOneDay()
  }
+// переключение в право
 
  function arrowRightCalendar() {
 
@@ -193,14 +194,14 @@ useEffect(() => {
 }, [])
 
 function clickCalendar( clickCalendarEvent ) {
-  setDay(clickCalendarEvent.target.textContent)
-
-  stateCalendar.changeBlockOneDay(clickCalendarEvent.target.textContent)
-
+    if(clickCalendarEvent.target.classList.contains("namber-day")){
+        setDay(clickCalendarEvent.target.textContent)
+        stateCalendar.changeBlockOneDay(clickCalendarEvent.target.textContent)
+    }
   }
+
   return(
     <div className="calendar">
-
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
           <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>

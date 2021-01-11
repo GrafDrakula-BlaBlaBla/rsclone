@@ -21,7 +21,6 @@ import user from './../user.svg';
       this.day = +dayState
       this.mounth = mounthState
       this.year = yearState
-      console.log("day " +this.day + " mounth " +  this.mounth + " year "+ this.year);
     }
 
     changeBlockOneDay() {
@@ -29,7 +28,7 @@ import user from './../user.svg';
 
         if(data[this.year][this.mounth][this.day] == undefined){
 
-            this.listEventsOneDay =  <li>Мероприятий нет</li>;
+            this.listEventsOneDay =  <li className="no-events">Мероприятий нет</li>;
             this.numberOfEvents = "Пока нет";
           }else{
             this.listEventsOneDay = data[this.year][this.mounth][this.day].map( ( item ) => {
