@@ -1,26 +1,47 @@
 // const createError = require("http-errors"); // содержит коды ошиьок с их описанием
 import * as express from "express";
+import * as mongoose from "mongoose";
+import * as config from "config";
 import * as logger from "morgan"; // логирование всех действий
 // const path = require("path");
 
-import todoRouter from "./routes/todos";
+// import * as login from "./routes/routLogin";
 
+const PORT = config.get("serverPort");
+
+// * Создание сервера
 const app = express();
-
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/todos", todoRouter); // /todos - корневая папка для роутинга
+// app.use(`app/main`, login); // папка с файлами роутинга
 
-// catch 404 and forward to error handler
+const start = async () => {
+  try {
+    // * подключение к БД
+    await mongoose.connect(config.get("urlDB"));
+
+    app.listen(PORT, () => {
+      console.info(`Server has been started on port ${PORT}`);
+    });
+  } catch (e) {
+    console.warn(`An error has occurred: ${e}`);
+  }
+};
+start();
+// export default app;
+
+/*
+-----------------------------------------------------------------------------------------------------------------------------
+catch 404 and forward to error handler
 app.use(function (req, res, next) {
   res.json({
     statusCode: 404,
   });
 });
 
-// error handler
+error handler
 app.use(function (err, req, res, next) {
   res.json({
     statusCode: 500,
@@ -29,11 +50,8 @@ app.use(function (err, req, res, next) {
   });
 });
 
-export default app;
 
-/*
------------------------------------------------------------------------------------------------------------------------------
-// view engine setup
+ view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug"); // render (pug) - отрисовывает шаблоны  наших страниц, на его месте могут быть другие инструменты
 -----------------------------------------------------------------------------------------------------------------------------
