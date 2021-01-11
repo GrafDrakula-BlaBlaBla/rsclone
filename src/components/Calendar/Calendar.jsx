@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import OneDay from  './OneDay.jsx';
 import arrayDataEvents from './ArrayDataEvents.jsx';
 import arrayDataAllEvents from './arrayAllTime.jsx';
+import stateCalendar from './store/StateCalendar.jsx'
 import './_Calendar.scss';
 
  // создание календаря на месяц
@@ -79,7 +80,8 @@ export default function Calendar() {
    setdaysInMonth(now.daysInMonth());
    let grid = createOneMounth( nowDayOfWeek, nowDaysInMonth );
    changeDataGrid(grid);
-
+   stateCalendar.changeStateDayMounthYear(now.getDate(), now.getMonth(), now.getFullYear())
+   stateCalendar.changeBlockOneDay()
  }
 
  function arrowRightCalendar() {
@@ -93,6 +95,9 @@ export default function Calendar() {
    setdaysInMonth(now.daysInMonth());
    let grid = createOneMounth( nowDayOfWeek, nowDaysInMonth);
    changeDataGrid(grid);
+
+   stateCalendar.changeStateDayMounthYear(now.getDate(), now.getMonth(), now.getFullYear())
+   stateCalendar.changeBlockOneDay()
  }
 
 // Обновление пустой структуры на календарь с данными
@@ -189,6 +194,9 @@ useEffect(() => {
 
 function clickCalendar( clickCalendarEvent ) {
   setDay(clickCalendarEvent.target.textContent)
+
+  stateCalendar.changeBlockOneDay(clickCalendarEvent.target.textContent)
+
   }
   return(
     <div className="calendar">
@@ -204,7 +212,7 @@ function clickCalendar( clickCalendarEvent ) {
           {gridMount}
         </div>
       </div>
-      <OneDay mouth={ stateMouth } day={ nowDay }/ >
+      <OneDay mouth={ stateMouth } day={nowDay} year={ stateYear }/ >
     </div>
 
   );
