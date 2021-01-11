@@ -1,0 +1,19 @@
+.event-creation-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .map-section {
+    width: 56%;
+    background-color: rgba(100, 255, 100, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+  }
+
+  .creator-section {
+    width: 42%;
+  }
+}
