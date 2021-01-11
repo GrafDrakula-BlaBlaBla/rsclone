@@ -24,25 +24,29 @@ import user from './../user.svg';
     }
 
     changeBlockOneDay() {
+
       arrayDataAllEvents.then((data) => {
-
-        if(data[this.year][this.mounth][this.day] == undefined){
-
+      if(data[this.year] == undefined){
+        this.listEventsOneDay =  <li className="no-events">Мероприятий нет</li>;
+        this.numberOfEvents = "Пока нет";
+      } else if(data[this.year][this.mounth] == undefined){
+          this.listEventsOneDay =  <li className="no-events">Мероприятий нет</li>;
+          this.numberOfEvents = "Пока нет";
+        } else if( data[this.year][this.mounth][this.day] == undefined ){
             this.listEventsOneDay =  <li className="no-events">Мероприятий нет</li>;
             this.numberOfEvents = "Пока нет";
-          }else{
+          } else {
             this.listEventsOneDay = data[this.year][this.mounth][this.day].map( ( item ) => {
               return (
-                <li key={item.id}><img src={ user } /><p>Имя</p><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
+                <li key={item.id}><div className="user-block-one-day"><img src={ user } /><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
               })
-
               let wordForm = function( num, word ){
                 let cases = [2, 0, 1, 1, 1, 2];
                 return word[ (num%100>4 && num%100<20)? 2 : cases[(num%10<5)?num%10:5] ];
               }
-
               this.numberOfEvents = data[this.year][this.mounth][this.day].length + wordForm(data[this.year][this.mounth][this.day].length, [' мероприятие', ' мероприятия', ' мероприятий']);
             }
+
           })
     }
 

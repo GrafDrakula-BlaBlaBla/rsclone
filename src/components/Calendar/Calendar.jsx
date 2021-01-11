@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import OneDay from  './OneDay.jsx';
-import arrayDataEvents from './ArrayDataEvents.jsx';
 import arrayDataAllEvents from './arrayAllTime.jsx';
 import stateCalendar from './store/StateCalendar.jsx'
 import './_Calendar.scss';
@@ -131,25 +130,33 @@ function createDataMonth() {
       let wrapperData = dataGrid.map(( item, index) => {
 
         let className = 'day';
+      if(data.hasOwnProperty(stateYear)){
 
-       if(data[stateYear].hasOwnProperty(stateMouth)){
+        if(data[stateYear].hasOwnProperty(stateMouth)){
 
-           if(data[stateYear][stateMouth].hasOwnProperty(item)){
+            if(data[stateYear][stateMouth].hasOwnProperty(item)){
 
-             dataGrid[index] = <div className={ className }>
-             <div className="namber-day"> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
+              dataGrid[index] = <div className={ className }>
+              <div className="namber-day"> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
 
-           } else {
+              } else {
+                let itemWithoutData =
+                <div className={ className } >
+                 <div className="namber-day">{ item } </div>
+                </div>
+                dataGrid[index] = itemWithoutData;
+              }
+              return dataGrid[index];
+
+          } else {
              let itemWithoutData =
-             <div className={ className } >
+             <div className= { className } >
               <div className="namber-day">{ item } </div>
              </div>
              dataGrid[index] = itemWithoutData;
+             return dataGrid[index];
            }
-           return dataGrid[index];
-
-         } else {
-
+        } else {
            let itemWithoutData =
            <div className= { className } >
             <div className="namber-day">{ item } </div>

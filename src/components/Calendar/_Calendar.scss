@@ -113,6 +113,12 @@ margin-top: 10px;
   flex-direction: column;
   overflow: auto;
   height: 250px;
+    .user-block-one-day{
+      display: flex;
+      img{
+        margin-right: 10px;
+      }
+    }
     .no-events{
       justify-content: center;
     }

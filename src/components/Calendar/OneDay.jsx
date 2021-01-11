@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './_Calendar.scss';
 import user from './user.svg';
-import arrayDataEvents from './ArrayDataEvents.jsx';
 import stateCalendar from './store/StateCalendar.jsx';
 import { observer, useLocalObservable } from "mobx-react-lite";
 
