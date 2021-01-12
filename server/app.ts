@@ -3,19 +3,20 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as config from "config";
 import * as logger from "morgan"; // логирование всех действий
-// const path = require("path");
 
-// import * as login from "./routes/routLogin";
+import login from "./routes/auth/routeLogin";
+import corsMiddleware from "./middleware/cors.middleware";
 
 const PORT = config.get("serverPort");
 
 // * Создание сервера
 const app = express();
+app.use(corsMiddleware);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(`app/main`, login); // папка с файлами роутинга
+app.use(`/app`, login); // папка с файлами роутинга
 
 const start = async () => {
   try {
