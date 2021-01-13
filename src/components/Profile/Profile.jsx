@@ -1,11 +1,10 @@
 import React from 'react';
 import './_Profile.scss';
 import userImg from '../../modules/assets/user.svg';
-import leafIcon from '../../modules/assets/leaf.svg';
-import emptyLeafIcon from '../../modules/assets/empty-leaf.svg';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import EventsHistory from './EventsHistory/EventsHistory';
 import EventsList from './EventsList/EventsList';
+import RatingLeaves from '../RatingLeaves/RatingLeaves';
 
 export default function Profile() {
   return (
@@ -23,8 +22,7 @@ export default function Profile() {
               </div>
             </div>
             <div className="user-rate">
-              <UserStars rating={ 2 }/>
-              <div className="user-rate-title">Любитель</div>
+              <RatingLeaves rating={ 2 }/>
             </div>
           </div>
           <EventsHistory />
@@ -38,21 +36,3 @@ export default function Profile() {
     </div>
   );
 };
-
-function UserStars({ rating }) {
-  const stars = [];
-    
-  for (let i = 1; i <= 5; i += 1) {
-    if(i <= rating) {
-      stars.push(<img src={ leafIcon } alt="star" key={ i } />);
-    } else {
-      stars.push(<img src={ emptyLeafIcon } alt="star" key={ i } />);
-    }
-  }
-
-  return (
-    <div className="user-stars">
-      { stars }
-    </div>
-  );
-}
