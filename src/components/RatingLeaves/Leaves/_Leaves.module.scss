@@ -1,0 +1,21 @@
+.leaves {
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.leaf-img {
+  width: 30px;
+  height: 30px;
+  transition: 0.1s;
+  user-select: none;
+
+  &:hover {
+    width: 26px;
+    height: 26px;
+    margin: 0 2px;
+  }
+}
