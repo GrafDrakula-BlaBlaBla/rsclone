@@ -19,7 +19,9 @@ export default function Leaves({ rating, setModalState }) {
   }
 
   return (
-    <div className={ styles['leaves'] } onClick={ () => setModalState(true)}>
+    <div className={ styles.leaves } onClick={ () => {
+      setModalState && setModalState(true)
+      }}>
       { leaves }
     </div>
   );
