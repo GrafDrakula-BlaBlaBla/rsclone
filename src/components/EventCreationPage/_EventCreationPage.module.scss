@@ -3,10 +3,11 @@ p {
 }
 
 .event-creation-page {
-  width: 100%;
+  max-width: 1400px;
   height: 100%;
   display: flex;
   justify-content: space-between;
+  margin: auto auto;
 }
 
 .map-section {
@@ -31,8 +32,15 @@ p {
   justify-content: space-between;
   padding: 20px;
 
+  .textarea-wrapper {
+    flex: 1;
+    height: 100%;
+  }
+
   textarea {
+    width: 100%;
     resize: none;
+    height: 100%;
     padding: 4px 4px;
     border: 1px solid #444;
     border-radius: 10px;
@@ -42,8 +50,9 @@ p {
   }
 
   .title {
+    flex-basis: 90px;
     font-size: 1.1em;
-    margin-right: 20px;
+    margin-right: 40px;
   }
 }
 
@@ -56,7 +65,8 @@ p {
     justify-content: space-between;
 
     input {
-      width: 70%;
+      display: flex;
+      flex: 1;
       height: 30px;
       padding: 0 14px;
       border: 1px solid #444;
@@ -67,8 +77,9 @@ p {
 
   .name-description {
     text-align: center;
-    opacity: 0.7;
+    color: rgb(100, 100, 100);
     font-size: 0.95em;
+    z-index: 0;
   }
 }
 
@@ -77,18 +88,9 @@ p {
   justify-content: space-between;
   margin-bottom: 20px;
 
-  input {
-    width: 40%;
-    height: 24px;
-    border: 1px solid #444;
-    border-radius: 10px;
-    background-color: rgb(240, 240, 240);
-    text-align: center;
-  }
-
   .right-section {
-    width: 70%;
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: space-between;
   }
@@ -100,8 +102,8 @@ p {
   margin-bottom: 20px;
 
   .right-section {
-    width: 70%;
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: space-between;
 
@@ -113,9 +115,20 @@ p {
   }
 }
 
+.main-task {
+  display: flex;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.main-goals {
+  display: flex;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
 .main-bottom {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
   margin-bottom: 20px;
 
@@ -130,28 +143,47 @@ p {
   }
 }
 
-.main-task {
-  display: flex;
-  flex: 1;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
+@media (max-width: 1200px) {
+  .map-section {
+    width: 49%;
+  }
 
-  textarea {
-    height: 100%;
-    width: 70%;
+  .creator-section {
+    width: 49%;
+  }
+
+  .creator-main {
+    .title {
+      margin-right: 20px;
+    }
   }
 }
 
-.main-goals {
-  display: flex;
-  flex: 1;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 20px;
+@media (max-width: 1024px) {
+  .map-section {
+    width: 44%;
+  }
 
-  textarea {
-    height: 100%;
-    width: 70%;
+  .creator-section {
+    width: 54%;
+  }
+
+  .creator-main {
+    .title {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .event-creation-page {
+    justify-content: center;
+  }
+  .map-section {
+    display: none;
+  }
+
+  .creator-section {
+    width: 500px;
   }
 }

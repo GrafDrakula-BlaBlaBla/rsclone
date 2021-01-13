@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './_EventCreationPage.module.scss';
-import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import byCities from '../../modules/data/by-cities';
+import SectionWrapper from '../SectionWrapper/SectionWrapper';
+import SelectCity from './SelectCity/SelectCity';
 
 export default function EventCreationPage() {
+  const [ region, setRegion ] = useState('Минская обл.');
+
+  function selectRegion(event) {
+    setRegion(event.target.value);
+  }
+
   return (
     <div className={ styles['event-creation-page'] }>
       <div className={ styles['map-section'] }>MAP</div>
@@ -34,28 +41,27 @@ export default function EventCreationPage() {
             <div className={ styles['right-section'] }>
               <select
                 defaultValue='Минская обл.'
-                onChange={(elem) => console.log(elem.target.value)}>
+                onChange={ selectRegion }>
                 { byCities[0].regions.map((elem) =>
                   <option value={ elem.name } key={elem.name}>{elem.name}</option>
                 ) }
               </select>
-              <input
-                className="search-events-input"
-                type="text"
-                placeholder="Ввидети название города"
-                onKeyUp={ console.log(2) }
-              />
+              <SelectCity region={ byCities[0].regions.find((elem) => elem.name === region) }/>
             </div>
             </div>
 
             <div className={ styles['main-task'] }>
               <p className={ styles['title'] }>Задача</p>
-              <textarea maxlength='200' placeholder='Опешити задачу'/>
+              <div className={ styles['textarea-wrapper']}>
+                <textarea maxLength='200' placeholder='Опешити задачу'/>
+              </div>
             </div>
 
             <div className={ styles['main-goals'] }>
               <p className={ styles['title'] }>Цели</p>
-              <textarea maxlength='200' placeholder='Опешити цели'/>
+              <div className={ styles['textarea-wrapper']}>
+                <textarea maxLength='200' placeholder='Опешити цели'/>
+              </div>
             </div>
 
             <div className={ styles['main-bottom'] }>
