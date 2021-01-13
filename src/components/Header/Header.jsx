@@ -20,6 +20,7 @@ export default function Header() {
           <ul className="menu-list">
             <li className="menu-item" onClick={ change }><Link className="item-link" to="/">Main</Link></li>
             <li className="menu-item" onClick={ change }><Link className="item-link" to="/create"><span>Создание инициативы</span></Link></li>
+            <li className="menu-item" onClick={ change }><Link className="item-link" to="/event"><span>Инициатива</span></Link></li>
             <li className="menu-item" onClick={ change }><Link className="item-link" to="/profile"><span>Профель</span></Link></li>
           </ul>
       </div>
