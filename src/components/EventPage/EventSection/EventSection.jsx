@@ -32,7 +32,7 @@ const eventData = {
 
 export default function EventSection () {
   return (
-    <SectionWrapper title={ eventData.name }>
+    <SectionWrapper title={ eventData.name } time='с 12.12.2020 - по 02.02.2021'>
           <div className={ styles.main }>
             <div className={ styles.owner }>
               <div className={ styles.user_pic }>

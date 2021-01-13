@@ -1,13 +1,15 @@
 import React from 'react';
-import './_SectionWrapper.scss';
+import styles from './_SectionWrapper.module.scss';
 
-export default function SectionWrapper({ title, children }) {
+export default function SectionWrapper({ title, time, children }) {
   return (
-    <div className='section-wrapper'>
-      <div className="section-wrapper__header">
-        <span className="header-title">{ title }</span>
+    <div className={ styles.wrapper }>
+      {title && <div className={ styles.header }>
+        <span className={ styles.title }>{ title }</span>
+        <span className={ styles.time }>{ time }</span>
       </div>
-      <div className="section-wrapper__main">
+      }
+      <div className={ styles.main }>
         { children }
       </div>
     </div>
