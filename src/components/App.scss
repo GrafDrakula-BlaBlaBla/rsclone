@@ -29,8 +29,14 @@
   }
 
   @media (max-width: 900px) {
+    .main-section {
+      padding: 10px 60px;
+    }
   }
 
   @media (max-width: 768px) {
+    .main-section {
+      padding: 45px 5px 5px;
+    }
   }
 }
