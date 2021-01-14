@@ -1,6 +1,7 @@
 import "./App.scss";
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import MainPage from './MainPage/MainPage';
 import EventCreationPage from './EventCreationPage/EventCreationPage';
 import EventPage from './EventPage/EventPage';
 import Profile from './Profile/Profile';
@@ -17,7 +18,7 @@ function App() {
         <Header />
         <div className="main-section">
           <Switch>
-            <Route path="/" exact><div>Main</div></Route>
+            <Route path="/" exact component={ MainPage }></Route>
             <Route path="/create" component={ EventCreationPage }></Route>
             <Route path="/event" component={ EventPage }></Route>
             <Route path="/profile" component={ Profile } />
