@@ -1,30 +1,30 @@
 import React from 'react';
-import './_Header.scss';
+import styles from './_Header.module.scss';
 import { Link } from "react-router-dom";
 
 function change() {
-  document.getElementById("header").classList.toggle("open");
+  document.getElementById( styles.header ).classList.toggle( styles.open );
 }
 
 document.addEventListener('click', (e) => {
-  if(!document.getElementById('header').contains(e.target)) {
-    document.getElementById("header").classList.remove("open");
+  if(!document.getElementById( styles.header ).contains(e.target)) {
+    document.getElementById( styles.header ).classList.remove( styles.open );
   }
 })
 
 export default function Header() {
   return (
-    <div id="header">
-      <button className="menu-burger-btn" onClick={ change }/>
-      <div className="header-menu">
-          <ul className="menu-list">
-            <li className="menu-item" onClick={ change }><Link className="item-link" to="/">Main</Link></li>
-            <li className="menu-item" onClick={ change }><Link className="item-link" to="/create"><span>Создание инициативы</span></Link></li>
-            <li className="menu-item" onClick={ change }><Link className="item-link" to="/event"><span>Инициатива</span></Link></li>
-            <li className="menu-item" onClick={ change }><Link className="item-link" to="/profile"><span>Профель</span></Link></li>
+    <div id={ styles.header }>
+      <button className={ styles.burger_btn } onClick={ change }/>
+      <div className={ styles.menu }>
+          <ul className={ styles.menu_list }>
+            <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/">Main</Link></li>
+            <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/create"><span>Создание инициативы</span></Link></li>
+            <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/event"><span>Инициатива</span></Link></li>
+            <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/profile"><span>Профель</span></Link></li>
           </ul>
       </div>
-      <button className="change-lang-btn">ru</button>
+      <button className={ styles.lang_btn }>ru</button>
     </div>
   );
 }

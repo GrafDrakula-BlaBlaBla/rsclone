@@ -1,12 +1,12 @@
 import React from 'react';
-import './_Footer.scss';
+import  styles from './_Footer.module.scss';
 import RegModal from '../RegModal/RegModal';
 
 export default function Footer() {
   return(
-    <div className="footer">
+    <div className={ styles.footer }>
       <RegModal />
-      <button className="github-btn" />
+      <button className={ styles.github_btn }/>
     </div>
   );
 }
