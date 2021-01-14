@@ -42,6 +42,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "leaflet": "^1.7.1",
     "mini-css-extract-plugin": "0.11.3",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
@@ -59,6 +60,7 @@
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.1",
     "react-dom": "^17.0.1",
+    "react-leaflet": "^3.0.5",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
     "resolve": "1.18.1",
@@ -99,6 +101,7 @@
     ]
   },
   "devDependencies": {
+    "@types/leaflet": "^1.5.19",
     "react-test-renderer": "^17.0.1"
   },
   "jest": {

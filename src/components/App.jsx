@@ -1,6 +1,7 @@
 import "./App.scss";
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import Initiatives from './Initiatives/Initiatives';
 import MainPage from './MainPage/MainPage';
 import EventCreationPage from './EventCreationPage/EventCreationPage';
 import EventPage from './EventPage/EventPage';
@@ -22,8 +23,10 @@ function App() {
             <Route path="/create" component={ EventCreationPage }></Route>
             <Route path="/event" component={ EventPage }></Route>
             <Route path="/profile" component={ Profile } />
+            <Route path="/initiatives" component={ Initiatives } />
           </Switch>
         </div>
+
         <Footer />
       </div>
     </Router>
