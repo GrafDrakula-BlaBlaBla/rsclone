@@ -36,10 +36,8 @@ font-size: 1.25rem;
   .wrapper-day-for-week{
     display: grid;
     background: rgb(255,255,255);
-    grid-template-rows: repeat(1, 20px);
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 5px 10px;
-
     background:  #5C9F61;
     color: white;
     text-align: center;
@@ -68,12 +66,13 @@ font-size: 1.25rem;
         padding: 5px;
         border: none;
         width: 100%;
-
+      }
+      .one-event-calendar:hover{
+        background: RGBA(92,159,97,0.2);
       }
       .one-event-calendar:hover{
         cursor: pointer;
       }
-
       .namber-day:hover{
         cursor: pointer;
         background: RGBA(92,159,97,0.8);

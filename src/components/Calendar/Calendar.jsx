@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import OneDay from  './OneDay.jsx';
+import { observer, useLocalObservable, computed } from "mobx-react-lite";
 import arrayDataAllEvents from './arrayAllTime.jsx';
-import stateCalendar from './store/StateCalendar.jsx'
+import stateCalendar from './store/StateCalendarOneDay.jsx'
+import stateCalendarMonth from './store/StateCalendarMonth.jsx'
 import './_Calendar.scss';
 
- // создание календаря на месяц
+ // создание календаря на месяц arrayDataAllEvents
 
  const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
  'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
- const dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 
-export default function Calendar() {
 
+ const Calendar = observer(() => {
 
   let [now, changeDay] = useState(new Date());
 
@@ -39,34 +40,22 @@ export default function Calendar() {
   const [nowDaysInMonth, setdaysInMonth] = useState(now.daysInMonth());
 
 
-  let beforeData;
-
- // Дни недели
-  const daysForWeekElem = [];
-
-  for (var i = 0; i < 7; i++) {
-    let item =
-    <div className="day-of-week" >
-      <div > {dayOfWeek[i]}</div>
-    </div>
-    daysForWeekElem.push(item);
-  }
-
 // Создание структуры
 
-  function createOneMounth( nowDayOfWeek, nowDaysInMonth ) {
-    let position;
-    (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
-
-    // создание сетки дней (массив с пустыми индексами) СТРУКТУРА
-    for (var i = 0; i < nowDaysInMonth; i++) {
-      dataGrid[position + i] = i + 1 ;
-      }
-
-      return dataGrid;
-    }
-
-  createOneMounth( nowDayOfWeek, nowDaysInMonth);
+  // function createOneMounth( nowDayOfWeek, nowDaysInMonth ) {
+  //   let position;
+  //   (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
+  //
+  //   // создание сетки дней (массив с пустыми индексами) СТРУКТУРА
+  //   for (var i = 0; i < nowDaysInMonth; i++) {
+  //     dataGrid[position + i] = i + 1 ;
+  //     }
+  //
+  //     return dataGrid;
+  //   }
+  //
+  // createOneMounth( nowDayOfWeek, nowDaysInMonth);
+  stateCalendarMonth.createOneMounth()
 // переключение в лево
  function arrowLeftCalendar() {
 
@@ -77,7 +66,7 @@ export default function Calendar() {
    setDay(now.getDate());
    setDayOfWeek(now.getDay());
    setdaysInMonth(now.daysInMonth());
-   let grid = createOneMounth( nowDayOfWeek, nowDaysInMonth );
+   let grid = stateCalendarMonth.createOneMounth()
    changeDataGrid(grid);
    stateCalendar.changeStateDayMounthYear(now.getDate(), now.getMonth(), now.getFullYear())
    stateCalendar.changeBlockOneDay()
@@ -93,7 +82,7 @@ export default function Calendar() {
    setDay(now.getDate());
    setDayOfWeek(now.getDay());
    setdaysInMonth(now.daysInMonth());
-   let grid = createOneMounth( nowDayOfWeek, nowDaysInMonth);
+   let grid =   stateCalendarMonth.createOneMounth();
    changeDataGrid(grid);
 
    stateCalendar.changeStateDayMounthYear(now.getDate(), now.getMonth(), now.getFullYear())
@@ -101,106 +90,108 @@ export default function Calendar() {
  }
 
 // Обновление пустой структуры на календарь с данными
-function changeMounth(data) {
-
-    changeGridMount(data);
-
-  }
+// function changeMounth(data) {
+//
+//     changeGridMount(data);
+//
+//   }
 
 // Создание элемента мероприятия
-function createEventsElem(indexDataGrid, data) {
-  let arrayEventsOneDayCaltnlar = [];
-  for (var i = 0; i < data[indexDataGrid].length; i++) {
-    let idEvent = data[indexDataGrid][i]["id"];
+// function createEventsElem(indexDataGrid, data) {
+//   let arrayEventsOneDayCaltnlar = [];
+//   for (var i = 0; i < data[indexDataGrid].length; i++) {
+//     let idEvent = data[indexDataGrid][i]["id"];
+//
+//     let item =
+//         <button className="one-event-calendar btn btn-primary" type="button" data-toggle="modal" data-target= { idEvent }>
+//           {data[indexDataGrid][i]['sammary'] }
+//         </button>
+//         arrayEventsOneDayCaltnlar.push(item);
+//       }
+//     return arrayEventsOneDayCaltnlar;
+// }
 
-    let item =
-        <button className="one-event-calendar btn btn-primary" type="button" data-toggle="modal" data-target= { idEvent }>
-          {data[indexDataGrid][i]['sammary'] }
-        </button>
-        arrayEventsOneDayCaltnlar.push(item);
-      }
-    return arrayEventsOneDayCaltnlar;
-}
+// function createDataMonth() {
+//
+//   arrayDataAllEvents.then((data) => {
+//
+//     // Перебор структуры
+//       let wrapperData = dataGrid.map(( item, index) => {
+//
+//         let className = 'day';
+//       if(data.hasOwnProperty(stateYear)){
+//
+//         if(data[stateYear].hasOwnProperty(stateMouth)){
+//
+//             if(data[stateYear][stateMouth].hasOwnProperty(item)){
+//
+//               dataGrid[index] = <div className={ className }>
+//               <div className="namber-day"> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
+//
+//               } else {
+//                 let itemWithoutData =
+//                 <div className={ className } >
+//                  <div className="namber-day">{ item } </div>
+//                 </div>
+//                 dataGrid[index] = itemWithoutData;
+//               }
+//               return dataGrid[index];
+//
+//           } else {
+//              let itemWithoutData =
+//              <div className= { className } >
+//               <div className="namber-day">{ item } </div>
+//              </div>
+//              dataGrid[index] = itemWithoutData;
+//              return dataGrid[index];
+//            }
+//         } else {
+//            let itemWithoutData =
+//            <div className= { className } >
+//             <div className="namber-day">{ item } </div>
+//            </div>
+//            dataGrid[index] = itemWithoutData;
+//            return dataGrid[index];
+//          }
+//         })
+//       changeGridMount(wrapperData);
+//   })
+// }
 
-function createDataMonth() {
+// useEffect(() => {
+//
+// createDataMonth();
+//
+// }, [stateMouth])
 
-  arrayDataAllEvents.then((data) => {
-
-    // Перебор структуры
-      let wrapperData = dataGrid.map(( item, index) => {
-
-        let className = 'day';
-      if(data.hasOwnProperty(stateYear)){
-
-        if(data[stateYear].hasOwnProperty(stateMouth)){
-
-            if(data[stateYear][stateMouth].hasOwnProperty(item)){
-
-              dataGrid[index] = <div className={ className }>
-              <div className="namber-day"> { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
-
-              } else {
-                let itemWithoutData =
-                <div className={ className } >
-                 <div className="namber-day">{ item } </div>
-                </div>
-                dataGrid[index] = itemWithoutData;
-              }
-              return dataGrid[index];
-
-          } else {
-             let itemWithoutData =
-             <div className= { className } >
-              <div className="namber-day">{ item } </div>
-             </div>
-             dataGrid[index] = itemWithoutData;
-             return dataGrid[index];
-           }
-        } else {
-           let itemWithoutData =
-           <div className= { className } >
-            <div className="namber-day">{ item } </div>
-           </div>
-           dataGrid[index] = itemWithoutData;
-           return dataGrid[index];
-         }
-        })
-      changeGridMount(wrapperData);
-  })
-}
-
-useEffect(() => {
-
-createDataMonth();
-
-}, [stateMouth])
-
-useEffect(() => {
-  // Данные пришли => надеть структуру на данные
-    arrayDataAllEvents.then((data) => {
-      // Перебор структуры
-        let wrapperData = dataGrid.map(( item, index) => {
-          let className = 'day';
-           if(data[stateYear][stateMouth].hasOwnProperty(item)){
-
-             dataGrid[index] = <div className={ className }> <div className="namber-day" >  { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
-
-              }else{
-
-                let itemWithoutData =
-                  <div className={ className }>
-                    <div className="namber-day">{ item }</div>
-                  </div>
-              dataGrid[index] = itemWithoutData;
-            }
-            return dataGrid[index];
-        })
-        changeMounth(wrapperData);
-    })
-
-}, [])
+// useEffect(() => {
+//   // Данные пришли => надеть структуру на данные
+//     arrayDataAllEvents.then((data) => {
+//       // Перебор структуры
+//         let wrapperData = dataGrid.map(( item, index) => {
+//           let className = 'day';
+//            if(data[stateYear][stateMouth].hasOwnProperty(item)){
+//
+//              dataGrid[index] = <div className={ className }> <div className="namber-day" >  { item } </div> { createEventsElem(item, data[stateYear][stateMouth]) } </div>;
+//
+//               }else{
+//
+//                 let itemWithoutData =
+//                   <div className={ className }>
+//                     <div className="namber-day">{ item }</div>
+//                   </div>
+//               dataGrid[index] = itemWithoutData;
+//             }
+//             return dataGrid[index];
+//         })
+//         changeMounth(wrapperData);
+//     })
+//
+//
+// }, [])
 
 function clickCalendar( clickCalendarEvent ) {
+
     if(clickCalendarEvent.target.classList.contains("namber-day")){
         setDay(clickCalendarEvent.target.textContent)
         stateCalendar.changeBlockOneDay(clickCalendarEvent.target.textContent)
@@ -215,13 +206,15 @@ function clickCalendar( clickCalendarEvent ) {
           { nameMonth[stateMouth] } { stateYear }
           <div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div>
         </div>
-        <div className="wrapper-day-for-week">{daysForWeekElem}</div>
-        <div className="wrapper-day-calendar" onClick={clickCalendar} >
-          {gridMount}
+        <div className="wrapper-day-for-week">{stateCalendarMonth.createDayOfWeek()}</div>
+        <div className="wrapper-day-calendar" >
+          { stateCalendarMonth.createOneMounth()}
         </div>
       </div>
       <OneDay mouth={ stateMouth } day={nowDay} year={ stateYear }/ >
     </div>
 
   );
-}
+})
+
+export default Calendar;
