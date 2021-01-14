@@ -8,80 +8,34 @@
   .profile-section {
     width: 49%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
 
-    .profile-top {
-      width: 100%;
-      height: 40px;
-      margin-bottom: 10px;
-      padding: 0 45px;
+    .profile-info {
+      height: 160px;
       display: flex;
-      align-items: center;
-      background-color: white;
-
-      .profile-title {
-        font-size: 1.2em;
-        font-weight: 700;
-      }
-    }
-
-    .profile-main {
-      width: 100%;
-      flex-grow: 3;
-      padding: 45px;
-      background-color: white;
-      display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 20px 20px 0 20px;
+      background-color: white;
 
-      .profile-info {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-bottom: 45px;
+      .user-pic {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #d7d7d7;
 
-        .user-pic {
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          overflow: hidden;
-          background-color: #d7d7d7;
-
-          .user-pic-img {
-            width: 100%;
-            height: 100%;
-          }
+        .user-pic-img {
+          width: 100%;
+          height: 100%;
         }
+      }
 
-        .profile-info-middle {
-          margin-left: 40px;
-
-          .user-name {
-            margin-bottom: 20px;
-            font-size: 1.25em;
-            font-weight: 700;
-          }
-        }
-
-        .user-rate {
-          margin-left: 40px;
-          justify-content: center;
-
-          .user-stars {
-            width: 166px;
-            height: 30px;
-            margin-bottom: 10px;
-            display: flex;
-          }
-
-          .user-rate-title {
-            text-decoration: underline;
-            font-size: 1.2em;
-            text-align: center;
-          }
+      .profile-info-middle {
+        .user-name {
+          margin-bottom: 20px;
+          font-size: 1.2em;
+          font-weight: 700;
         }
       }
     }

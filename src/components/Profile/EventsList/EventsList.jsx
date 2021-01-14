@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './_EventsList.scss';
 import loupeIcon from '../../../modules/assets/loupe.svg';
+import { Link } from "react-router-dom";
 
 const events = [
   {
@@ -17,6 +18,32 @@ const events = [
     end: '-'
   },
 
+  {
+    title: 'Сбор мусора',
+    type: 'инициатива',
+    start: '13.11.2020',
+    end: '14.11.2020'
+  },
+
+  {
+    title: 'Сбор мусора',
+    type: 'инициатива',
+    start: '13.11.2020',
+    end: '14.11.2020'
+  },
+  {
+    title: 'Сбор мусора',
+    type: 'инициатива',
+    start: '13.11.2020',
+    end: '14.11.2020'
+  },
+
+  {
+    title: 'Сбор мусора',
+    type: 'инициатива',
+    start: '13.11.2020',
+    end: '14.11.2020'
+  },
   {
     title: 'Сбор мусора',
     type: 'инициатива',
@@ -47,31 +74,28 @@ export default function EventsList() {
 
   return (
     <div className="events-list">
-      <div className="events-list-top">
-          <span className="events-list-title">Мероприятия</span>
-        </div>
-        <div className="search-events">
-          <img className="search-events-loupe-icon" src={loupeIcon} alt="loupe"/>
+      <div className="search-events">
+        <img className="search-events-loupe-icon" src={loupeIcon} alt="loupe"/>
 
-          <input
-            className="search-events-input"
-            type="text"
-            placeholder="Ввидети ключевые слова"
-            onKeyUp={ focusSearchInput }
-          />
+        <input
+          className="search-events-input"
+          type="text"
+          placeholder="Ввидети ключевые слова"
+          onKeyUp={ focusSearchInput }
+        />
 
-        </div>
-        <div className="event-cards-list">
+      </div>
+      <div className="event-cards-list">
         { filteredCards.map((value, id) => {
-              return (<div className='event-cards-item' key={id}>
-                <span className='card-title'>"{value.title}"</span>
-                <span className='card-type'>Тип: {value.type}</span>
-                <span className='card-data'>C {value.start}</span>
-                <span className='card-data'>По {value.end}</span>
-                <button className='more-details-btn'>Подробнее</button>
-              </div>)
-            }) }
-        </div>
+          return (<div className='event-cards-item' key={id}>
+            <span className='card-title'>"{value.title}"</span>
+            <span className='card-type'>Тип: {value.type}</span>
+            <span className='card-data'>C {value.start}</span>
+            <span className='card-data'>По {value.end}</span>
+            <Link className="more-details-btn" to="/event"><span>Подробнее</span></Link>
+          </div>)
+        }) }
+      </div>
     </div>
   )
 }
