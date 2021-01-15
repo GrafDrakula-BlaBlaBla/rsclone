@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './_EventSection.module.scss';
-import SectionWrapper from '../../SectionWrapper/SectionWrapper';
 import userImg from '../../../modules/assets/user.svg'
 import RatingLeaves from '../../RatingLeaves/RatingLeaves';
 
@@ -32,34 +31,32 @@ const eventData = {
 
 export default function EventSection () {
   return (
-    <SectionWrapper title={ eventData.name } time='с 12.12.2020 - по 02.02.2021'>
-          <div className={ styles.main }>
-            <div className={ styles.owner }>
-              <div className={ styles.user_pic }>
-                <img className={ styles.user_pic_img } src={ userImg } alt="user-pic"/>
-              </div>
-              <p className={ styles.user_name }>{eventData.ownerName}</p>
-              <RatingLeaves rating={ eventData.ownerRate }/>
-            </div>
-            <div className={ styles.tasks }>
-              <p className={ styles.tasks_title }>Задача</p>
-              <p className={ styles.tasks_main }>
-                { eventData.tasks }
-              </p>
-            </div>
-            <div className={ styles.goals }>
-              <p className={ styles.goals_title }>Цели</p>
-              <p className={ styles.goals_main }>
-                { eventData.goals }
-              </p>
-            </div>
-            <div className={ styles.bottom }>
-              <div className={ styles.connect_block }>
-                <p className={ styles.connect_title }>С нами уже { eventData.peoples } человек</p>
-                <button className={ styles.connect_btn }>Присоедениться</button>
-              </div>
-            </div>
-          </div>
-        </SectionWrapper>
+    <div className={ styles.main }>
+      <div className={ styles.owner }>
+        <div className={ styles.user_pic }>
+          <img className={ styles.user_pic_img } src={ userImg } alt="user-pic"/>
+        </div>
+        <p className={ styles.user_name }>{eventData.ownerName}</p>
+        <RatingLeaves rating={ eventData.ownerRate }/>
+      </div>
+      <div className={ styles.tasks }>
+        <p className={ styles.tasks_title }>Задача</p>
+        <p className={ styles.tasks_main }>
+          { eventData.tasks }
+        </p>
+      </div>
+      <div className={ styles.goals }>
+        <p className={ styles.goals_title }>Цели</p>
+        <p className={ styles.goals_main }>
+          { eventData.goals }
+        </p>
+      </div>
+      <div className={ styles.bottom }>
+        <div className={ styles.connect_block }>
+          <p className={ styles.connect_title }>С нами уже { eventData.peoples } человек</p>
+          <button className={ styles.connect_btn }>Присоедениться</button>
+        </div>
+      </div>
+    </div>
   );
 }

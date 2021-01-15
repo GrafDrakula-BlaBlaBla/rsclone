@@ -1,5 +1,5 @@
 .container {
-  max-width: 1400px;
+  width: 1400px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -8,16 +8,16 @@
 
 .left_section {
   width: 56%;
-  background-color: rgba(100, 220, 100, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 50px;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .right_section {
-  width: 42%;
+  width: 43%;
 }
 
 @media (max-width: 1200px) {

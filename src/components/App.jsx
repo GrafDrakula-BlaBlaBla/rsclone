@@ -3,9 +3,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Initiatives from './Initiatives/Initiatives';
 import MainPage from './MainPage/MainPage';
-import EventCreationPage from './EventCreationPage/EventCreationPage';
 import EventPage from './EventPage/EventPage';
-import EventCompletionPage from './EventCompletionPage/EventCompletionPage';
 import Profile from './Profile/Profile';
 import {
   BrowserRouter as Router,
@@ -21,10 +19,10 @@ function App() {
         <div className="main-section">
           <Switch>
             <Route path="/" exact component={ MainPage }></Route>
-            <Route path="/create" component={ EventCreationPage }></Route>
-            <Route path="/event" component={ EventPage }></Route>
+            <Route path="/create"><EventPage section='create'/></Route>
+            <Route path="/event"><EventPage/></Route>
+            <Route path="/completion"><EventPage section='completion'/></Route>
             <Route path="/profile" component={ Profile } />
-            <Route path="/completion" component={ EventCompletionPage } />
             <Route path="/initiatives" component={ Initiatives } />
           </Switch>
         </div>
