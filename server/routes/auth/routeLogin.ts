@@ -1,14 +1,12 @@
 import { Router } from "express";
-import User from "../../models/Users";
+import User from "../../models/User";
 import * as bcrypt from "bcrypt";
 import { check, validationResult } from "express-validator";
-import jwt from "jsonwebtoken";
-import config from "config";
 
 const router = Router();
 
 router.post(
-  `/login`,
+  `/registration`,
   [
     check(`email`, `Uncorrect email`).isEmail(),
     check(

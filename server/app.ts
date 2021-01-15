@@ -5,6 +5,7 @@ import * as config from "config";
 import * as logger from "morgan"; // логирование всех действий
 
 import login from "./routes/auth/routeLogin";
+// import signin from "./routes/auth/routeSignin";
 import corsMiddleware from "./middleware/cors.middleware";
 
 const PORT = config.get("serverPort");
@@ -16,7 +17,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(`/app`, login); // папка с файлами роутинга
+app.use(`/`, login); // папка с файлами роутинга
+app.use(`/`, login); // папка с файлами роутинга
 
 const start = async () => {
   try {
@@ -31,43 +33,3 @@ const start = async () => {
   }
 };
 start();
-// export default app;
-
-/*
------------------------------------------------------------------------------------------------------------------------------
-catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  res.json({
-    statusCode: 404,
-  });
-});
-
-error handler
-app.use(function (err, req, res, next) {
-  res.json({
-    statusCode: 500,
-    message: err.message,
-    stack: err.stack,
-  });
-});
-
-
- view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug"); // render (pug) - отрисовывает шаблоны  наших страниц, на его месте могут быть другие инструменты
------------------------------------------------------------------------------------------------------------------------------
-*/
-
-/*
------------------------------------------------------------------------------------------------------------------------------
-app.use(express.static(path.join(__dirname, "public"))); // позволяет указать путь к файлам в папке public
------------------------------------------------------------------------------------------------------------------------------
-*/
-
-/*
-------------------------------------------------------------------------
-// кастомные Route
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-------------------------------------------------------------------------
-*/

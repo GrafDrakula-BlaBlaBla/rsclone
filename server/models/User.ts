@@ -3,10 +3,14 @@ import { Schema, model, ObjectId } from "mongoose";
 const User = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  diskSpace: { type: Number, default: 1024 ** 3 * 10 },
-  usedSpace: { type: Number, default: 0 },
+  range: { type: Number },
   avatar: { type: String },
-  //   files: [{ type: Schema.Types.ObjectId, ref: "File" }],
+  dataRegistartion: { type: Date },
+  sex: String,
+  contacts: { type: Array },
+  location: { type: Object },
+  finishedGame: { type: Boolean },
+  // event: [{ type: ObjectId, ref: "Event" }],
 });
 
 export default model("User", User);
