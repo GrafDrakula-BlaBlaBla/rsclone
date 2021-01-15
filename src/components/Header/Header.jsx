@@ -21,8 +21,9 @@ export default function Header() {
             <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/">Main</Link></li>
             <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/create"><span>Создание инициативы</span></Link></li>
             <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/event"><span>Инициатива</span></Link></li>
+            <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/completion"><span>Завершение мероприятия</span></Link></li>
             <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/profile"><span>Профиль</span></Link></li>
-              <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/initiatives"><span>Инициативы</span></Link></li>
+            <li className={ styles.menu_item } onClick={ change }><Link className={ styles.link } to="/initiatives"><span>Инициативы</span></Link></li>
           </ul>
       </div>
       <button className={ styles.lang_btn }>ru</button>
