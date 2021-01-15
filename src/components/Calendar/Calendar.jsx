@@ -39,7 +39,7 @@ import './_Calendar.scss';
   // сколько дней в месяце
   const [nowDaysInMonth, setdaysInMonth] = useState(now.daysInMonth());
 
-
+  const [oneMounth, changeStateOneMount] = useState([]);
 // Создание структуры
 
   // function createOneMounth( nowDayOfWeek, nowDaysInMonth ) {
@@ -163,8 +163,9 @@ import './_Calendar.scss';
 // createDataMonth();
 //
 // }, [stateMouth])
+const [stateOneMount, changeOneMount] = useState([]);
+useEffect(() => {
 
-// useEffect(() => {
 //   // Данные пришли => надеть структуру на данные
 //     arrayDataAllEvents.then((data) => {
 //       // Перебор структуры
@@ -186,9 +187,10 @@ import './_Calendar.scss';
 //         })
 //         changeMounth(wrapperData);
 //     })
-//
-//
-// }, [])
+
+changeOneMount(stateCalendarMonth.gridOneMount);
+
+}, [])
 
 function clickCalendar( clickCalendarEvent ) {
 
@@ -203,12 +205,12 @@ function clickCalendar( clickCalendarEvent ) {
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
           <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>
-          { nameMonth[stateMouth] } { stateYear }
-          <div className="button-click-calendar" onClick={arrowRightCalendar}>&#129154;</div>
+          { nameMonth[stateCalendarMonth.stateMouth] } { stateCalendarMonth.stateYear }
+          <div className="button-click-calendar" onClick={ arrowRightCalendar }>&#129154;</div>
         </div>
         <div className="wrapper-day-for-week">{stateCalendarMonth.createDayOfWeek()}</div>
         <div className="wrapper-day-calendar" >
-          { stateCalendarMonth.createOneMounth()}
+          { stateOneMount }
         </div>
       </div>
       <OneDay mouth={ stateMouth } day={nowDay} year={ stateYear }/ >

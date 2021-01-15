@@ -19,9 +19,8 @@ class StateCalendarMonth {
   nowDaysInMonth = this.now.daysInMonth();
   firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
   nowDayOfWeek = this.firstDayForWeek.getDay();
-  gridMount = [];
-  dataGrid = new Array(35);
-  wrapperData = null;
+  gridOneMount = null;
+
 
    constructor() {
        makeAutoObservable(this)
@@ -55,68 +54,70 @@ class StateCalendarMonth {
         return arrayEventsOneDayCaltnlar;
     }
 
+      createGridOneMounth() {
+        let position;
+        let dataGrid = new Array(35);
+        dataGrid.fill(null);
+        (this.nowDayOfWeek !== 0) ? position = this.nowDayOfWeek - 1 :  position = 7 ;
+        // создание сетки дней (массив с пустыми индексами) СТРУКТУРА
+        for (var i = 0; i < this.nowDaysInMonth; i++) {
+
+          dataGrid[position + i] = i + 1 ;
+        }
+        return dataGrid;
+      }
+
       createOneMounth() {
 
-        function createGridOneMounth(nowDayOfWeek, nowDaysInMonth, dataGrid) {
-               let position;
-               (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
-               // создание сетки дней (массив с пустыми индексами) СТРУКТУРА
-               for (var i = 0; i < nowDaysInMonth; i++) {
+        let gridResultFunction = this.createGridOneMounth();
 
-                 dataGrid[position + i] = i + 1 ;
-                 }
-              return dataGrid;
-               }
+        arrayDataAllEvents.then(( data ) => {
 
+        let resultDataGrid = gridResultFunction.map(( item, index) => {
 
-                arrayDataAllEvents.then(( data ) => {
+         // Перебор структуры
+         let className = 'day';
 
-                let newGridForMonth = createGridOneMounth(this.nowDayOfWeek, this.nowDaysInMonth, this.dataGrid);
+         if(data.hasOwnProperty(this.stateYear)){
 
-                this.wrapperData = newGridForMonth.map(( item, index) => {
-                 // Перебор структуры
-                 let className = 'day';
-                 // console.log(data);
-                 if(data.hasOwnProperty(this.stateYear)){
+           if(data[this.stateYear].hasOwnProperty(this.stateMouth)){
 
-                   if(data[this.stateYear].hasOwnProperty(this.stateMouth)){
+             if(data[this.stateYear][this.stateMouth].hasOwnProperty(item)){
 
-                     if(data[this.stateYear][this.stateMouth].hasOwnProperty(item)){
+               gridResultFunction[index] = <div className= { className }>
+               <div className="namber-day"> { item } </div> { this.createEventsElem(item, data[this.stateYear][this.stateMouth]) } </div>;
 
-                       newGridForMonth[index] = <div className={ className }>
-                       <div className="namber-day"> { item } </div> { this.createEventsElem(item, data[this.stateYear][this.stateMouth]) } </div>;
+             } else {
 
-                     } else {
-                       let itemWithoutData =
-                       <div className={ className } >
-                       <div className="namber-day">{ item } </div>
-                       </div>
-                       newGridForMonth[index] = itemWithoutData;
-                     }
-                      return newGridForMonth[index];
+               let itemWithoutData =
+               <div className={ className } >
+               <div className="namber-day">{ item } </div>
+               </div>
 
-                   } else {
-                     let itemWithoutData =
-                     <div className= { className } >
-                     <div className="namber-day">{ item } </div>
-                     </div>
-                     newGridForMonth[index] = itemWithoutData;
-                     return newGridForMonth[index];
-                   }
-                 } else {
-                   let itemWithoutData =
-                   <div className= { className } >
-                   <div className="namber-day">{ item } </div>
-                   </div>
-                   newGridForMonth[index] = itemWithoutData;
-                   return newGridForMonth[index];
-                 }
-               })
-               return newGridForMonth;
-             })
-
+               gridResultFunction[index] = itemWithoutData;
+             }
+           } else {
+             let itemWithoutData =
+             <div className= { className } >
+             <div className="namber-day">{ item } </div>
+             </div>
+             gridResultFunction[index] = itemWithoutData;
            }
 
+         } else {
+           let itemWithoutData =
+           <div className= { className } >
+           <div className="namber-day">{ item } </div>
+           </div>
+           gridResultFunction[index] = itemWithoutData;
+
+         }
+        return gridResultFunction[index];
+       })
+      this.gridOneMount = resultDataGrid;
+     })
+
+   }
   }
 
 export default new StateCalendarMonth()

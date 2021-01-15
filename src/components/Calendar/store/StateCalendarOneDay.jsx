@@ -26,6 +26,7 @@ import user from './../user.svg';
     changeBlockOneDay() {
 
       arrayDataAllEvents.then((data) => {
+
       if(data[this.year] == undefined){
         this.listEventsOneDay =  <li className="no-events">Мероприятий нет</li>;
         this.numberOfEvents = "Пока нет";
@@ -40,6 +41,7 @@ import user from './../user.svg';
               return (
                 <li key={item.id}><div className="user-block-one-day"><img src={ user } /><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
               })
+              
               let wordForm = function( num, word ){
                 let cases = [2, 0, 1, 1, 1, 2];
                 return word[ (num%100>4 && num%100<20)? 2 : cases[(num%10<5)?num%10:5] ];
