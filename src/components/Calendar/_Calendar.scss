@@ -44,13 +44,18 @@ font-size: 1.25rem;
     }
   .wrapper-day-calendar{
     background: rgb(255,255,255);
-    padding: 10px 10px;
+    padding: 0px 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 5px;
     height: 100%;
 
+
     .day{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background: white;
       div{
         background: #5C9F61;
         font-size: 1rem;
@@ -86,7 +91,7 @@ font-size: 1.25rem;
 
 .wrapper-one-day-header{
   margin-top: 10px;
-  padding: 0 10px;
+  padding: 10px;
   background: white;
   display: flex;
   justify-content: space-between;

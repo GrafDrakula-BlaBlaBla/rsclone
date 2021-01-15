@@ -1,7 +1,5 @@
 import React from "react"
-import ReactDOM from "react-dom"
 import { makeAutoObservable } from "mobx"
-import { observer } from "mobx-react-lite"
 import arrayDataAllEvents from './../arrayAllTime.jsx'
 
 Date.prototype.daysInMonth = function() {
@@ -20,6 +18,7 @@ class StateCalendarMonth {
   firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
   nowDayOfWeek = this.firstDayForWeek.getDay();
   gridOneMount = null;
+
 
 
    constructor() {
@@ -83,15 +82,14 @@ class StateCalendarMonth {
            if(data[this.stateYear].hasOwnProperty(this.stateMouth)){
 
              if(data[this.stateYear][this.stateMouth].hasOwnProperty(item)){
-
-               gridResultFunction[index] = <div className= { className }>
+                 gridResultFunction[index] = <div className= { className } key={ "day-" + item} >
                <div className="namber-day"> { item } </div> { this.createEventsElem(item, data[this.stateYear][this.stateMouth]) } </div>;
 
              } else {
 
                let itemWithoutData =
                <div className={ className } >
-               <div className="namber-day">{ item } </div>
+                <div className="namber-day">{ item } </div>
                </div>
 
                gridResultFunction[index] = itemWithoutData;
@@ -99,7 +97,7 @@ class StateCalendarMonth {
            } else {
              let itemWithoutData =
              <div className= { className } >
-             <div className="namber-day">{ item } </div>
+              <div className="namber-day"> { item } </div>
              </div>
              gridResultFunction[index] = itemWithoutData;
            }
@@ -107,7 +105,7 @@ class StateCalendarMonth {
          } else {
            let itemWithoutData =
            <div className= { className } >
-           <div className="namber-day">{ item } </div>
+            <div className="namber-day">{ item } </div>
            </div>
            gridResultFunction[index] = itemWithoutData;
 
@@ -116,8 +114,31 @@ class StateCalendarMonth {
        })
       this.gridOneMount = resultDataGrid;
      })
+   }
+
+   arrowRightCalendarState() {
+
+    this.stateMouth === 11 ? this.now = new Date(this.stateYear + 1, 0, 1) : this.now =  new Date(this.stateYear, this.stateMouth + 1, 1);
+    this.nowDay = this.now.getDate();
+    this.stateMouth = this.now.getMonth();
+    this.stateYear = this.now.getFullYear();
+    this.nowDaysInMonth = this.now.daysInMonth();
+    this.firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
+    this.nowDayOfWeek = this.firstDayForWeek.getDay();
 
    }
+
+   arrowLeftCalendarState(){
+
+     this.stateMouth === 0 ? this.now = new Date(this.stateYear - 1, 11, 1) : this.now =  new Date(this.stateYear, this.stateMouth-1, 1);
+     this.nowDay = this.now.getDate();
+     this.stateMouth = this.now.getMonth();
+     this.stateYear = this.now.getFullYear();
+     this.nowDaysInMonth = this.now.daysInMonth();
+     this.firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
+     this.nowDayOfWeek = this.firstDayForWeek.getDay();
+   }
+
   }
 
 export default new StateCalendarMonth()
