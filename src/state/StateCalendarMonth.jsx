@@ -45,7 +45,7 @@ class StateCalendarMonth {
         let idEvent = data[indexDataGrid][i]["id"];
 
         let item =
-            <button className="one-event-calendar btn btn-primary" type="button" data-toggle="modal" data-target= { idEvent }>
+            <button className="one-event-calendar btn btn-primary" type="button" data-toggle="modal" data-target= { idEvent } key= { idEvent } >
               {data[indexDataGrid][i]['sammary'] }
             </button>
             arrayEventsOneDayCaltnlar.push(item);
@@ -82,13 +82,13 @@ class StateCalendarMonth {
            if(data[this.stateYear].hasOwnProperty(this.stateMouth)){
 
              if(data[this.stateYear][this.stateMouth].hasOwnProperty(item)){
-                 gridResultFunction[index] = <div className= { className } key={ "day-" + item} >
+                 gridResultFunction[index] = <div className= { className } key={ "day-" + Math.ceil(Math.random()*10000000000)} >
                <div className="namber-day"> { item } </div> { this.createEventsElem(item, data[this.stateYear][this.stateMouth]) } </div>;
 
              } else {
 
                let itemWithoutData =
-               <div className={ className } >
+               <div className={ className } key={Math.ceil(Math.random()*10000000000)}>
                 <div className="namber-day">{ item } </div>
                </div>
 
@@ -96,7 +96,7 @@ class StateCalendarMonth {
              }
            } else {
              let itemWithoutData =
-             <div className= { className } >
+             <div className= { className } key={Math.ceil(Math.random()*10000000000)}>
               <div className="namber-day"> { item } </div>
              </div>
              gridResultFunction[index] = itemWithoutData;
@@ -104,7 +104,7 @@ class StateCalendarMonth {
 
          } else {
            let itemWithoutData =
-           <div className= { className } >
+           <div className= { className } key={Math.ceil(Math.random()*10000000000)}>
             <div className="namber-day">{ item } </div>
            </div>
            gridResultFunction[index] = itemWithoutData;

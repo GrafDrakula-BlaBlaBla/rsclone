@@ -26,18 +26,18 @@ import user from './../components/Calendar/user.svg';
       arrayDataAllEvents.then((data) => {
 
       if(data[this.year] === undefined){
-        this.listEventsOneDay =  <li className="no-events" key="no-events">Мероприятий нет</li>;
+        this.listEventsOneDay =  <li className="no-events" key={"no-events" + Math.ceil(Math.random()*10000000000)}>Мероприятий нет</li>;
         this.numberOfEvents = "Пока нет";
       } else if(data[this.year][this.mounth] === undefined){
-          this.listEventsOneDay =  <li className="no-events" key="no-events" >Мероприятий нет</li>;
+          this.listEventsOneDay =  <li className="no-events" key={"no-events" + Math.ceil(Math.random()*10000000000)} >Мероприятий нет</li>;
           this.numberOfEvents = "Пока нет";
         } else if( data[this.year][this.mounth][this.day] === undefined ){
-            this.listEventsOneDay =  <li className="no-events" key="no-events" >Мероприятий нет</li>;
+            this.listEventsOneDay =  <li className="no-events" key={"no-events" + Math.ceil(Math.random()*10000000000)} >Мероприятий нет</li>;
             this.numberOfEvents = "Пока нет";
           } else {
             this.listEventsOneDay = data[this.year][this.mounth][this.day].map( ( item ) => {
               return (
-                <li key={item.id} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
+                <li key={"event-" + Math.ceil(Math.random()*10000000000)} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
               })
 
               let wordForm = function( num, word ){
@@ -49,8 +49,6 @@ import user from './../components/Calendar/user.svg';
 
           })
     }
-
-
 }
 
 export default new StateCalendar()
