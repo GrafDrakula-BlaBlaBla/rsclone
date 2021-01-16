@@ -35,10 +35,6 @@ p {
   font-weight: 700;
 }
 
-.tasks,
-.goals {
-}
-
 .tasks_title,
 .goals_title {
   font-size: 1.1em;
@@ -72,19 +68,10 @@ p {
   border-radius: 5px;
   color: white;
   background-color: #5c9f61;
-  transition: 0.1s;
+  transition: opacity 0.25s;
   cursor: pointer;
 
   &:hover {
     opacity: 0.8;
   }
-}
-
-@media (max-width: 1200px) {
-}
-
-@media (max-width: 1024px) {
-}
-
-@media (max-width: 900px) {
 }
