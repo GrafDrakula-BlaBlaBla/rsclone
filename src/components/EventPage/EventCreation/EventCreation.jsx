@@ -23,7 +23,7 @@ export default function EventCreationPage() {
       </div>
 
       <div className={ styles.main_date }>
-        <p className={ styles['title'] }>Когда</p>
+        <p className={ styles.title }>Когда</p>
         <div className={ styles['right-section'] }>
           <input type='date'/>
           <p>-</p>
