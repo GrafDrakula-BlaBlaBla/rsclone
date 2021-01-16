@@ -1,6 +1,6 @@
 import React from "react"
 import { makeAutoObservable } from "mobx"
-import arrayDataAllEvents from './../arrayAllTime.jsx'
+import arrayDataAllEvents from './../actions/arrayAllTime.jsx'
 
 Date.prototype.daysInMonth = function() {
   return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();

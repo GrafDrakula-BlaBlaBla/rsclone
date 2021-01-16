@@ -1,7 +1,7 @@
 import React from "react"
 import { makeAutoObservable } from "mobx"
-import arrayDataAllEvents from './../arrayAllTime.jsx';
-import user from './../user.svg';
+import arrayDataAllEvents from './../actions/arrayAllTime.jsx';
+import user from './../components/Calendar/user.svg';
 
  class StateCalendar {
 
@@ -37,7 +37,7 @@ import user from './../user.svg';
           } else {
             this.listEventsOneDay = data[this.year][this.mounth][this.day].map( ( item ) => {
               return (
-                <li key={item.id}><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
+                <li key={item.id} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
               })
 
               let wordForm = function( num, word ){

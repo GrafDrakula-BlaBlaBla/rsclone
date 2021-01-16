@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import OneDay from  './OneDay.jsx';
 import { observer } from "mobx-react-lite";
-import stateCalendar from './store/StateCalendarOneDay.jsx'
-import stateCalendarMonth from './store/StateCalendarMonth.jsx'
+import stateCalendar from '../../state/StateCalendarOneDay.jsx'
+import stateCalendarMonth from '../../state/StateCalendarMonth.jsx'
 import './_Calendar.scss';
 
  // создание календаря на месяц arrayDataAllEvents
