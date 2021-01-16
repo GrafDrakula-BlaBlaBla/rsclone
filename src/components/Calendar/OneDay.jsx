@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './_Calendar.scss';
-import user from './user.svg';
-import stateCalendar from './store/StateCalendarOneDay.jsx';
-import { observer, useLocalObservable } from "mobx-react-lite";
+import stateCalendar from '../../state/StateCalendarOneDay.jsx';
+import { observer } from "mobx-react-lite";
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
