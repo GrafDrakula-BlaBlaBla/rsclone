@@ -61,10 +61,10 @@ useEffect(() => {
         return (
           <Marker position = { cord }  icon={ markerCustom } key={oneEvent.id}>
             <Tooltip >
-               <div>
+               <div className="popUpEvent">
                 <h3>{ oneEvent.summary }</h3>
-                <p>{ stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart }:{addZero( stateMinutesStart )} &#8212;</p>
-                <p>{ stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
+                <p> c { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart }:{addZero( stateMinutesStart )}</p>
+                <p> до { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
                </div>
 
             </Tooltip>
