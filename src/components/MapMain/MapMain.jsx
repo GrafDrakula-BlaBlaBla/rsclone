@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './_MapMain.scss';
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip, ZoomControl  } from 'react-leaflet';
 import dataMarker from './store/dataForMarkers';
 import L  from 'leaflet';
+import Legend from './Legend';
 
 export default function MapMain() {
 
 const [markerEvents, onChangeMarker] = useState([]);
+
 
 useEffect(() => {
 
   dataMarker.then( ( data ) => {
 
     const now = new Date();
+// добавление нуля
+    function addZero( number ) {
+      if(number < 10) {
+        number = "0" + number
+      }
+      return number;
+    }
 
     let createMarker =  data.map( ( oneEvent ) => {
 
@@ -27,11 +36,8 @@ useEffect(() => {
       } else if( dateOneStart > now && dateOneEnd > now ) {
         classNameMarker = "color-green"
       }
-      console.log(oneEvent.summary);
-      // function addZero( number ) {
-      //   number < 10 ? number = "0" + number : number;
-      //   return number;
-      // }
+      // console.log(oneEvent.summary);
+
       const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
       'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
@@ -57,11 +63,12 @@ useEffect(() => {
             <Tooltip >
                <div>
                 <h3>{ oneEvent.summary }</h3>
-                <p> Начало: { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart } : {stateMinutesStart} </p>
-                <p> Окончание: { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd } : {stateMinutesEnd} </p>
+                <p>{ stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart }:{addZero( stateMinutesStart )} &#8212;</p>
+                <p>{ stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
                </div>
 
             </Tooltip>
+
           </Marker>
         )
       })
@@ -78,12 +85,14 @@ useEffect(() => {
   return(
     <div className="map-contener">
 
-      <MapContainer center={[53.902284, 27.561831]} zoom={7} scrollWheelZoom={true}>
+      <MapContainer center={[53.902284, 27.561831]} zoom={7} zoomControl={false}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=ab46a637-81e8-4df5-9f58-48897cbf8160"
         />
         { markerEvents }
+        <Legend />
+          <ZoomControl position="topright" />
       </MapContainer>
     </div>
   );
