@@ -23,9 +23,9 @@ useEffect(() => {
       if(dateOneStart < now && dateOneEnd < now){
         classNameMarker = "color-red"
       }else if (dateOneStart <=  now  && now <= dateOneEnd){
-        classNameMarker = "color-blue"
-      } else if( dateOneStart > now && dateOneEnd > now ) {
         classNameMarker = "color-yellow"
+      } else if( dateOneStart > now && dateOneEnd > now ) {
+        classNameMarker = "color-green"
       }
       console.log(oneEvent.summary);
       // function addZero( number ) {
@@ -51,7 +51,7 @@ useEffect(() => {
       let markerCustom = L.divIcon({
         className: classNameMarker,
         shadowSize: [12, 12],
-        iconSize: [15, 15] });
+        iconSize: [20, 20 ] });
         return (
           <Marker position = { cord }  icon={ markerCustom } key={oneEvent.id}>
             <Tooltip >
