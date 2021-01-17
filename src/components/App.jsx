@@ -5,6 +5,7 @@ import Initiatives from './Initiatives/Initiatives';
 import MainPage from './MainPage/MainPage';
 import EventPage from './EventPage/EventPage';
 import Profile from './Profile/Profile';
+import GamePage from './GamePage/GamePage';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,6 +25,7 @@ function App() {
             <Route path="/completion"><EventPage section='completion'/></Route>
             <Route path="/profile" component={ Profile } />
             <Route path="/initiatives" component={ Initiatives } />
+            <Route path="/game" component={ GamePage } />
           </Switch>
         </div>
 
