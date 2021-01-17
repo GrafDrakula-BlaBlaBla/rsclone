@@ -3,7 +3,7 @@ import styles from './_RatingLeaves.module.scss';
 import Leaves from './Leaves/Leaves';
 import RatingModal from './RatingModal/RatingModal';
 
-const levels = [ 'Новичёк', 'Любитель', 'Специалист', 'Эксперт', 'Эколог' ];
+const levels = [ 'Новичок', 'Любитель', 'Специалист', 'Эксперт', 'Эколог' ];
 
 
 export default function RatingLeaves({ rating }) {
