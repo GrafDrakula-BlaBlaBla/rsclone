@@ -4,6 +4,8 @@ import { observer } from "mobx-react-lite";
 import stateCalendar from '../../state/StateCalendarOneDay.jsx'
 import stateCalendarMonth from '../../state/StateCalendarMonth.jsx'
 import './_Calendar.scss';
+import styles from '../SectionWrapper/_SectionWrapper.module.scss';
+import SectionWrapper from '../SectionWrapper/SectionWrapper';
 
  // создание календаря на месяц arrayDataAllEvents
 
@@ -45,7 +47,8 @@ function clickCalendar( clickCalendarEvent ) {
   }
 
   return(
-    <div className="calendar">
+  <SectionWrapper>
+    <div className="calendar" >
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
           <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>
@@ -59,7 +62,7 @@ function clickCalendar( clickCalendarEvent ) {
       </div>
       <OneDay mouth={ stateCalendarMonth.stateMouth } day={ stateCalendarMonth.nowDay } year={ stateCalendarMonth.stateYear }/ >
     </div>
-
+  </SectionWrapper>
   );
 })
 

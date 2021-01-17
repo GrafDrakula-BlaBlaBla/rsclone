@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import './_Calendar.scss';
+import { Link } from 'react-router-dom';
 import stateCalendar from '../../state/StateCalendarOneDay.jsx';
 import { observer } from "mobx-react-lite";
 
@@ -32,7 +33,7 @@ stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year);
         </div>
       </div>
       <div className="button-create-new-evernt">
-        <a href="#" >Создать</a>
+        <Link to={`/create`} activeClassName="active">Создать</Link>
       </div>
     </div>
   )
