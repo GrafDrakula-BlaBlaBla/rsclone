@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './_MainPage.module.scss';
 import MainSection from './MainSection/MainSection';
-import MapMain from './../MapMain/Map'
+import MapMain from './../MapMain/MapMain'
 
 export default function MainPage() {
   return (

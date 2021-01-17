@@ -1,0 +1,43 @@
+{
+"data": [
+    {
+    "Location":
+      [{
+        "Let": "53.902284",
+        "Lon": "27.561831"
+      }],
+    "id_google": "39i92vn66h0brbhj2sq66vpjda"
+    },
+    {
+    "Location":
+      [{
+        "Let": "53.677834",
+        "Lon": "23.829529"
+      }],
+    "id_google": "0eteaq1d6plgm73slh5kk9ggpk"
+    },
+    {
+    "Location":
+      [{
+        "Let": "52.424160",
+        "Lon": "31.014272"
+      }],
+    "id_google": "6j5otevajsv2fp88fsku67uitd"
+    },
+    {
+    "Location":
+      [{
+        "Let": "52.094246",
+        "Lon": "23.684559"
+      }],
+    "id_google": "7jr9s1vsdsn1m4cnnv3vvhjl8v"
+    },
+    {
+    "Location":
+      [{
+        "Let": "55.184217",
+        "Lon": "30.202869"
+      }],
+    "id_google": "7nc9thvu2lo9sm56sgo4shrvka"
+    }]
+}
