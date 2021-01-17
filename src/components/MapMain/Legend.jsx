@@ -1,7 +1,6 @@
 import React from 'react';
 import './_MapMain.scss';
 
-
 class Legend extends React.Component {
 
   render() {

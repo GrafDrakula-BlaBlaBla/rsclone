@@ -1,4 +1,4 @@
-import resultFetch from  './../../../actions/RequestCalendar.jsx';
+import resultFetch from  './RequestCalendar.jsx';
 import testData from './dataForMarker.json';
 
 // слияние двух массивов данных
