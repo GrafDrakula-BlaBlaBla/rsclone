@@ -17,12 +17,13 @@ import SectionWrapper from '../SectionWrapper/SectionWrapper';
 
 // переключение в лево
  function arrowLeftCalendar() {
+   stateCalendar.changeBlockOneDay();
    stateCalendarMonth.arrowLeftCalendarState();
  }
 // переключение в право
 
  function arrowRightCalendar() {
-
+   stateCalendar.changeBlockOneDay();
    stateCalendarMonth.arrowRightCalendarState();
   }
 

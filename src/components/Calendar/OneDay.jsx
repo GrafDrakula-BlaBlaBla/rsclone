@@ -12,7 +12,7 @@ const OneDay = observer( (mouth, day, year) => {
 
 useEffect(() => {
 
-stateCalendar.changeBlockOneDay()
+stateCalendar.changeBlockOneDay();
 
     }, [])
 
