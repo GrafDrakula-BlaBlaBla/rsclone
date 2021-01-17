@@ -27,14 +27,41 @@ useEffect(() => {
       } else if( dateOneStart > now && dateOneEnd > now ) {
         classNameMarker = "color-yellow"
       }
+      console.log(oneEvent.summary);
+      // function addZero( number ) {
+      //   number < 10 ? number = "0" + number : number;
+      //   return number;
+      // }
+      const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
+      'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+      let stateDayStart = dateOneStart.getDate();
+      let stateMouthStart = dateOneStart.getMonth();
+      let stateYearStart = dateOneStart.getFullYear();
+      let stateHoursStart = dateOneStart.getHours();
+      let stateMinutesStart = dateOneStart.getMinutes();
+
+      let stateDayEnd = dateOneEnd.getDate();
+      let stateMouthEnd = dateOneEnd.getMonth();
+      let stateYearEnd = dateOneEnd.getFullYear();
+      let stateHoursEnd = dateOneEnd.getHours();
+      let stateMinutesEnd = dateOneEnd.getMinutes();
+
       let cord = [oneEvent.Location[0]['Let'], oneEvent.Location[0]['Lon']];
       let markerCustom = L.divIcon({
         className: classNameMarker,
         shadowSize: [12, 12],
-        iconSize: [10, 10] });
+        iconSize: [15, 15] });
         return (
-          <Marker position = { cord }  icon={ markerCustom } >
+          <Marker position = { cord }  icon={ markerCustom } key={oneEvent.id}>
+            <Tooltip >
+               <div>
+                <h3>{ oneEvent.summary }</h3>
+                <p> Начало: { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart } : {stateMinutesStart} </p>
+                <p> Окончание: { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd } : {stateMinutesEnd} </p>
+               </div>
 
+            </Tooltip>
           </Marker>
         )
       })
