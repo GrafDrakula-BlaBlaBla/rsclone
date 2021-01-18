@@ -15,10 +15,10 @@ export default function EventCreationPage() {
       <div className={ styles.name }>
         <div className={ styles.name_top }>
           <p className={ styles.title }>Название</p>
-          <input type='text' placeholder='Введите название ивента'/>
+          <input type='text' placeholder='Введите название мороприятия'/>
         </div>
         <p className={ styles.name_description }>
-          Заданное название будет отображаться в списке всех ивентов.
+          Заданное название будет отображаться в списке всех мероприятий.
         </p>
       </div>
 
@@ -32,18 +32,26 @@ export default function EventCreationPage() {
       </div>
 
       <div className={ styles.main_place }>
-      <p className={ styles['title'] }>Где</p>
-      <div className={ styles['right-section'] }>
-        <select
-          defaultValue='Минская обл.'
-          onChange={ selectRegion }>
-          { byCities[0].regions.map((elem) =>
-            <option value={ elem.name } key={elem.name}>{elem.name}</option>
-          ) }
-        </select>
-        <SelectCity region={ byCities[0].regions.find((elem) => elem.name === region) }/>
+        <p className={ styles.title }>Где</p>
+        <div className={ styles.right_section }>
+          <select
+            defaultValue='Минская обл.'
+            onChange={ selectRegion }>
+            { byCities[0].regions.map((elem) =>
+              <option value={ elem.name } key={elem.name}>{elem.name}</option>
+            ) }
+          </select>
+
+          <SelectCity region={ byCities[0].regions.find((elem) => elem.name === region) }/>
+
+          <div className={ styles.coordinates }>
+            <p>lon: <span>53.710000</span></p>
+            <p>lat: <span>27.950000</span></p>
+          </div>
+        </div>
       </div>
-      </div>
+
+      <p className={ styles.place_description }>Укажите место проведения мероприятия на карте</p>
 
       <div className={ styles.main_task }>
         <p className={ styles['title'] }>Задача</p>
