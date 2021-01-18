@@ -4,27 +4,25 @@ import Game from './Game';
 
 const GameComponent = () => {
   const gameWrapper = useRef(null);
-  const canvas = useRef(null);
+  const gameContainer = useRef(null);
 
   function changeScreenMode() {
-    console.log(gameWrapper)
     gameWrapper.current.classList.toggle( styles.full_screen );
   }
 
   function startGame(event) {
+    const game = new Game(gameContainer.current);
+
     event.target.style.display = 'none';
-    const game = new Game();
 
     game.start();
-
-    
   }
 
   return (
     <div ref={ gameWrapper } className={ styles.game_wrapper }>
       <button className={ styles.full_screen_btn } onClick={ changeScreenMode }></button>
       <button className={ styles.start_btn } onClick={ startGame }>Начать игру</button>
-      <canvas className={ styles.game_window }></canvas>
+      <div ref={ gameContainer } className={ styles.game_container }></div>
     </div>
   );
 }
