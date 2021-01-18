@@ -11,18 +11,18 @@ const GameComponent = () => {
   }
 
   function startGame(event) {
-    const game = new Game(gameContainer.current);
+    const game = new Game(gameContainer.current, gameWrapper.current);
 
     event.target.style.display = 'none';
 
-    game.start();
+    game.init();
   }
 
   return (
     <div ref={ gameWrapper } className={ styles.game_wrapper }>
       <button className={ styles.full_screen_btn } onClick={ changeScreenMode }></button>
       <button className={ styles.start_btn } onClick={ startGame }>Начать игру</button>
-      <div ref={ gameContainer } className={ styles.game_container }></div>
+      <canvas ref={ gameContainer } className={ styles.game_container }></canvas>
     </div>
   );
 }
