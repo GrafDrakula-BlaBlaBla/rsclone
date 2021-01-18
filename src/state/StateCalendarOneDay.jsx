@@ -15,7 +15,8 @@ import user from './../components/Calendar/user.svg';
     year = null
     status = null;
     eventsTextLeft = null;
-  
+    linkAdd = null;
+
     constructor() {
         makeAutoObservable(this)
     }
@@ -28,12 +29,15 @@ import user from './../components/Calendar/user.svg';
         ( this.year === this.yearToday && this.mounth === this.mounthToday && this.day < this.dayToday) ){
          this.status = "Прошедшие";
          this.eventsTextLeft = "не было";
+         this.linkAdd = "Посмотреть";
          }else if( this.year === this.yearToday && this.mounth === this.mounthToday && this.day === this.dayToday){
             this.status =  "Сегодня";
             this.eventsTextLeft = "пока нет";
+            this.linkAdd = "Присоединиться";
           } else {
             this.status =  "Предстоящие";
             this.eventsTextLeft = "пока нет";
+            this.linkAdd = "Присоединиться";
           }
         }
 
@@ -53,7 +57,7 @@ import user from './../components/Calendar/user.svg';
           } else {
             this.listEventsOneDay = data[this.year][this.mounth][this.day].map( ( item ) => {
               return (
-                <li key={"event-" + Math.ceil(Math.random()*10000000000)} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">Присоединиться</a></li>);
+                <li key={"event-" + Math.ceil(Math.random()*10000000000)} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">{ this.linkAdd }</a></li>);
               })
 
               let wordForm = function( num, word ){
