@@ -61,7 +61,7 @@ function clickCalendar( clickCalendarEvent ) {
           { stateCalendarMonth.gridOneMount }
         </div>
       </div>
-      <OneDay mouth={ stateCalendarMonth.stateMouth } day={ stateCalendarMonth.nowDay } year={ stateCalendarMonth.stateYear }/ >
+      <OneDay mouth={ stateCalendarMonth.stateMouth } day={ stateCalendarMonth.nowDay } year={ stateCalendarMonth.stateYear } status={ stateCalendar.status }/ >
     </div>
   </SectionWrapper>
   );

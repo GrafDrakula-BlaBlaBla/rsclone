@@ -9,7 +9,7 @@ Date.prototype.daysInMonth = function() {
 class StateCalendarMonth {
 
   dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
-
+  
   now = new Date();
   nowDay = this.now.getDate();
   stateMouth = this.now.getMonth();
@@ -37,7 +37,6 @@ class StateCalendarMonth {
     }
     return daysForWeekElem;
   }
-
     // Создание элемента мероприятия
     createEventsElem(indexDataGrid, data) {
       let arrayEventsOneDayCaltnlar = [];
