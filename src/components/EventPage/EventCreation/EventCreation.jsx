@@ -33,7 +33,8 @@ export default function EventCreationPage() {
 
       <div className={ styles.main_place }>
         <p className={ styles.title  + ' font_l' }>Где</p>
-        <div className={ styles['right-section'] }>
+        
+        <div className={ styles.right_section }>
           <select
             defaultValue='Минская обл.'
             onChange={ selectRegion }>
@@ -41,9 +42,17 @@ export default function EventCreationPage() {
               <option value={ elem.name } key={elem.name}>{elem.name}</option>
             ) }
           </select>
+
           <SelectCity region={ byCities[0].regions.find((elem) => elem.name === region) }/>
+
+          <div className={ styles.coordinates }>
+            <p>lon: <span>53.710000</span></p>
+            <p>lat: <span>27.950000</span></p>
+          </div>
         </div>
       </div>
+
+      <p className={ styles.place_description }>Укажите место проведения мероприятия на карте</p>
 
       <div className={ styles.main_task }>
         <p className={ styles.title + ' font_l' }>Задача</p>

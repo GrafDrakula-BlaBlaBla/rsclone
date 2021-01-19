@@ -55,7 +55,8 @@ p {
 
 .name_description {
   text-align: center;
-  color: rgb(100, 100, 100);
+  color: rgb(80, 80, 80);
+  font-size: 0.95em;
   z-index: 0;
 }
 
@@ -75,9 +76,8 @@ p {
 .main_place {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
 
-  .right-section {
+  .right_section {
     display: flex;
     flex: 1;
     align-items: center;
@@ -89,6 +89,16 @@ p {
       background-color: rgb(240, 240, 240);
     }
   }
+}
+
+.place_description {
+  margin-bottom: 20px;
+  text-align: center;
+  color: rgb(80, 80, 80);
+}
+
+.coordinates {
+  font-size: 0.9em;
 }
 
 .main_task {

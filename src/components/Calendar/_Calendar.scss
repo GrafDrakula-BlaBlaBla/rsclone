@@ -2,25 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px 0;
   font-family: Noto Sans JP, sans-serif;
-  background: rgba(255, 255, 255, 0.9);
-  width: 50%;
   height: 100%;
   font-size: 1.25rem;
 
   .wrapper-one-day {
-    height: 50%;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+
   .wrapper-calendar-mounth {
     display: flex;
     flex-direction: column;
     height: 50%;
     overflow: auto;
     user-select: none;
+    border-radius: 5px;
   }
 
   .button-click-calendar:hover {
@@ -31,7 +30,7 @@
     background: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 4px 10px;
   }
   .wrapper-day-for-week {
     display: grid;
@@ -87,11 +86,13 @@
 }
 
 .wrapper-one-day-header {
-  margin-top: 10px;
-  padding: 10px;
-  background: white;
   display: flex;
   justify-content: space-between;
+  color: white;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #5c9f61;
   user-select: none;
 }
 
@@ -107,15 +108,18 @@
   overflow: auto;
   user-select: none;
   height: 250px;
+
   .user-block-one-day {
     display: flex;
     img {
       margin-right: 10px;
     }
   }
+
   .no-events {
     justify-content: center;
   }
+
   li {
     display: flex;
     flex-direction: row;
@@ -123,14 +127,18 @@
     align-items: center;
     padding: 10px;
     margin: 10px 0;
+    border-radius: 5px;
     background: white;
+
     img {
       width: 40px;
     }
+
     a {
       text-decoration: none;
       color: black;
     }
+
     a:hover {
       color: #5c9f61;
     }
