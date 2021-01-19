@@ -13,9 +13,9 @@ const nameMonth = [ 'января', 'февраля', 'марта', 'апрел�
 const OneDay = observer( (mouth, day, year) => {
 
 useEffect(() => {
-  
+
 stateCalendar.changeBlockOneDay();
-console.log(mouth);
+
     }, [])
 
 stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth.status);
@@ -23,7 +23,7 @@ stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth
   return(
     <div className="wrapper-one-day">
       <div>
-    
+
         <div className="wrapper-one-day-header">
           <p> { mouth.status } </p>
           <p> {mouth.day} {nameMonth[mouth.mouth]}</p>
@@ -34,7 +34,7 @@ stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth
             { stateCalendar.listEventsOneDay }
           </ul>
         </div>
-    
+
       </div>
       <div className="button-create-new-evernt">
         <Link to={`/create`} activeClassName="active">Создать</Link>

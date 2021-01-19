@@ -1,4 +1,3 @@
-import React from "react"
 import { makeAutoObservable } from "mobx"
 import byCities from '../modules/data/by-cities';
 
@@ -8,6 +7,7 @@ class StateCoordinates {
             lng: 27.561831 }
   region = 'Минская обл.';
   changeSelectRegion = this.selectRegion.bind(this);
+
 
    constructor() {
        makeAutoObservable(this)
@@ -26,6 +26,10 @@ class StateCoordinates {
      this.region = event.target.value;
      this.changeCoordsSelectedRegion();
      }
+
+   draggableMarker(latLng){
+     this.coords = latLng;
+   }
 
 }
 

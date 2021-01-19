@@ -16,7 +16,7 @@ const EventCreationPage = observer( () => {
           <input type='text' placeholder='Введите название мороприятия'/>
         </div>
         <p className={ styles.name_description }>
-          Название будет отображаться в списке всех мероприятий.
+          Название будет отображаться в списке всех мероприятий
         </p>
       </div>
 
@@ -43,13 +43,13 @@ const EventCreationPage = observer( () => {
           <SelectCity region={ byCities[0].regions.find((elem) => elem.name === stateCoordinates.region) }/>
 
           <div className={ styles.coordinates }>
-            <p>lon: <span> { stateCoordinates.coords.lat } </span></p>
-            <p>lat: <span> { stateCoordinates.coords.lng }</span></p>
+            <p>lon: <span> { stateCoordinates.coords.lat.toFixed(6) } </span></p>
+            <p>lat: <span> { stateCoordinates.coords.lng.toFixed(6) }</span></p>
           </div>
         </div>
       </div>
 
-      <p className={ styles.place_description }>Укажите место проведения мероприятия на карте</p>
+      <p className={ styles.place_description }>Укажите точное место проведения мероприятия на карте</p>
 
       <div className={ styles.main_goals }>
         <p className={ styles['title'] }>Цели</p>
