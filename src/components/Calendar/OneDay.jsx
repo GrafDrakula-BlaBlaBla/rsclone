@@ -3,8 +3,6 @@ import './_Calendar.scss';
 import { Link } from 'react-router-dom';
 import stateCalendar from '../../state/StateCalendarOneDay.jsx';
 import { observer } from "mobx-react-lite";
-import SectionWrapper from '../SectionWrapper/SectionWrapper';
-
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
@@ -13,10 +11,8 @@ const nameMonth = [ 'января', 'февраля', 'марта', 'апрел�
 const OneDay = observer( (mouth, day, year) => {
 
 useEffect(() => {
-  
-stateCalendar.changeBlockOneDay();
-console.log(mouth);
-    }, [])
+  stateCalendar.changeBlockOneDay();
+}, [])
 
 stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth.status);
 
@@ -36,9 +32,7 @@ stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth
         </div>
     
       </div>
-      <div className="button-create-new-evernt">
-        <Link to={`/create`} activeClassName="active">Создать</Link>
-      </div>
+      <Link className="button-create-new-evernt green_btn" to={`/create`} activeClassName="active">Создать</Link>
     </div>
   )
 })
