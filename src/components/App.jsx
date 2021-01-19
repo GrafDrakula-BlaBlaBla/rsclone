@@ -1,4 +1,5 @@
-import "./App.scss";
+import './App.scss';
+import './common.scss';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Initiatives from './Initiatives/Initiatives';

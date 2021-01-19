@@ -7,7 +7,7 @@
 }
 
 .left_section {
-  width: 56%;
+  width: 55%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,7 @@
 }
 
 .right_section {
-  width: 43%;
+  width: 44%;
 }
 
 @media (max-width: 1200px) {
@@ -42,13 +42,17 @@
 
 @media (max-width: 900px) {
   .container {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
   }
   .left_section {
-    display: none;
+    width: 100%;
+    height: 44%;
   }
 
   .right_section {
-    width: 500px;
+    width: 100%;
+    height: 55%;
   }
 }

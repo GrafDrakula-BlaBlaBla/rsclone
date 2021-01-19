@@ -4,6 +4,8 @@ import { observer } from "mobx-react-lite";
 import stateCalendar from '../../state/StateCalendarOneDay.jsx'
 import stateCalendarMonth from '../../state/StateCalendarMonth.jsx'
 import './_Calendar.scss';
+import styles from '../SectionWrapper/_SectionWrapper.module.scss';
+import SectionWrapper from '../SectionWrapper/SectionWrapper';
 
  // создание календаря на месяц arrayDataAllEvents
 
@@ -15,12 +17,13 @@ import './_Calendar.scss';
 
 // переключение в лево
  function arrowLeftCalendar() {
+   stateCalendar.changeBlockOneDay();
    stateCalendarMonth.arrowLeftCalendarState();
  }
 // переключение в право
 
  function arrowRightCalendar() {
-
+   stateCalendar.changeBlockOneDay();
    stateCalendarMonth.arrowRightCalendarState();
   }
 
@@ -45,7 +48,8 @@ function clickCalendar( clickCalendarEvent ) {
   }
 
   return(
-    <div className="calendar">
+  <SectionWrapper>
+    <div className="calendar" >
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
           <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>
@@ -57,9 +61,9 @@ function clickCalendar( clickCalendarEvent ) {
           { stateCalendarMonth.gridOneMount }
         </div>
       </div>
-      <OneDay mouth={ stateCalendarMonth.stateMouth } day={ stateCalendarMonth.nowDay } year={ stateCalendarMonth.stateYear }/ >
+      <OneDay mouth={ stateCalendarMonth.stateMouth } day={ stateCalendarMonth.nowDay } year={ stateCalendarMonth.stateYear } status={ stateCalendar.status }/ >
     </div>
-
+  </SectionWrapper>
   );
 })
 
