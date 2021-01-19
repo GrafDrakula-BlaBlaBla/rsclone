@@ -29,7 +29,6 @@ p {
 
   .title {
     flex-basis: 90px;
-    font-size: 1.1em;
     margin-right: 40px;
   }
 }
@@ -57,7 +56,6 @@ p {
 .name_description {
   text-align: center;
   color: rgb(100, 100, 100);
-  font-size: 0.95em;
   z-index: 0;
 }
 
@@ -112,18 +110,6 @@ p {
 
   button {
     width: 160px;
-    height: 36px;
-    border: 0;
-    border-radius: 5px;
-    color: white;
-    font-size: 1.1em;
-    background-color: #5c9f61;
-    transition: opacity 0.25s;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 }
 

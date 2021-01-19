@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './_EventsList.scss';
+import  styles from './_EventsList.module.scss';
 import loupeIcon from '../../../modules/assets/loupe.svg';
 import { Link } from "react-router-dom";
 
@@ -73,26 +73,25 @@ export default function EventsList() {
   }
 
   return (
-    <div className="events-list">
-      <div className="search-events">
-        <img className="search-events-loupe-icon" src={loupeIcon} alt="loupe"/>
-
+    <div className={ styles.container }>
+      <div className={ styles.search }>
+        <img className={ styles.search_icon } src={loupeIcon} alt="loupe"/>
         <input
-          className="search-events-input"
+          className={ styles.search_folder }
           type="text"
           placeholder="Ввидети ключевые слова"
           onKeyUp={ focusSearchInput }
         />
-
       </div>
-      <div className="event-cards-list">
+
+      <div className={ styles.cards_list }>
         { filteredCards.map((value, id) => {
-          return (<div className='event-cards-item' key={id}>
-            <span className='card-title'>"{value.title}"</span>
-            <span className='card-type'>Тип: {value.type}</span>
-            <span className='card-data'>C {value.start}</span>
-            <span className='card-data'>По {value.end}</span>
-            <Link className="more-details-btn" to="/event"><span>Подробнее</span></Link>
+          return (<div className={ styles.card} key={id}>
+            <span className={ styles.card_title }>"{value.title}"</span>
+            <span className={ styles.card_type }>Тип: {value.type}</span>
+            <span >C {value.start}</span>
+            <span >По {value.end}</span>
+            <Link className={ styles.more_btn + ' green_btn'} to="/event">Подробнее</Link>
           </div>)
         }) }
       </div>
