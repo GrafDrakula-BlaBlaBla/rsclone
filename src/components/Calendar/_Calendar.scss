@@ -1,68 +1,66 @@
-.calendar{
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-padding: 10px 0;
-font-family: Noto Sans JP, sans-serif;
-height: 100%;
-font-size: 1.25rem;
+.calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Noto Sans JP, sans-serif;
+  height: 100%;
+  font-size: 1.25rem;
 
-  .wrapper-one-day{
+  .wrapper-one-day {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .wrapper-calendar-mounth{
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  overflow: auto;
-  user-select: none;
+
+  .wrapper-calendar-mounth {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    overflow: auto;
+    user-select: none;
+    border-radius: 5px;
   }
 
-  .button-click-calendar:hover{
+  .button-click-calendar:hover {
     cursor: pointer;
-    color: #5C9F61;
+    color: #5c9f61;
   }
-  .head-calendar{
-    background: rgba(255,255,255, 0.9);
+  .head-calendar {
+    background: rgba(255, 255, 255, 0.9);
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 4px 10px;
   }
-  .wrapper-day-for-week{
+  .wrapper-day-for-week {
     display: grid;
-    background: rgb(255,255,255);
+    background: rgb(255, 255, 255);
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     padding: 5px 10px;
-    background:  #5C9F61;
+    background: #5c9f61;
     color: white;
     text-align: center;
-
-    }
-  .wrapper-day-calendar{
-    background: rgb(255,255,255);
+  }
+  .wrapper-day-calendar {
+    background: rgb(255, 255, 255);
     padding: 10px 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 5px;
     height: 100%;
 
-
-    .day{
+    .day {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       background: white;
-      div{
-        background: #5C9F61;
+      div {
+        background: #5c9f61;
         font-size: 1rem;
         color: white;
         text-align: center;
-
-        }
-      .one-event-calendar{
+      }
+      .one-event-calendar {
         text-align: left;
         background: white;
         color: black;
@@ -70,88 +68,79 @@ font-size: 1.25rem;
         border: none;
         width: 100%;
       }
-      .one-event-calendar:hover{
-        background: RGBA(92,159,97,0.2);
+      .one-event-calendar:hover {
+        background: RGBA(92, 159, 97, 0.2);
       }
-      .one-event-calendar:hover{
+      .one-event-calendar:hover {
         cursor: pointer;
       }
-      .namber-day:hover{
+      .namber-day:hover {
         cursor: pointer;
-        background: RGBA(92,159,97,0.8);
+        background: RGBA(92, 159, 97, 0.8);
       }
     }
-    div{
-      box-shadow:0 0 0 1px grey;
-      }
+    div {
+      box-shadow: 0 0 0 1px grey;
+    }
   }
 }
 
-
-.wrapper-one-day-header{
+.wrapper-one-day-header {
+  display: flex;
+  justify-content: space-between;
   color: white;
   margin-top: 10px;
   padding: 10px;
-  background: #5C9F61;
-  display: flex;
-  justify-content: space-between;
+  border-radius: 5px;
+  background: #5c9f61;
   user-select: none;
 }
 
-.button-create-new-evernt{
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top: 10px;
-cursor: pointer;
-
-  a{
-    display: flex;
-    align-items: center;
-    background: #5C9F61;
-    text-decoration: none;
-    padding: 7px 30px 10px 30px;
-    height: 36px;
-    font-size: 1.1em;
-    user-select: none;
-    border-radius: 5px;
-    color: white;
-    }
+.button-create-new-evernt {
+  width: 150px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
-.list-events-one-day{
+.list-events-one-day {
   display: flex;
   flex-direction: column;
   overflow: auto;
   user-select: none;
   height: 250px;
-    .user-block-one-day{
-      display: flex;
-      img{
-        margin-right: 10px;
-      }
+
+  .user-block-one-day {
+    display: flex;
+    img {
+      margin-right: 10px;
     }
-    .no-events{
-      justify-content: center;
-    }
-    li{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px;
-      margin: 10px 0;
-      background: white;
-      img{
-        width: 40px;
-      }
-      a{
-        text-decoration: none;
-        color: black;
-      }
-      a:hover {
-        color: #5C9F61;
-      }
+  }
+
+  .no-events {
+    justify-content: center;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background: white;
+
+    img {
+      width: 40px;
     }
 
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      color: #5c9f61;
+    }
+  }
 }

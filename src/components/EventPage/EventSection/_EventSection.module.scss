@@ -31,14 +31,6 @@ p {
 
 .user_name {
   margin-bottom: 20px;
-  font-size: 1.2em;
-  font-weight: 700;
-}
-
-.tasks_title,
-.goals_title {
-  font-size: 1.1em;
-  margin-bottom: 10px;
 }
 
 .bottom {
@@ -56,22 +48,4 @@ p {
 .connect_title {
   font-size: 0.9em;
   margin-bottom: 10px;
-}
-
-.connect_btn {
-  width: 140px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-radius: 5px;
-  color: white;
-  background-color: #5c9f61;
-  transition: opacity 0.25s;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.8;
-  }
 }

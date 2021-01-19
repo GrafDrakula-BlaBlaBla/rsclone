@@ -36,8 +36,8 @@ export default function RatingModal({ setModalState, levels }) {
             Для получения нового уровня нужны очки которые можно получить:
           </p>
           <div className={ styles.links }>
-            <Link className={ styles.links_item } to='/'>Инициатива</Link>
-            <Link className={ styles.links_item } to='/'>Игра</Link>
+            <Link className={ styles.links_item + ' green_btn' } to='/'>Инициатива</Link>
+            <Link className={ styles.links_item + ' green_btn' } to='/'>Игра</Link>
           </div>
         </div>
       </div>

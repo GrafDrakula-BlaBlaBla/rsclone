@@ -12,8 +12,8 @@ const EventCreationPage = observer( () => {
     <div className={ styles.container }>
       <div className={ styles.name }>
         <div className={ styles.name_top }>
-          <p className={ styles.title }>Название</p>
-          <input type='text' placeholder='Введите название мороприятия'/>
+          <p className={ styles.title + ' font_l' }>Название</p>
+          <input type='text' placeholder='Введите название ивента'/>
         </div>
         <p className={ styles.name_description }>
           Название будет отображаться в списке всех мероприятий
@@ -21,7 +21,7 @@ const EventCreationPage = observer( () => {
       </div>
 
       <div className={ styles.main_date }>
-        <p className={ styles.title }>Когда</p>
+        <p className={ styles.title + ' font_l' }>Когда</p>
         <div className={ styles['right-section'] }>
           <input type='date'/>
           <p>-</p>
@@ -30,7 +30,8 @@ const EventCreationPage = observer( () => {
       </div>
 
       <div className={ styles.main_place }>
-        <p className={ styles.title }>Где</p>
+        <p className={ styles.title  + ' font_l' }>Где</p>
+        
         <div className={ styles.right_section }>
           <select
             defaultValue='Минская обл.'
@@ -52,7 +53,7 @@ const EventCreationPage = observer( () => {
       <p className={ styles.place_description }>Укажите точное место проведения мероприятия на карте</p>
 
       <div className={ styles.main_goals }>
-        <p className={ styles['title'] }>Цели</p>
+        <p className={ styles.title  + ' font_l' }>Цели</p>
         <div className={ styles['textarea-wrapper']}>
           <textarea maxLength='200' placeholder='Раскажите, как ваш проект поможет защитить экологию'/>
         </div>
@@ -66,10 +67,8 @@ const EventCreationPage = observer( () => {
       </div>
 
       <div className={ styles.bottom }>
-          <button>
-            Создать
-          </button>
-        </div>
+          <button className='green_btn'>Создать</button>
+      </div>
     </div>
   );
 })
