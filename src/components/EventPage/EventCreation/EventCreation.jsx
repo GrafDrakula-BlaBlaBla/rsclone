@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './_EventCreation.module.scss';
 import byCities from '../../../modules/data/by-cities';
 import SelectCity from './SelectCity/SelectCity';
+import stateCoordinates from '../../../state/StateCoordinates.jsx';
+import { observer } from "mobx-react-lite";
 
-export default function EventCreationPage() {
-  const [ region, setRegion ] = useState('Минская обл.');
 
-  function selectRegion(event) {
-    setRegion(event.target.value);
-  }
-
+const EventCreationPage = observer( () => {
+  
   return (
     <div className={ styles.container }>
       <div className={ styles.name }>
@@ -18,7 +16,7 @@ export default function EventCreationPage() {
           <input type='text' placeholder='Введите название мороприятия'/>
         </div>
         <p className={ styles.name_description }>
-          Заданное название будет отображаться в списке всех мероприятий.
+          Название будет отображаться в списке всех мероприятий.
         </p>
       </div>
 
@@ -36,35 +34,35 @@ export default function EventCreationPage() {
         <div className={ styles.right_section }>
           <select
             defaultValue='Минская обл.'
-            onChange={ selectRegion }>
-            { byCities[0].regions.map((elem) =>
-              <option value={ elem.name } key={elem.name}>{elem.name}</option>
+            onChange={ stateCoordinates.changeSelectRegion }>
+            { byCities[0].regions.map((elem) => 
+              <option value={ elem.name } key={elem.name}>{elem.name} </option>
             ) }
           </select>
 
-          <SelectCity region={ byCities[0].regions.find((elem) => elem.name === region) }/>
+          <SelectCity region={ byCities[0].regions.find((elem) => elem.name === stateCoordinates.region) }/>
 
           <div className={ styles.coordinates }>
-            <p>lon: <span>53.710000</span></p>
-            <p>lat: <span>27.950000</span></p>
+            <p>lon: <span> { stateCoordinates.coords.lat } </span></p>
+            <p>lat: <span> { stateCoordinates.coords.lng }</span></p>
           </div>
         </div>
       </div>
 
       <p className={ styles.place_description }>Укажите место проведения мероприятия на карте</p>
 
-      <div className={ styles.main_task }>
-        <p className={ styles['title'] }>Задача</p>
-        <div className={ styles['textarea-wrapper']}>
-          <textarea maxLength='200' placeholder='Опешити задачу'/>
-        </div>
-      </div>
-
       <div className={ styles.main_goals }>
         <p className={ styles['title'] }>Цели</p>
         <div className={ styles['textarea-wrapper']}>
-          <textarea maxLength='200' placeholder='Опешити цели'/>
+          <textarea maxLength='200' placeholder='Раскажите, как ваш проект поможет защитить экологию'/>
         </div>
+      </div>
+      
+      <div className={ styles.main_task }>
+        <p className={ styles['title'] }>Задача</p>
+          <div className={ styles['textarea-wrapper']}>
+          <textarea maxLength='200' placeholder='Что будете делать'/>
+          </div>
       </div>
 
       <div className={ styles.bottom }>
@@ -74,4 +72,6 @@ export default function EventCreationPage() {
         </div>
     </div>
   );
-}
+})
+
+export default EventCreationPage; 
