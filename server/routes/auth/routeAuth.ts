@@ -6,7 +6,7 @@ import * as config from "config";
 
 const router = Router();
 
-router.post("/registration", async (req, res) => {
+router.post("/authentication", async (req, res) => {
   try {
     const { email, password } = req.body;
 

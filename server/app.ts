@@ -4,8 +4,8 @@ import * as mongoose from "mongoose";
 import * as config from "config";
 import * as logger from "morgan"; // логирование всех действий
 
-import login from "./routes/auth/routeLogin";
-// import signin from "./routes/auth/routeSignin";
+import signup from "./routes/auth/routeSignup";
+import auth from "./routes/auth/routeAuth";
 import corsMiddleware from "./middleware/cors.middleware";
 
 const PORT = config.get("serverPort");
@@ -17,8 +17,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(`/`, login); // папка с файлами роутинга
-app.use(`/`, login); // папка с файлами роутинга
+app.use(`/`, signup); // папка с файлами роутинга
+app.use(`/`, auth); // папка с файлами роутинга
 
 const start = async () => {
   try {

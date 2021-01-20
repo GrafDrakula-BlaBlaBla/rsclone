@@ -22,10 +22,7 @@
 .env.production.local
 
 npm-debug.log*
-<<<<<<< HEAD
 /server/yarn-debug.log*
 /server/yarn-error.log*
-=======
 yarn-debug.log*
 yarn-error.log*
->>>>>>> feature/registration-modal

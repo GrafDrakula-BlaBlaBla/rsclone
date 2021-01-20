@@ -1,13 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from "./components/App";
-import './index.scss';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "mobx-react";
 
+import { Registration } from "./store";
+
+import App from "./components/App";
+import "./index.scss";
+// import { Registration } from './store/authStore';
+
+const storeRegistarion = new Registration();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider storeRegistarion={storeRegistarion}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root"),
 );
-

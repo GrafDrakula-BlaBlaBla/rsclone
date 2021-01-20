@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { inject } from "mobx-react";
 
 import Social from "./SocialIcons/Social";
 import Form from "./Form/Form";
-// import Button from "../../../Button/Button";
+import Button from "../../../Button/Button";
 
-import { registration } from "../../../../actions/users";
-import { authentication } from "../../../../actions/users";
-
-const RegModalMain = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
+const RegModalMain = inject("storeRegistarion")(({ storeRegistarion }) => {
   return (
     <div className="reg-modal__main">
       <div className="main-top">
@@ -19,23 +14,29 @@ const RegModalMain = () => {
       <div className="main-center">
         <Social />
         <Form />
-        <button
-          onClick={() => authentication(email, password)}
+        <Button
+          onClick={() =>
+            storeRegistarion.auth(
+              storeRegistarion.email,
+              storeRegistarion.password,
+            )
+          }
           className="reg-modal__btn"
-          action="Войти"
-        >
-          Войти
-        </button>
-        <button
-          onClick={() => registration(email, password)}
+          label="Войти"
+        />
+        <Button
+          onClick={() =>
+            storeRegistarion.signup(
+              storeRegistarion.email,
+              storeRegistarion.password,
+            )
+          }
           className="reg-modal__btn"
-          action="Регистрация"
-        >
-          Регистрация
-        </button>
+          label="Регистрация"
+        />
       </div>
     </div>
   );
-};
+});
 
 export default RegModalMain;
