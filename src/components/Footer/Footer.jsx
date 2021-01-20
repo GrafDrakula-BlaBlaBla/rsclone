@@ -1,6 +1,6 @@
 import React from 'react';
 import  styles from './_Footer.module.scss';
-import RegModal from '../RegModal/RegModal';
+import RegModal from './RegModal/RegModal';
 
 export default function Footer() {
   return(

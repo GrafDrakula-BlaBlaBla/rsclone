@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/server/node_modules
 /.pnp
 .pnp.js
 
@@ -21,6 +22,8 @@
 .env.production.local
 
 npm-debug.log*
+/server/yarn-debug.log*
+/server/yarn-error.log*
 yarn-debug.log*
 yarn-error.log*
 
