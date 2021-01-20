@@ -10,7 +10,7 @@ const User = new Schema({
   contacts: { type: Array },
   location: { type: Object },
   finishedGame: { type: Boolean },
-  // event: [{ type: ObjectId, ref: "Event" }],
+  // event: [{ ObjectId: ObjectId, ref: "Event" }],
 });
 
 export default model("User", User);
