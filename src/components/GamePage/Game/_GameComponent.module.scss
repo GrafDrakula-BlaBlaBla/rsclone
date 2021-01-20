@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  border: 1px solid black;
   border-radius: 5px;
   background-color: rgb(200, 200, 200);
 }
@@ -43,6 +44,7 @@
   border: 0;
   background: url('../../../modules/assets/game/full-screen.svg') 50% 50% / 80%
     no-repeat;
+  cursor: pointer;
 }
 
 .game_container {
