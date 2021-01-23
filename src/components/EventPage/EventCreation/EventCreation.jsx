@@ -5,15 +5,15 @@ import SelectCity from './SelectCity/SelectCity';
 import stateCoordinates from '../../../state/StateCoordinates.jsx';
 import { observer } from "mobx-react-lite";
 
-
 const EventCreationPage = observer( () => {
-  
+
   return (
     <div className={ styles.container }>
+
       <div className={ styles.name }>
         <div className={ styles.name_top }>
           <p className={ styles.title + ' font_l' }>Название</p>
-          <input type='text' placeholder='Введите название ивента'/>
+          <input type='text' placeholder='Введите название мероприятия'/>
         </div>
         <p className={ styles.name_description }>
           Название будет отображаться в списке всех мероприятий
@@ -58,7 +58,7 @@ const EventCreationPage = observer( () => {
           <textarea maxLength='200' placeholder='Раскажите, как ваш проект поможет защитить экологию'/>
         </div>
       </div>
-      
+
       <div className={ styles.main_task }>
         <p className={ styles['title'] }>Задача</p>
           <div className={ styles['textarea-wrapper']}>

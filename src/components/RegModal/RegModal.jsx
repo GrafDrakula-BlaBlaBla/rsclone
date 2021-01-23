@@ -4,6 +4,8 @@ import vkIcon from '../../modules/assets/vk-icon.svg';
 import twitterIcon from '../../modules/assets/twitter-icon.svg';
 import googleIcon from '../../modules/assets/google-icon.svg';
 import facebookIcon from '../../modules/assets/facebook-icon.svg';
+import signInUseGoogle from './authorizationGoogle/signInUseGoogle.jsx';
+
 
 export default class RagModal extends React.Component {
   state = {
@@ -31,10 +33,10 @@ export default class RagModal extends React.Component {
                 <div className="reg-modal__social-login">
                   <img className="social-icon" src={ vkIcon } alt="vk-icon"/>
                   <img className="social-icon" src={ twitterIcon } alt="twitter-icon"/>
-                  <img className="social-icon" src={ googleIcon } alt="google-icon"/>
+                  <img className="social-icon" src={ googleIcon } alt="google-icon" onClick={ signInUseGoogle }/>
                   <img className="social-icon" src={ facebookIcon } alt="facebook-icon"/>
                 </div>
-                <div className="reg-modal__folders">
+              <div className="reg-modal__folders">
                   <input className="reg-folder email-folder" placeholder="E-Mail"/>
                   <input className="reg-folder name-folder" placeholder="Имя"/>
                   <input className="reg-folder pass-folder" type="password" placeholder="Пароль" />
