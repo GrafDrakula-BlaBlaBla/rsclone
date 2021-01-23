@@ -1,7 +1,7 @@
 import axios from "axios";
 import { makeObservable, observable, action } from "mobx";
 
-export class Registration {
+export default class Registration {
   email = "";
   userName = "";
   password = "";

@@ -1,76 +1,117 @@
-import React, { useEffect, useState } from 'react';
-import styles from './_EventCreation.module.scss';
-import byCities from '../../../modules/data/by-cities';
-import SelectCity from './SelectCity/SelectCity';
-import stateCoordinates from '../../../state/StateCoordinates.jsx';
-import { observer } from "mobx-react-lite";
+import React from "react";
+import styles from "./_EventCreation.module.scss";
+import byCities from "../../../modules/data/by-cities";
+import SelectCity from "./SelectCity/SelectCity";
+import SelectArea from "./SelectArea/SelectArea";
+import Coords from "./Coords/Coords";
 
+import { Observer } from "mobx-react-lite";
 
-const EventCreationPage = observer( () => {
-  
+const EventCreation = ({ storeEvent, locationStore }) => {
+  const region = byCities.regions.find(
+    (elem) => elem.name === locationStore.region,
+  );
+
   return (
-    <div className={ styles.container }>
-      <div className={ styles.name }>
-        <div className={ styles.name_top }>
-          <p className={ styles.title + ' font_l' }>Название</p>
-          <input type='text' placeholder='Введите название ивента'/>
+    <div className={styles.container}>
+      {/* Event Title */}
+      <div className={styles.name}>
+        <div className={styles.name_top}>
+          <p className={styles.title + " font_l"}>Название</p>
+          <Observer>
+            {() => (
+              <input
+                onBlur={(event) => storeEvent.getEventTitle(event.target.value)}
+                type="text"
+                placeholder="Введите название ивента"
+              />
+            )}
+          </Observer>
         </div>
-        <p className={ styles.name_description }>
+        <p className={styles.name_description}>
           Название будет отображаться в списке всех мероприятий
         </p>
       </div>
+      {/* Event Date */}
+      <div className={styles.main_date}>
+        <p className={styles.title + " font_l"}>Когда</p>
+        <Observer>
+          {() => (
+            <div className={styles["right-section"]}>
+              <input
+                onChange={(event) => {
+                  storeEvent.getEventStartDate(event.target.value);
+                }}
+                type="date"
+              />
+              <p>-</p>
+              <input
+                onChange={(event) => {
+                  storeEvent.getEventEndDate(event.target.value);
+                }}
+                type="date"
+              />
+            </div>
+          )}
+        </Observer>
+      </div>
+      {/* Event Location */}
+      <div className={styles.main_place}>
+        <p className={styles.title + " font_l"}>Где</p>
+        <Observer>
+          {() => (
+            <div className={styles.right_section}>
+              <SelectArea locationStore={locationStore} cites={byCities} />
 
-      <div className={ styles.main_date }>
-        <p className={ styles.title + ' font_l' }>Когда</p>
-        <div className={ styles['right-section'] }>
-          <input type='date'/>
-          <p>-</p>
-          <input type='date'/>
+              <SelectCity region={region} />
+
+              <Coords locationStore={locationStore}></Coords>
+            </div>
+          )}
+        </Observer>
+      </div>
+
+      <p className={styles.place_description}>
+        Укажите точное место проведения мероприятия на карте
+      </p>
+      {/* Event goal */}
+      <div className={styles.main_goals}>
+        <p className={styles.title + " font_l"}>Цели</p>
+        <div className={styles["textarea-wrapper"]}>
+          <Observer>
+            {() => (
+              <textarea
+                onBlur={(event) => storeEvent.getEventGoal(event.target.value)}
+                maxLength="200"
+                placeholder="Раскажите, как ваш проект поможет защитить экологию"
+              />
+            )}
+          </Observer>
+        </div>
+      </div>
+      {/* Event description */}
+      <div className={styles.main_task}>
+        <p className={styles["title"]}>Задача</p>
+        <div className={styles["textarea-wrapper"]}>
+          <Observer>
+            {() => (
+              <textarea
+                onBlur={(event) =>
+                  storeEvent.getEventDescription(event.target.value)
+                }
+                maxLength="200"
+                placeholder="Что будете делать"
+              />
+            )}
+          </Observer>
         </div>
       </div>
 
-      <div className={ styles.main_place }>
-        <p className={ styles.title  + ' font_l' }>Где</p>
-        
-        <div className={ styles.right_section }>
-          <select
-            defaultValue='Минская обл.'
-            onChange={ stateCoordinates.changeSelectRegion }>
-            { byCities[0].regions.map((elem) => 
-              <option value={ elem.name } key={elem.name}>{elem.name} </option>
-            ) }
-          </select>
-
-          <SelectCity region={ byCities[0].regions.find((elem) => elem.name === stateCoordinates.region) }/>
-
-          <div className={ styles.coordinates }>
-            <p>lon: <span> { stateCoordinates.coords.lat.toFixed(6) } </span></p>
-            <p>lat: <span> { stateCoordinates.coords.lng.toFixed(6) }</span></p>
-          </div>
-        </div>
-      </div>
-
-      <p className={ styles.place_description }>Укажите точное место проведения мероприятия на карте</p>
-
-      <div className={ styles.main_goals }>
-        <p className={ styles.title  + ' font_l' }>Цели</p>
-        <div className={ styles['textarea-wrapper']}>
-          <textarea maxLength='200' placeholder='Раскажите, как ваш проект поможет защитить экологию'/>
-        </div>
-      </div>
-      
-      <div className={ styles.main_task }>
-        <p className={ styles['title'] }>Задача</p>
-          <div className={ styles['textarea-wrapper']}>
-          <textarea maxLength='200' placeholder='Что будете делать'/>
-          </div>
-      </div>
-
-      <div className={ styles.bottom }>
-          <button className='green_btn'>Создать</button>
+      <div className={styles.bottom}>
+        <button className="green_btn">Создать</button>
       </div>
     </div>
   );
-})
+};
 
-export default EventCreationPage; 
+export default EventCreation;

@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
-import styles from './_SelectCity.module.scss';
+import React, { useRef, useState } from "react";
+import styles from "./_SelectCity.module.scss";
 
 export default function SelectCity({ region }) {
-  const input = useRef(null)
+  const input = useRef(null);
   const cityListRef = useRef(null);
-  const [inputState, setInputState] = useState(false)
+  const [inputState, setInputState] = useState(false);
   const [cities, setCities] = useState(region.cities);
-  const [selectedCity, setSelectedCity] = useState('Минск');
+  const [selectedCity, setSelectedCity] = useState("Минск");
 
   function selectCity(cityName) {
     setSelectedCity(cityName);
@@ -14,49 +14,58 @@ export default function SelectCity({ region }) {
   }
 
   function inputBlur(event) {
-    if(!event.target.classList.contains(styles['search-events-input'])
-    && !event.target.classList.contains(styles['city-list'])) {
+    if (
+      !event.target.classList.contains(styles["search-events-input"]) &&
+      !event.target.classList.contains(styles["city-list"])
+    ) {
       setInputState(false);
-      document.removeEventListener('click', inputBlur);
+      document.removeEventListener("click", inputBlur);
     }
   }
 
   function filterCities(event) {
-    setCities(region.cities.filter((city) => {
-      return city.name.toLowerCase().includes(event.target.value.toLowerCase())
-    }))
+    setCities(
+      region.cities.filter((city) => {
+        return city.name
+          .toLowerCase()
+          .includes(event.target.value.toLowerCase());
+      }),
+    );
   }
 
   function cityListRender() {
-    document.addEventListener('click', inputBlur);
+    document.addEventListener("click", inputBlur);
 
     return (
-      <ul ref={ cityListRef } className={ styles['city-list'] }>
-        { cities.map((elem) => {
+      <ul ref={cityListRef} className={styles["city-list"]}>
+        {cities.map((elem) => {
           return (
             <li
-            className={ styles['list-item'] }
-            key={elem.name}
-            onClick={ () => selectCity(elem.name) }
+              className={styles["list-item"]}
+              key={elem.name}
+              onClick={() => selectCity(elem.name)}
             >
-              { elem.name }
-            </li>)
-        }) }
+              {elem.name}
+            </li>
+          );
+        })}
       </ul>
     );
   }
 
   return (
-    <div className={ styles['select-city'] }>
+    <div className={styles["select-city"]}>
       <input
-        ref={ input }
-        className={ styles['search-events-input'] }
+        ref={input}
+        className={styles["search-events-input"]}
         type="text"
-        placeholder={ selectedCity }
-        onKeyUp={ filterCities }
-        onFocus={ () => { setInputState(true) } }
+        placeholder={selectedCity}
+        onKeyUp={filterCities}
+        onFocus={() => {
+          setInputState(true);
+        }}
       />
-      { inputState && cityListRender() }
+      {inputState && cityListRender()}
     </div>
   );
 }

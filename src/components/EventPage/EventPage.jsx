@@ -1,36 +1,54 @@
-import React from 'react';
-import styles from './_EventPage.module.scss';
-import Map from '../Map/Map';
-import EventSection from './EventSection/EventSection';
-import EventCompletion from './EventCompletion/EventCompletion';
-import EventCreation from './EventCreation/EventCreation';
-import SectionWrapper from '../SectionWrapper/SectionWrapper';
+import React from "react";
+import { inject } from "mobx-react";
+import styles from "./_EventPage.module.scss";
+import Map from "../Map/Map";
+import EventSection from "./EventSection/EventSection";
+import EventCompletion from "./EventCompletion/EventCompletion";
+import EventCreation from "./EventCreation/EventCreation";
+import SectionWrapper from "../SectionWrapper/SectionWrapper";
 
-export default function EventPage({ section }) {
-
+const EventPage = inject("store")(({ store, section }) => {
   function checkSection() {
-    if (section === 'create') {
-      return <SectionWrapper title='Создание мероприятия'><EventCreation /></SectionWrapper>
-    } else if (section === 'completion') {
-      return <SectionWrapper title='Завершение' time='с 12.12.2020 - по 02.02.2021'>
-        <EventCompletion />
-      </SectionWrapper>
+    if (section === "create") {
+      return (
+        <SectionWrapper title="Создание мероприятия">
+          <EventCreation
+            storeEvent={store.Event}
+            locationStore={store.Location}
+          />
+        </SectionWrapper>
+      );
+    } else if (section === "completion") {
+      return (
+        <SectionWrapper
+          // storeEvent={storeEvent}
+          title="Завершение"
+          time="с 12.12.2020 - по 02.02.2021"
+        >
+          <EventCompletion />
+        </SectionWrapper>
+      );
     } else {
-      return <SectionWrapper title='Сбор мусора' time='с 12.12.2020 - по 02.02.2021'>
-        <EventSection />
-      </SectionWrapper>
+      return (
+        <SectionWrapper
+          // storeEvent={storeEvent}
+          title="Сбор мусора"
+          time="с 12.12.2020 - по 02.02.2021"
+        >
+          <EventSection />
+        </SectionWrapper>
+      );
     }
   }
 
-
   return (
-    <div className={ styles.container }>
-      <div className={ styles.left_section }>
+    <div className={styles.container}>
+      <div className={styles.left_section}>
         <Map />
       </div>
-      <div className={ styles.right_section }>
-        { checkSection() }
-      </div>
+      <div className={styles.right_section}>{checkSection()}</div>
     </div>
   );
-}
+});
+
+export default EventPage;
