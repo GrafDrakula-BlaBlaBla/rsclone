@@ -21,6 +21,7 @@
     "bootstrap": "^4.5.3",
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "config": "^3.3.3",
     "css-loader": "4.3.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^7.11.0",
@@ -81,7 +82,7 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "BROWSER='firefox' node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -105,6 +106,8 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.5.19",
+    "@types/mongoose": "^5.10.3",
+    "axios": "^0.21.1",
     "react-test-renderer": "^17.0.1"
   },
   "jest": {
