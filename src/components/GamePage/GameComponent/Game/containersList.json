@@ -1,0 +1,23 @@
+{
+  "paperContainer": {
+    "image": "paper-container.svg",
+    "position": 1,
+    "width": 80,
+    "height": 80,
+    "type": "paper"
+  },
+  "glassContainer": {
+    "image": "glass-container.svg",
+    "position": 2,
+    "width": 80,
+    "height": 80,
+    "type": "glass"
+  },
+  "differentContainer": {
+    "image": "different-container.svg",
+    "position": 3,
+    "width": 80,
+    "height": 80,
+    "type": "different"
+  }
+}
