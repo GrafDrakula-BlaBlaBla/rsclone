@@ -5,7 +5,7 @@ import Social from "./SocialIcons/Social";
 import Form from "./Form/Form";
 import Button from "../../../Button/Button";
 
-const RegModalMain = inject("storeRegistarion")(({ storeRegistarion }) => {
+const RegModalMain = inject("store")(({ store }) => {
   return (
     <div className="reg-modal__main">
       <div className="main-top">
@@ -16,9 +16,9 @@ const RegModalMain = inject("storeRegistarion")(({ storeRegistarion }) => {
         <Form />
         <Button
           onClick={() =>
-            storeRegistarion.auth(
-              storeRegistarion.email,
-              storeRegistarion.password,
+            store.Registration.auth(
+              store.Registration.email,
+              store.Registration.password,
             )
           }
           className="reg-modal__btn"
@@ -26,9 +26,9 @@ const RegModalMain = inject("storeRegistarion")(({ storeRegistarion }) => {
         />
         <Button
           onClick={() =>
-            storeRegistarion.signup(
-              storeRegistarion.email,
-              storeRegistarion.password,
+            store.Registration.signup(
+              store.Registration.email,
+              store.Registration.password,
             )
           }
           className="reg-modal__btn"

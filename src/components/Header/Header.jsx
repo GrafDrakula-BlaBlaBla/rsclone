@@ -7,6 +7,7 @@ function change() {
 }
 
 document.addEventListener('click', (e) => {
+  console.log(styles.header)
   if(!document.getElementById( styles.header ).contains(e.target)) {
     document.getElementById( styles.header ).classList.remove( styles.open );
   }

@@ -5,10 +5,10 @@ import Input from "../../Input/Input";
 
 import "./_Form.scss";
 
-const Form = inject("storeRegistarion")(({ storeRegistarion }) => {
+const Form = inject("store")(({ store }) => {
   return (
     <div className="reg-modal__folders">
-      <Input user={storeRegistarion} />
+      <Input user={store.Registration} />
     </div>
   );
 });
