@@ -7,9 +7,16 @@ function change() {
   document.getElementById(styles.header).classList.toggle(styles.open);
 }
 
+<<<<<<< HEAD
 document.addEventListener("click", (e) => {
   if (!document.getElementById(styles.header).contains(e.target)) {
     document.getElementById(styles.header).classList.remove(styles.open);
+=======
+document.addEventListener('click', (e) => {
+  console.log(styles.header)
+  if(!document.getElementById( styles.header ).contains(e.target)) {
+    document.getElementById( styles.header ).classList.remove( styles.open );
+>>>>>>> 3da7926 (fix: store)
   }
 });
 
