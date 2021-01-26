@@ -1,8 +1,10 @@
 import React, { useState, useRef, useCallback, useMemo } from "react";
 import "./_Map.scss";
 import { Marker, Popup } from "react-leaflet";
-import stateCalendar from "../../store/locationStore";
+import StateCalendar from "../../store/locationStore";
 import { observer } from "mobx-react-lite";
+
+const stateCalendar = new stateCalendar();
 
 const DraggableMarker = observer(() => {
   const markerRef = useRef(null);

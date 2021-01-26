@@ -28,14 +28,12 @@ router.post("/authentication", async (req, res) => {
       expiresIn: "1h",
     });
 
-    console.log(token);
-
     res.json({
       token,
       user: {
         id: user.id,
         email: user.email,
-        password: user.password
+        password: user.password,
       },
     });
   } catch (e) {

@@ -2,14 +2,14 @@ import React from "react";
 import "./_Map.scss";
 import { MapContainer, TileLayer } from "react-leaflet";
 import stateCalendar from "../../store/locationStore";
-import { observer } from "mobx-react-lite";
+import { observer, enject } from "mobx-react-lite";
 // import DraggableMarker from "./DraggableMarker.jsx";
 
-const Map = observer(() => {
+const Map = observer(({ store }) => {
   return (
     <div className="map-contener">
       <MapContainer
-        center={stateCalendar.coords}
+        center={[52.0976214, 23.7340503]}
         zoom={7}
         scrollWheelZoom={true}
       >

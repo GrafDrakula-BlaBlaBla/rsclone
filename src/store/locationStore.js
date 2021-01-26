@@ -1,35 +1,47 @@
 import { action, makeObservable, observable } from "mobx";
-import byCities from "../modules/data/by-cities.json";
 
 export default class Location {
   region = "Минская обл.";
-  city = "";
-  coords = { lat: 53.902284, lng: 27.561831 };
+  currentCity = "";
+  cityList = [];
+  coords = {};
 
   constructor() {
     makeObservable(this, {
       region: observable,
-      city: observable,
+      currentCity: observable,
+      cityList: observable,
       coords: observable,
-      changeSelectRegion: action,
+      selectCurrentArea: action,
+      getCityList: action,
+      getCoordsCurrentArea: action,
+      createEventLocation: action,
     });
   }
 
-  changeSelectRegion = () => {};
+  selectCurrentArea = (currentAreaName) => {
+    this.region = currentAreaName;
+  };
 
-  changeCoordsSelectedRegion = () => {
-    for (var i = 0; i < byCities.regions.length; i++) {
-      if (this.region === byCities.regions[i].name) {
-        this.coords.lat = byCities.regions[i].lat;
-        this.coords.lng = byCities.regions[i].lng;
+  getCityList = (areaName, array) => {
+    array.map((el) => {
+      if (areaName === el.name) {
+        this.currentCity = el.defaultCity.name;
+        this.cityList = el.cities;
       }
-    }
+    });
   };
 
-  selectRegion = (event) => {
-    this.region = event.target.value;
-    this.changeCoordsSelectedRegion();
+  getCoordsCurrentArea = (arrayRegions, currentAreaName) => {
+    arrayRegions.forEach((el) => {
+      if (el.name === currentAreaName) {
+        this.coords.lat = el.lat;
+        this.coords.lng = el.lng;
+      }
+    });
   };
+
+  createEventLocation = () => {};
 
   draggableMarker = (latLng) => {
     this.coords = latLng;

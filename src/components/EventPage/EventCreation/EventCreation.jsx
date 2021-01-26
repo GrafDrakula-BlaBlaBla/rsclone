@@ -5,7 +5,7 @@ import SelectCity from "./SelectCity/SelectCity";
 import SelectArea from "./SelectArea/SelectArea";
 import Coords from "./Coords/Coords";
 
-import { Observer } from "mobx-react-lite";
+import { Observer } from "mobx-react";
 
 const EventCreation = ({ storeEvent, locationStore }) => {
   const region = byCities.regions.find(
@@ -38,18 +38,31 @@ const EventCreation = ({ storeEvent, locationStore }) => {
         <Observer>
           {() => (
             <div className={styles["right-section"]}>
+              <label for="eventTime">В</label>
               <input
-                onChange={(event) => {
+                id="eventTime"
+                type="time"
+                name="time"
+                onBlur={(event) => {
+                  storeEvent.getEventTime(event.target.value);
+                }}
+                list
+                required
+              />
+              <input
+                type="date"
+                onBlur={(event) => {
                   storeEvent.getEventStartDate(event.target.value);
                 }}
-                type="date"
+                required
               />
               <p>-</p>
               <input
-                onChange={(event) => {
+                type="date"
+                onBlur={(event) => {
                   storeEvent.getEventEndDate(event.target.value);
                 }}
-                type="date"
+                required
               />
             </div>
           )}
@@ -58,17 +71,11 @@ const EventCreation = ({ storeEvent, locationStore }) => {
       {/* Event Location */}
       <div className={styles.main_place}>
         <p className={styles.title + " font_l"}>Где</p>
-        <Observer>
-          {() => (
-            <div className={styles.right_section}>
-              <SelectArea locationStore={locationStore} cites={byCities} />
-
-              <SelectCity region={region} />
-
-              <Coords locationStore={locationStore}></Coords>
-            </div>
-          )}
-        </Observer>
+        <div className={styles.right_section}>
+          <SelectArea locationStore={locationStore} areas={byCities} />
+          <SelectCity locationStore={locationStore} region={region} />
+          <Coords locationStore={locationStore}></Coords>
+        </div>
       </div>
 
       <p className={styles.place_description}>
