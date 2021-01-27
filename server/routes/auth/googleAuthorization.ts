@@ -8,9 +8,9 @@ const router = Router();
 
 router.post("/authentication-google", async (req, res) => {
   try {
-
-    console.log(req);
-    return res.json({ message: "Work!" });
+    const { event }  = req.body;
+    // console.log(req.boby);
+    return res.json({ message: event.location.lat.toString() });
 
   } catch (e) {
     return res.json({ message: "Don't work!" });

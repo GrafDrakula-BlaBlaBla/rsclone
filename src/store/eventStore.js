@@ -2,7 +2,7 @@ import { makeObservable, action, observable } from "mobx";
 import { observer } from "mobx-react-lite";
 import axios from 'axios';
 import * as Validator from 'validatorjs';
-import Location from "./locationStore";
+import  Store from './index';
 
 export default class Event {
   eventTitle = "";
@@ -12,6 +12,11 @@ export default class Event {
   endDate = "";
   goal = "";
   description = "";
+  warningEventTitle = "";
+  warningEventStartDate = "";
+  warningEventEndDate = "";
+  warningEventGoal = "";
+  warningEventDescription = "";
 
   constructor() {
 
@@ -22,6 +27,11 @@ export default class Event {
       startDate: observable,
       endDate: observable,
       goal: observable,
+      warningEventTitle: observable,
+      warningEventStartDate: observable,
+      warningEventEndDate: observable,
+      warningEventGoal: observable,
+      warningEventDescription: observable,
       description: observable,
       getEventTitle: action,
       getEventTime: action,
@@ -94,32 +104,51 @@ export default class Event {
       eventTitle: this.eventTitle,
       startDate: Date.parse(this.startDate + " "+ this.time),
       endDate: Date.parse(this.endDate + " "+ this.timeEnd),
-      location: "test",
+      location: Store.Location.coords,
       goal: this.goal,
       description: this.description,
-
     };
 
-    let rules = {
-      eventTitle: 'required|size:3',
-      startDate: 'min:18',
-      endDate:'min:18',
-      location:'string',
-      goal: 'required|size:10|string',
-      description: 'required|size:20|string'
+    const rules = {
+      eventTitle: 'required',
+      startDate: 'numeric',
+      endDate:'numeric',
+      goal: 'required|string',
+      description: 'required|string'
     };
 
-    axios.post('http://localhost:8000/authentication-google', {
-      event
-      })
-      .then(function (response) {
-          console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
+    let validation = new Validator(event, rules,   {
+      "required.eventTitle": "Оязательное поле",
+      "numeric.startDate" : "Выберите время и дату начала мероприятия",
+      "numeric.endDate" : "Выберите время и дату окончания мероприятия",
+      "required.goal" : "Обязательное поле",
+      "required.description" : "Обязательное поле",
+      "string.description" : "Опишите словами мероприятие",
       });
+
+    if(validation.fails()){
+      this.warningEventTitle = validation.errors.first('eventTitle');
+      this.warningEventStartDate = validation.errors.first('startDate');
+      this.warningEventEndDate = validation.errors.first('endDate');
+      this.warningEventGoal = validation.errors.first('goal');
+      this.warningEventDescription = validation.errors.first('description');
+      }else{
+        axios.post('http://localhost:8000/authentication-google', {
+          event
+        })
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+
+      }
+
+
+
   };
 }

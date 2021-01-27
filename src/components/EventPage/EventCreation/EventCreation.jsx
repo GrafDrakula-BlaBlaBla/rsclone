@@ -4,13 +4,17 @@ import byCities from "../../../modules/data/by-cities";
 import SelectCity from "./SelectCity/SelectCity";
 import SelectArea from "./SelectArea/SelectArea";
 import Coords from "./Coords/Coords";
+import Store from "../../../store/index";
+import * as Validator from 'validatorjs';
 
 import { Observer } from "mobx-react";
 
 const EventCreation = ({ storeEvent, locationStore }) => {
+
   const region = byCities.regions.find(
     (elem) => elem.name === locationStore.region,
   );
+
 
   return (
     <div className={styles.container}>
@@ -20,14 +24,19 @@ const EventCreation = ({ storeEvent, locationStore }) => {
           <p className={styles.title + " font_l"}>Название</p>
           <Observer>
             {() => (
-              <input
-                onBlur={(event) => storeEvent.getEventTitle(event.target.value)}
-                type="text"
-                placeholder="Введите название ивента"
-              />
-            )}
+                <input
+                  onBlur={(event) => storeEvent.getEventTitle(event.target.value)}
+                  type="text"
+                  placeholder="Введите название мероприятия"
+                />
+              )}
           </Observer>
         </div>
+        <Observer>
+        {() => (
+          <span className={styles['warning-event-name']}>{ storeEvent.warningEventTitle }</span>
+        )}
+        </Observer>
         <p className={styles.name_description}>
           Название будет отображаться в списке всех мероприятий
         </p>
@@ -58,6 +67,11 @@ const EventCreation = ({ storeEvent, locationStore }) => {
                   required
                 />
               </div>
+              <Observer>
+              {() => (
+                  <span className={styles['warning-event-time']}>{ storeEvent.warningEventStartDate }</span>
+              )}
+              </Observer>
               <div className='wrapper-time'>
               <label for="eventTime"> ПО </label>
               <input
@@ -78,6 +92,11 @@ const EventCreation = ({ storeEvent, locationStore }) => {
                   required
                 />
               </div>
+              <Observer>
+              {() => (
+                  <span className={styles['warning-event-time']}>{ storeEvent.warningEventEndDate }</span>
+              )}
+              </Observer>
             </div>
           )}
         </Observer>
@@ -97,7 +116,16 @@ const EventCreation = ({ storeEvent, locationStore }) => {
       </p>
       {/* Event goal */}
       <div className={styles.main_goals}>
-        <p className={styles.title + " font_l"}>Цели</p>
+      <div className={styles.title + " font_l"}>
+        <p >Цели</p>
+        <Observer>
+        {() => (
+          <div>
+            <span className={styles['warning-event']}>{ storeEvent.warningEventGoal }</span>
+          </div>
+        )}
+        </Observer>
+        </div>
         <div className={styles["textarea-wrapper"]}>
           <Observer>
             {() => (
@@ -112,13 +140,20 @@ const EventCreation = ({ storeEvent, locationStore }) => {
       </div>
       {/* Event description */}
       <div className={styles.main_task}>
-        <p className={styles["title"]}>Задача</p>
-        <div className={styles["textarea-wrapper"]}>
+        <div className={styles["title"]}>
+          <p >Описание</p>
+          <Observer>
+          {() => (
+            <span className={styles['warning-event']}>{ storeEvent.warningEventDescription }</span>
+          )}
+          </Observer>
+        </div>
+        <div className={ styles["textarea-wrapper"] }>
           <Observer>
             {() => (
               <textarea
                 onBlur={(event) =>
-                  storeEvent.getEventDescription(event.target.value)
+                    storeEvent.getEventDescription(event.target.value)
                 }
                 maxLength="200"
                 placeholder="Что будете делать"
@@ -127,10 +162,10 @@ const EventCreation = ({ storeEvent, locationStore }) => {
           </Observer>
         </div>
       </div>
-
       <div className={styles.bottom}>
         <button className="green_btn" onClick={ storeEvent.createEvent } >Создать</button>
       </div>
+
     </div>
   );
 };
