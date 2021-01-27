@@ -38,32 +38,46 @@ const EventCreation = ({ storeEvent, locationStore }) => {
         <Observer>
           {() => (
             <div className={styles["right-section"]}>
-              <label for="eventTime">В</label>
+              <div className='wrapper-time'>
+                <label for="eventTime">C </label>
+                <input
+                  id="eventTime"
+                  type="time"
+                  name="time"
+                  onBlur={(event) => {
+                    storeEvent.getEventTime(event.target.value);
+                  }}
+                  list
+                  required
+                />
+                <input
+                  type="date"
+                  onBlur={(event) => {
+                    storeEvent.getEventStartDate(event.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className='wrapper-time'>
+              <label for="eventTime"> ПО </label>
               <input
-                id="eventTime"
-                type="time"
-                name="time"
-                onBlur={(event) => {
-                  storeEvent.getEventTime(event.target.value);
-                }}
-                list
-                required
-              />
-              <input
-                type="date"
-                onBlur={(event) => {
-                  storeEvent.getEventStartDate(event.target.value);
-                }}
-                required
-              />
-              <p>-</p>
-              <input
-                type="date"
-                onBlur={(event) => {
-                  storeEvent.getEventEndDate(event.target.value);
-                }}
-                required
-              />
+                  id="timeEnd"
+                  type="time"
+                  name="timeEnd"
+                  onBlur={(event) => {
+                    storeEvent.getEventTimeEnd(event.target.value);
+                  }}
+                  list
+                  required
+                />
+                <input
+                  type="date"
+                  onBlur={(event) => {
+                    storeEvent.getEventEndDate(event.target.value);
+                  }}
+                  required
+                />
+              </div>
             </div>
           )}
         </Observer>
@@ -115,7 +129,7 @@ const EventCreation = ({ storeEvent, locationStore }) => {
       </div>
 
       <div className={styles.bottom}>
-        <button className="green_btn">Создать</button>
+        <button className="green_btn" onClick={ storeEvent.createEvent } >Создать</button>
       </div>
     </div>
   );

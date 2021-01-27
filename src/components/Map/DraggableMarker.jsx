@@ -1,10 +1,8 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import "./_Map.scss";
 import { Marker, Popup } from "react-leaflet";
-import StateCalendar from "../../store/locationStore";
 import { observer } from "mobx-react-lite";
-
-const stateCalendar = new stateCalendar();
+import Store from "../../store/index.js";
 
 const DraggableMarker = observer(() => {
   const markerRef = useRef(null);
@@ -14,17 +12,18 @@ const DraggableMarker = observer(() => {
       dragend() {
         const marker = markerRef.current;
         if (marker != null) {
-          stateCalendar.draggableMarker(marker.getLatLng());
+          Store.Location.draggableMarker(marker.getLatLng());
         }
       },
     }),
     [],
   );
+
   return (
     <Marker
       draggable="true"
       eventHandlers={eventHandlers}
-      position={[stateCalendar.coords.lat, stateCalendar.coords.lng]}
+      position={[Store.Location.coords.lat, Store.Location.coords.lng]}
       ref={markerRef}
     >
       <Popup minWidth={90}>
@@ -34,4 +33,4 @@ const DraggableMarker = observer(() => {
   );
 });
 
-// export default DraggableMarker;
+export default DraggableMarker;

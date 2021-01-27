@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export default function signIn() {
-  axios.get('/user', {
+
+  axios.get('/authentication-google', {
       params: {
         ID: 12345
       }

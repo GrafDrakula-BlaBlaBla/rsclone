@@ -15,7 +15,7 @@ function App() {
         <Header />
         <div className="main-section">
           <Switch>
-            <Route path="/" exact component={MainPage}></Route>
+            <Route path="/" exact component={ MainPage }></Route>
             <Route path="/createEvent">
               <EventPage section="create" />
             </Route>

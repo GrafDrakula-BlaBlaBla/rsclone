@@ -13,17 +13,3 @@ const Event = new Schema({
 });
 
 export default model("Event", Event);
-
-// eventTitle: observable,
-//       time: observable,
-//       startDate: observable,
-//       endDate: observable,
-//       goal: observable,
-//       description: observable,
-//       getEventTitle: action,
-//       getEventTime: action,
-//       getEventStartDate: action,
-//       getEventEndDate: action,
-//       getEventGoal: action,
-//       getEventDescription: action,
-//       createEventCalendar: action,

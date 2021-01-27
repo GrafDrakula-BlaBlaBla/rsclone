@@ -44,6 +44,7 @@ export default class Location {
   createEventLocation = () => {};
 
   draggableMarker = (latLng) => {
+    console.log(latLng);
     this.coords = latLng;
   };
 }
