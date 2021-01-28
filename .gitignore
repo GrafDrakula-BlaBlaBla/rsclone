@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/server/node_modules
 /.pnp
 .pnp.js
 
@@ -21,9 +22,12 @@
 .env.production.local
 
 npm-debug.log*
+/server/yarn-debug.log*
+/server/yarn-error.log*
 yarn-debug.log*
 yarn-error.log*
 
 #key Google
 .env
 .apiGoogleconfig.json
+/server/routes/event/key

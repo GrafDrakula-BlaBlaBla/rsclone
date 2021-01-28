@@ -1,13 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from "./components/App";
-import './index.scss';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "mobx-react";
 
+import stores from "./store";
+
+import App from "./components/App";
+import "./index.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={stores}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root"),
 );
-
