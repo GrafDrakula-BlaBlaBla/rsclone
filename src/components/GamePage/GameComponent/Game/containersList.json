@@ -1,23 +1,17 @@
 {
   "paperContainer": {
-    "image": "paper-container.svg",
+    "image": "paper-container.png",
     "position": 1,
-    "width": 80,
-    "height": 80,
     "type": "paper"
   },
   "glassContainer": {
-    "image": "glass-container.svg",
+    "image": "glass-container.png",
     "position": 2,
-    "width": 80,
-    "height": 80,
     "type": "glass"
   },
-  "differentContainer": {
-    "image": "different-container.svg",
+  "plasticContainer": {
+    "image": "plastic-container.png",
     "position": 3,
-    "width": 80,
-    "height": 80,
-    "type": "different"
+    "type": "plastic"
   }
 }

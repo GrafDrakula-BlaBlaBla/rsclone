@@ -2,7 +2,7 @@
   "battery": {
     "image": "battery.svg",
     "dragging": true,
-    "type": "different"
+    "type": "plastic"
   },
   "lightBulb": {
     "image": "light-bulb.svg",

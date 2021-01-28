@@ -1129,6 +1129,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@h6mzy/react-google-calendar@^1.0.0":
+  "integrity" "sha512-nbxn8yd8VpBhApsjC4uhIhHNH0RH/JhIzQoEG+C8h2XMOvQZddDRXdqXiNr8Z+yI7yqIQqkd9fJKz+bl+j26Zg=="
+  "resolved" "https://registry.npmjs.org/@h6mzy/react-google-calendar/-/react-google-calendar-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "@types/node" "^9.6.39"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@hapi/address/-/address-2.1.4.tgz"
@@ -2040,6 +2047,11 @@
   version "14.14.16"
   resolved "https://registry.npmjs.org/@types/node/-/node-14.14.16.tgz"
   integrity sha512-naXYePhweTi+BMv11TgioE2/FXU4fSl29HAH1ffxVciNsH3rYXjNP2yM8wqmSm7jS20gM8TIklKiTen+1iVncw==
+
+"@types/node@^9.6.39":
+  "integrity" "sha512-/aKAdg5c8n468cYLy2eQrcR5k6chlbNwZNGUj3TboyPa2hcO2QAJcfymlqPzMiRj8B6nYKXjzQz36minFE0RwQ=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-9.6.61.tgz"
+  "version" "9.6.61"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"

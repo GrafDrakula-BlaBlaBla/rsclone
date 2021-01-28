@@ -50,26 +50,21 @@ class Game {
 
     for (const key in containersList) {
       const item = new PIXI.Sprite.from(containersList[key].image);
-      item.anchor.set(0.5);
-      item.width = containersList[key].width;
-      item.height = containersList[key].height;
+      item.anchor.set(0.5, 1);
       item.x = (Math.trunc(this.app.view.offsetWidth / 3) * containersList[key].position)
       / 2 + (Math.trunc(this.app.view.offsetWidth / 3) / 2);
       item.y = this.app.view.offsetHeight - item.height;
       item.type = containersList[key].type;
-      
+      item.scale.set(0.35);
       this.containers[key] = item;
       this.app.stage.addChild(this.containers[key]);
     }
 
-    let itemsCount = 0;
     for (let i = 0; i <= 3; i++) {
       for (const key in itemsList) {
         const item = new PIXI.Sprite.from(itemsList[key].image);
-        item.anchor.set(0.5);
         item.width = 30;
         item.height = 30;
-
         item.x = Math.floor(Math.random() * (this.app.view.offsetWidth - 180)) + 80;
         item.y = Math.floor(Math.random() * (this.app.view.offsetHeight - 580)) + 380;
         item.type = itemsList[key].type;
