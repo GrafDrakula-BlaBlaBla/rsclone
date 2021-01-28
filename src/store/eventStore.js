@@ -122,6 +122,18 @@ export default class Event {
       startDate: 'valueTime'
     };
 
+    const changeValue =  ( ) => {
+       this.linkToPage = true;
+    }
+    const changeValueFalse = ( ) => {
+      this.warningEventTitle =  "";
+      this.warningEventStartDate =  "";
+      this.warningEventEndDate = "";
+      this.warningEventGoal = "";
+      this.warningEventDescription = "";
+      this.linkToPage = false;
+    }
+
     const checkTime = () => {
           return event.startDate < event.endDate;
               }
@@ -138,30 +150,32 @@ export default class Event {
       "valueTime.startDate": 'Время начала мероприятия должно быть меньше окончания',
       });
 
+console.log("fils " + validation.fails());
+console.log("passes " + validation.passes());
     if(validation.fails()){
       this.warningEventTitle = validation.errors.first('eventTitle');
       this.warningEventStartDate = validation.errors.first('startDate');
       this.warningEventEndDate = validation.errors.first('endDate');
       this.warningEventGoal = validation.errors.first('goal');
       this.warningEventDescription = validation.errors.first('description');
-        }else{
+        }
+
+        if (validation.passes()) {
         axios.post('http://localhost:8000/create', {
           event
         })
         .then(function (response) {
-
-          console.log(response.data);
+          if(response.status == 200){
+            changeValue();
+            changeValueFalse();
+          }
         })
         .catch(function (error) {
           console.log(error);
         })
         .then(function () {
-          // always executed
+
         });
-
       }
-
-
-
   };
 }

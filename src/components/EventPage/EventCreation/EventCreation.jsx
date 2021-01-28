@@ -6,7 +6,7 @@ import SelectArea from "./SelectArea/SelectArea";
 import Coords from "./Coords/Coords";
 import Store from "../../../store/index";
 import * as Validator from 'validatorjs';
-import { Link } from "react-router-dom";
+import { Redirect } from 'react-router'
 
 import { Observer } from "mobx-react";
 
@@ -166,13 +166,15 @@ const EventCreation = ({ storeEvent, locationStore }) => {
         </div>
       </div>
       <div className={styles.bottom}>
-      <Observer>
-        { () => (
-        storeEvent.linkToPage
-        ? <button className="green_btn" onClick={ storeEvent.createEvent } ><Link to="/" className={ styles['notDisabled'] }>Создать</Link></button>
-        : <button className={ styles['disabledCursor'] + " green_btn"} onClick={ storeEvent.createEvent } ><Link to="/"  onClick={ (e) => e.preventDefault() }>Создать</Link></button>
-        )}
+        <button className={ styles['disabledCursor'] + " green_btn"} onClick={ storeEvent.createEvent } >
+        <Observer>
+          { () => (
+            storeEvent.linkToPage ? <Redirect to = {{ pathname: "/" }} />  : ""
+          )}
+      
         </Observer>
+        Создать
+        </button>
       </div>
     </div>
   );

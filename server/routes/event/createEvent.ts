@@ -88,7 +88,7 @@ routerEvent.post("/create", async (req, res) => {
     });
 
     await event.save();
-    return await res.json({ message: `Мероприятие ${eventTitle} создано` });
+    return await res.json();
 
   } catch (e) {
     res.send({ message: `SERVWR ERROR ${e}` });
