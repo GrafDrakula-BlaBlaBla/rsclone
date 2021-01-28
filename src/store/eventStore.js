@@ -131,6 +131,13 @@ export default class Event {
       this.warningEventEndDate = "";
       this.warningEventGoal = "";
       this.warningEventDescription = "";
+      this.eventTitle = "";
+      this.startDate =  "";
+      this.time = "";
+      this.endDate = "";
+      this.timeEnd = "";
+      this.goal = "";
+      this.description = ""
       this.linkToPage = false;
     }
 
@@ -139,6 +146,7 @@ export default class Event {
               }
 
     Validator.register('valueTime', checkTime, 'Укажите правильную последовательность начала и окончания мероприятия');
+
 
     let validation = new Validator(event, rules, {
       "required.eventTitle": "Оязательное поле",
@@ -150,8 +158,8 @@ export default class Event {
       "valueTime.startDate": 'Время начала мероприятия должно быть меньше окончания',
       });
 
-console.log("fils " + validation.fails());
-console.log("passes " + validation.passes());
+
+
     if(validation.fails()){
       this.warningEventTitle = validation.errors.first('eventTitle');
       this.warningEventStartDate = validation.errors.first('startDate');
@@ -171,10 +179,9 @@ console.log("passes " + validation.passes());
           }
         })
         .catch(function (error) {
-          console.log(error);
+
         })
         .then(function () {
-
         });
       }
   };

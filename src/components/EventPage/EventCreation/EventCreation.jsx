@@ -171,7 +171,6 @@ const EventCreation = ({ storeEvent, locationStore }) => {
           { () => (
             storeEvent.linkToPage ? <Redirect to = {{ pathname: "/" }} />  : ""
           )}
-      
         </Observer>
         Создать
         </button>
