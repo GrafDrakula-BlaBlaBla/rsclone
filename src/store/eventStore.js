@@ -18,6 +18,7 @@ export default class Event {
   warningEventGoal = "";
   warningEventDescription = "";
   warningTime = "";
+  linkToPage = "";
 
   constructor() {
 
@@ -35,6 +36,7 @@ export default class Event {
       warningEventGoal: observable,
       warningEventDescription: observable,
       description: observable,
+      linkToPage: observable,
       getEventTitle: action,
       getEventTime: action,
       getEventStartDate: action,
@@ -126,7 +128,6 @@ export default class Event {
 
     Validator.register('valueTime', checkTime, 'Укажите правильную последовательность начала и окончания мероприятия');
 
-      // console.log(this.startDate < this.endDate);
     let validation = new Validator(event, rules, {
       "required.eventTitle": "Оязательное поле",
       "numeric.startDate" : "Выберите время и дату начала мероприятия",
@@ -144,10 +145,11 @@ export default class Event {
       this.warningEventGoal = validation.errors.first('goal');
       this.warningEventDescription = validation.errors.first('description');
         }else{
-        axios.post('http://localhost:8000/authentication-google', {
+        axios.post('http://localhost:8000/create', {
           event
         })
         .then(function (response) {
+
           console.log(response.data);
         })
         .catch(function (error) {
