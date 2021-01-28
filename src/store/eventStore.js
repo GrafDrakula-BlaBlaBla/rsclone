@@ -17,6 +17,7 @@ export default class Event {
   warningEventEndDate = "";
   warningEventGoal = "";
   warningEventDescription = "";
+  warningTime = "";
 
   constructor() {
 
@@ -27,6 +28,7 @@ export default class Event {
       startDate: observable,
       endDate: observable,
       goal: observable,
+      warningTime: observable,
       warningEventTitle: observable,
       warningEventStartDate: observable,
       warningEventEndDate: observable,
@@ -114,16 +116,25 @@ export default class Event {
       startDate: 'numeric',
       endDate:'numeric',
       goal: 'required|string',
-      description: 'required|string'
+      description: 'required|string',
+      startDate: 'valueTime'
     };
 
-    let validation = new Validator(event, rules,   {
+    const checkTime = () => {
+          return event.startDate < event.endDate;
+              }
+
+    Validator.register('valueTime', checkTime, 'Укажите правильную последовательность начала и окончания мероприятия');
+
+      // console.log(this.startDate < this.endDate);
+    let validation = new Validator(event, rules, {
       "required.eventTitle": "Оязательное поле",
       "numeric.startDate" : "Выберите время и дату начала мероприятия",
       "numeric.endDate" : "Выберите время и дату окончания мероприятия",
       "required.goal" : "Обязательное поле",
       "required.description" : "Обязательное поле",
       "string.description" : "Опишите словами мероприятие",
+      "valueTime.startDate": 'Время начала мероприятия должно быть меньше окончания',
       });
 
     if(validation.fails()){
@@ -132,7 +143,7 @@ export default class Event {
       this.warningEventEndDate = validation.errors.first('endDate');
       this.warningEventGoal = validation.errors.first('goal');
       this.warningEventDescription = validation.errors.first('description');
-      }else{
+        }else{
         axios.post('http://localhost:8000/authentication-google', {
           event
         })

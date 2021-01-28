@@ -94,7 +94,9 @@ const EventCreation = ({ storeEvent, locationStore }) => {
               </div>
               <Observer>
               {() => (
+    
                   <span className={styles['warning-event-time']}>{ storeEvent.warningEventEndDate }</span>
+
               )}
               </Observer>
             </div>

@@ -57,14 +57,20 @@ routerEvent.post("/create", async (req, res) => {
   }
   try {
 
-    const {
+    let {
       eventTitle,
       startDate,
       endDate,
       location,
       goal,
       description,
-    } = await req.body;
+    } = await req.body.event;
+
+    startDate = new Date(startDate);
+    startDate = startDate.toJSON();
+
+    endDate = new Date(endDate);
+    endDate = endDate.toJSON();
 
     const key = await readPrivateKey();
     const auth = await authenticate(key);

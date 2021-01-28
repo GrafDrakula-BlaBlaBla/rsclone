@@ -8,9 +8,15 @@ const router = Router();
 
 router.post("/authentication-google", async (req, res) => {
   try {
-    const { event }  = req.body;
-    // console.log(req.boby);
-    return res.json({ message: event.location.lat.toString() });
+    const {
+      eventTitle,
+      startDate,
+      endDate,
+      location,
+      goal,
+      description, }  = req.body.event;
+
+    return res.json({ message: eventTitle.toString() });
 
   } catch (e) {
     return res.json({ message: "Don't work!" });
