@@ -35,8 +35,9 @@ export default class Location {
   getCoordsCurrentArea = (arrayRegions, currentAreaName) => {
     arrayRegions.forEach((el) => {
       if (el.name === currentAreaName) {
-        this.coords.lat = el.lat;
-        this.coords.lng = el.lng;
+        console.log(this.coords.lat);
+        this.coords.lat = el.lat + Math.random()/100;
+        this.coords.lng = el.lng + Math.random()/100;
       }
     });
   };
@@ -44,7 +45,6 @@ export default class Location {
   createEventLocation = () => {};
 
   draggableMarker = (latLng) => {
-    console.log(latLng);
     this.coords = latLng;
   };
 }
