@@ -4,8 +4,6 @@ import L  from 'leaflet';
 import { Marker, Tooltip  } from 'react-leaflet';
 import React from "react";
 
-
-
  class stateMap {
 
  markers = null
@@ -39,7 +37,7 @@ import React from "react";
          } else if( dateOneStart > now && dateOneEnd > now ) {
            classNameMarker = "color-green"
          }
-    
+
 
          const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
          'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
