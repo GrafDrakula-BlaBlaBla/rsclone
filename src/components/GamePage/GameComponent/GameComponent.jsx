@@ -14,7 +14,7 @@ const GameComponent = () => {
   function play() {
     setGameStatus('stated');
     setIsWelcomeModal(true);
-    const game = new Game(gameWrapper.current);
+    const game = new Game(gameWrapper.current, setIsGameRules);
     game.init();
   }
 

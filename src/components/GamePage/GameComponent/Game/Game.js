@@ -5,7 +5,7 @@ import Menu from './scenes/Menu';
 import LevelOne from './scenes/LevelOne';
 
 class Game {
-  constructor(gameWrapper) {
+  constructor(gameWrapper, setIsGameRules) {
     window.game = this;
     this.app = new PIXI.Application({
       width: gameWrapper.clientWidth,
@@ -22,6 +22,7 @@ class Game {
     };
     this.currentScene = new this.scenes.menu();
 
+    this.setIsGameRules = setIsGameRules;
     gameWrapper.appendChild( this.app.view );
     this.resizeView();
     window.addEventListener('resize', this.resizeView.bind(this));
@@ -41,7 +42,6 @@ class Game {
     this.app.stage.removeChildren();
     this.currentScene = new this.scenes[sceneName]();
     this.currentScene.start();
-    console.log(this.currentScenes)
   }
 }
 
