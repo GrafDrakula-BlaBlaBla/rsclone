@@ -4,7 +4,6 @@ import { observer } from "mobx-react-lite";
 import stateCalendar from '../../state/StateCalendarOneDay.jsx'
 import stateCalendarMonth from '../../state/StateCalendarMonth.jsx'
 import './_Calendar.scss';
-import styles from '../SectionWrapper/_SectionWrapper.module.scss';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 
  // создание календаря на месяц arrayDataAllEvents

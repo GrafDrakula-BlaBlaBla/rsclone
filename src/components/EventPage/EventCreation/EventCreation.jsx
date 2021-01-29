@@ -4,12 +4,8 @@ import byCities from "../../../modules/data/by-cities";
 import SelectCity from "./SelectCity/SelectCity";
 import SelectArea from "./SelectArea/SelectArea";
 import Coords from "./Coords/Coords";
-import Store from "../../../store/index";
-import * as Validator from 'validatorjs';
 import { Redirect } from 'react-router'
-
 import { Observer } from "mobx-react";
-
 const EventCreation = ({ storeEvent, locationStore }) => {
 
   const region = byCities.regions.find(
@@ -169,7 +165,7 @@ const EventCreation = ({ storeEvent, locationStore }) => {
         <button className={ styles['disabledCursor'] + " green_btn"} onClick={ storeEvent.createEvent } >
         <Observer>
           { () => (
-            storeEvent.linkToPage ? <Redirect to = {{ pathname: "/" }} />  : ""
+            storeEvent.linkToPage ? <Redirect to = {{ pathname: "/initiatives" }} />  : ""
           )}
         </Observer>
         Создать

@@ -26,6 +26,7 @@ function App() {
             {/* <Route path="/profile" component={ Profile } />
             <Route path="/initiatives" component={ Initiatives } /> */}
           </Switch>
+          <Route path="/initiatives" component={ Initiatives } />
         </div>
         <Footer />
       </div>

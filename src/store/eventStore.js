@@ -1,5 +1,4 @@
 import { makeObservable, action, observable } from "mobx";
-import { observer } from "mobx-react-lite";
 import axios from 'axios';
 import * as Validator from 'validatorjs';
 import  Store from './index';
@@ -173,7 +172,7 @@ export default class Event {
           event
         })
         .then(function (response) {
-          if(response.status == 200){
+          if(response.status === 200){
             changeValue();
             changeValueFalse();
           }

@@ -4,7 +4,7 @@ import * as config from "config";
 
 const router = Router();
 
-router.post("/authentication-google", async (req, res) => {
+router.post("/create-map-main", async (req, res) => {
   try {
     const allEvent = await Event.find();
     return res.json(allEvent);
