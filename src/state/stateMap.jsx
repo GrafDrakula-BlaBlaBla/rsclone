@@ -4,7 +4,6 @@ import L  from 'leaflet';
 import { Marker, Tooltip  } from 'react-leaflet';
 import React from "react";
 
-
  class stateMap {
 
  markers = null
@@ -14,7 +13,6 @@ import React from "react";
    }
 
    createMarkerTooltip(){
-
      dataMarker.then( ( data ) => {
 
        const now = new Date();
@@ -39,7 +37,7 @@ import React from "react";
          } else if( dateOneStart > now && dateOneEnd > now ) {
            classNameMarker = "color-green"
          }
-         // console.log(oneEvent.summary);
+
 
          const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
          'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
@@ -55,21 +53,20 @@ import React from "react";
          let stateYearEnd = dateOneEnd.getFullYear();
          let stateHoursEnd = dateOneEnd.getHours();
          let stateMinutesEnd = dateOneEnd.getMinutes();
-
-         let cord = [oneEvent.Location[0]['Let'], oneEvent.Location[0]['Lon']];
+         let cord = [oneEvent.location.lat, oneEvent.location.lng];
          let markerCustom = L.divIcon({
            className: classNameMarker,
            shadowSize: [12, 12],
-           iconSize: [20, 20 ] });
+           iconSize: [18, 18 ] });
            return (
              <Marker position = { cord }  icon={ markerCustom } key={oneEvent.id}>
                <Tooltip >
                   <div className="popUpEvent">
                    <h3>{ oneEvent.summary }</h3>
-                   <p> c { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart }:{addZero( stateMinutesStart )}</p>
-                   <p> до { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
+                   <p> c { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } { stateHoursStart }:{addZero( stateMinutesStart )}</p>
+                   <p> до { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd }  { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
+                   <p> { oneEvent.description } </p>
                   </div>
-
                </Tooltip>
 
              </Marker>
@@ -77,8 +74,6 @@ import React from "react";
          })
          this.markers = createMarker;
       })
-
-
    }
 
  }

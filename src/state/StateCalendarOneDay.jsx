@@ -57,7 +57,7 @@ import user from './../components/Calendar/user.svg';
           } else {
             this.listEventsOneDay = data[this.year][this.mounth][this.day].map( ( item ) => {
               return (
-                <li key={"event-" + Math.ceil(Math.random()*10000000000)} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p> <a href="#">{ this.linkAdd }</a></li>);
+                <li key={"event-" + Math.ceil(Math.random()*10000000000)} ><div className="user-block-one-day"><img src={ user } alt="user-avatar"/><p>Имя</p></div><p>{item.sammary}</p><a href="/">{ this.linkAdd }</a></li>);
               })
 
               let wordForm = function( num, word ){

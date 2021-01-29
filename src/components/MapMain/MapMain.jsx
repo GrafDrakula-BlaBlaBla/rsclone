@@ -19,7 +19,7 @@ stateMap.createMarkerTooltip();
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=ab46a637-81e8-4df5-9f58-48897cbf8160"
         />
-        { stateMap.markers }
+       { stateMap.markers }
         <Legend />
         <ZoomControl position="topright" />
       </MapContainer>
