@@ -1,25 +1,34 @@
 import React, { useRef, useState } from 'react';
 import styles from './_GameComponent.module.scss'
 import GameRulesModal from './GameRulesModal/GameRulesModal';
+import WelcomeGameModal from './WelcomeGameModal/WelcomeGameModal';
 import Game from './Game/Game';
+import playBtnIcon from '../../../modules/assets/game/play-button.svg';
 
 const GameComponent = () => {
   const gameWrapper = useRef(null);
-  const [gameRulesOpen, setGameRulesOpen] = useState(false);
+  const [gameStatus, setGameStatus] = useState('off');
+  const [isWelcomeModal, setIsWelcomeModal] = useState(false);
+  const [isGameRules, setIsGameRules] = useState(false);
 
-  function initGame() {
-    setGameRulesOpen(true);
+  function play() {
+    setGameStatus('stated');
+    setIsWelcomeModal(true);
     const game = new Game(gameWrapper.current);
     game.init();
   }
 
   return (
     <div ref={ gameWrapper } className={ styles.game_wrapper}>
-      { gameRulesOpen && <GameRulesModal setGameRulesOpen={ setGameRulesOpen }/>}
-      <button className={ styles.start_btn } onClick={ (event) => {
-        event.target.style.display = 'none';
-        initGame();
-      }}>Начать игру</button>
+      { gameStatus === 'off'
+      &&
+      <button className={ styles.start_btn } onClick={ play }>
+        <img src={ playBtnIcon } alt="play"/>
+      </button> }
+
+      { isWelcomeModal && <WelcomeGameModal setIsWelcomeModal={ setIsWelcomeModal }/>}
+
+      { isGameRules && <GameRulesModal setIsGameRules={ setIsGameRules }/>}
     </div>
   );
 }

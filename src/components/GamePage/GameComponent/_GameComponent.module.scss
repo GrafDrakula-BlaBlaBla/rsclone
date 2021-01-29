@@ -26,12 +26,19 @@
 }
 
 .start_btn {
-  width: 140px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   position: absolute;
   border: 0;
-  border-radius: 5px;
-  background-color: #5c9f61;
-  color: white;
-  font-size: 1.1em;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  &:hover {
+    opacity: 0.8;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin-left: 6px;
+  }
 }

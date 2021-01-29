@@ -4,7 +4,7 @@ import paperContainer from '../../../../modules/assets/game/paper-container.png'
 import glassContainer from '../../../../modules/assets/game/glass-container.png';
 import plasticContainer from '../../../../modules/assets/game/plastic-container.png';
 
-export default function GameRulesModal({ setGameRulesOpen }) {
+export default function GameRulesModal({ setIsGameRules }) {
   return (
     <div className={ styles.wrapper }>
       <div className={ styles.container }>
@@ -26,7 +26,7 @@ export default function GameRulesModal({ setGameRulesOpen }) {
             <p className={ styles.item_info }>Синий контейнер для пластика</p>
           </li>
         </ul>
-        <button className={ styles.confirm_btn } onClick={ () => setGameRulesOpen(false)}>Принять</button>
+        <button className={ styles.confirm_btn } onClick={ () => setIsGameRules(false)}>Принять</button>
       </div>
     </div>
   );

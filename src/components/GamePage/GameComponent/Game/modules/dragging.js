@@ -1,14 +1,14 @@
 function CheckItem(item) {
   const game = global.game;
-  
-  for (const key in game.containers) {
-    const container = game.containers[key];
+  const containers = game.currentScene.containers;
+  for (const key in containers) {
+    const container = containers[key];
     if (item.x >= container.x - (container.width / 2)
       && item.x <= container.x + (container.width / 2)
       && item.y >= container.y - (container.height / 2)
       && item.y <= container.y + (container.height / 2)) {
       if (container.type === item.type) {
-        game.itemPlaced.call(game, item);
+        game.currentScene.itemPlaced.call(game.currentScene, item);
 
         container.y -= 10;
         
