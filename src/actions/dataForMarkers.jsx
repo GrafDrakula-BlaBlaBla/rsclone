@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const  dataMarker = resultFetch.then( ( arrayData )=>{
 // перебор данных (списка) пришедших из базы
-const result = axios.post('http://localhost:8000/authentication-google', {
+const result = axios.post('http://localhost:8000/create-map-main', {
     })
     .then(function (response) {
-      if(response.status == 200){
+      if(response.status === 200){
         return Array.from(response.data);
       }
     })

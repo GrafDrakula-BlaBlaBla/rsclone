@@ -63,8 +63,9 @@ import React from "react";
                <Tooltip >
                   <div className="popUpEvent">
                    <h3>{ oneEvent.summary }</h3>
-                   <p> c { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } в { stateHoursStart }:{addZero( stateMinutesStart )}</p>
-                   <p> до { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd } в { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
+                   <p> c { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } { stateHoursStart }:{addZero( stateMinutesStart )}</p>
+                   <p> до { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd }  { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
+                   <p> { oneEvent.description } </p>
                   </div>
                </Tooltip>
 

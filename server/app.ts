@@ -8,7 +8,7 @@ import signup from "./routes/auth/routeSignup";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import corsMiddleware from "./middleware/cors.middleware";
-import googleAuthorization from "./routes/auth/googleAuthorization";
+import createMapMain from "./routes/event/createMapMain";
 
 const PORT = config.get("serverPort");
 
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(`/`, signup); // папка с файлами роутинга
 app.use(`/`, auth); // папка с файлами роутинга
 app.use(`/`, createEvent); // папка с файлами роутинга
-app.use(`/`, googleAuthorization); // папка с файлами роутинга
+app.use(`/`, createMapMain); // папка с файлами роутинга
 
 const start = async () => {
   try {

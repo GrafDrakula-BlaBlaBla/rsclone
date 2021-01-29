@@ -35,7 +35,7 @@ stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth
         </div>
 
       </div>
-      <Link className="button-create-new-evernt green_btn" to={`/create`} activeClassName="active">Создать</Link>
+      <Link className="button-create-new-evernt green_btn" to={`/createEvent`} activeClassName="active">Создать</Link>
     </div>
   )
 })
