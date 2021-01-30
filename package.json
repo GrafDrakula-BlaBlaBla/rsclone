@@ -91,7 +91,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "dev": "concurrently \"./server yarn dev\" \"yarn start\""
+    "server": "npm run dev --prefix server",
+    "dev": "concurrently \"yarn start\" \"yarn server\""
   },
   "eslintConfig": {
     "extends": [
