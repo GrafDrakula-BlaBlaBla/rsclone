@@ -24,7 +24,7 @@ export default class Location {
   };
 
   getCityList = (areaName, array) => {
-    array.forEach((el) => {
+    array.map((el) => {
       if (areaName === el.name) {
         this.currentCity = el.defaultCity.name;
         this.cityList = el.cities;

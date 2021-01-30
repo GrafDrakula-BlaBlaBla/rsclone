@@ -11,17 +11,26 @@ export default class Menu extends PIXI.Container {
   }
 
   start = () => {
-    const button = new Button({
+    const playBtn = new Button({
       label: "Играть",
       width: 200,
       height: 50,
       x: this.app.view.offsetWidth / 2,
-      y: this.app.view.offsetHeight / 2,
+      y: this.app.view.offsetHeight / 2 - 30,
       fontSize: 20,
       onTap: () => this.game.sceneSwitcher('levelOne')
     });
+    const rulesBtn = new Button({
+      label: "Привила",
+      width: 200,
+      height: 50,
+      x: this.app.view.offsetWidth / 2,
+      y: this.app.view.offsetHeight / 2 + 30,
+      fontSize: 20,
+      onTap: () => this.game.setIsGameRules(true)
+    });
 
-    this.addChild(button);
+    this.addChild(playBtn, rulesBtn);
     this.app.stage.addChild(this);
   }
 }

@@ -6,7 +6,7 @@ function loader() {
   const game = global.game;
 
   game.app.loader
-    .add('trashSprites', `${process.env.PUBLIC_URL}/game/trash/spritesheet.json`)
+    .add('trashSprites', `${process.env.PUBLIC_URL}/game/trash/trash.json`)
     .add('containersSprites', `${process.env.PUBLIC_URL}/game/containers/containers.json`)
     .add('button', buttonImg)
     .add('levelBackground', backgroundImg)
