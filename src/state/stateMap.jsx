@@ -13,7 +13,8 @@ import React from "react";
    }
 
    createMarkerTooltip(){
-     dataMarker.then( ( data ) => {
+
+     dataMarker().then( ( data ) => {
 
        const now = new Date();
    // добавление нуля
@@ -58,10 +59,11 @@ import React from "react";
            className: classNameMarker,
            shadowSize: [12, 12],
            iconSize: [18, 18 ] });
+
            return (
              <Marker position = { cord }  icon={ markerCustom } key={oneEvent.id}>
-               <Tooltip >
-                  <div className="popUpEvent">
+               <Tooltip key={"tooltip-" +oneEvent.id}>
+                  <div className="popUpEvent-" key={"tooltip-div-" + oneEvent.id}>
                    <h3>{ oneEvent.summary }</h3>
                    <p> c { stateDayStart } { nameMonth[stateMouthStart]} { stateYearStart } { stateHoursStart }:{addZero( stateMinutesStart )}</p>
                    <p> до { stateDayEnd } { nameMonth[stateMouthEnd]} { stateYearEnd }  { stateHoursEnd }:{addZero(stateMinutesEnd)} </p>
@@ -75,7 +77,6 @@ import React from "react";
          this.markers = createMarker;
       })
    }
-
  }
 
 export default new stateMap()

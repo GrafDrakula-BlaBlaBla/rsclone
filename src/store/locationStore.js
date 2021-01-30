@@ -5,7 +5,7 @@ export default class Location {
   currentCity = "";
   cityList = [];
   coords = {};
-
+ 
   constructor() {
     makeObservable(this, {
       region: observable,

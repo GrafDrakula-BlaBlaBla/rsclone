@@ -1,6 +1,8 @@
-import resultFetch from  './RequestCalendar.jsx';
+import resultFetch from  './requestInCalendarGoogle.jsx';
 
-const arrayDataAllEvents = resultFetch.then((data) => {
+export default function CreateCalendar () {
+
+const arrayDataAllEvents = resultFetch().then((data) => {
 
   const arrayWithData = []
 
@@ -79,4 +81,5 @@ const arrayDataAllEvents = resultFetch.then((data) => {
 
 })
 
-export default arrayDataAllEvents;
+return arrayDataAllEvents;
+}
