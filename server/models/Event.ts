@@ -1,7 +1,7 @@
 import { Schema, model, ObjectId } from "mongoose";
 
 const Event = new Schema({
-  idEventCalendarGoogle: { type: String },
+  idEventCalendarGoogle: { type: String, required: true },
   eventTitle: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },

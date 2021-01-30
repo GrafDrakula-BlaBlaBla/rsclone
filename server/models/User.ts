@@ -1,7 +1,7 @@
 import { Schema, model, ObjectId } from "mongoose";
 
 const User = new Schema({
-  calendarId: { type: String, required: true },
+  name: { type: String, equired: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   range: { type: Number },
