@@ -13,6 +13,7 @@ const DraggableMarker = observer(() => {
         const marker = markerRef.current;
         if (marker != null) {
           Store.Location.draggableMarker(marker.getLatLng());
+          console.log(marker.getLatLng());
         }
       },
     }),
@@ -24,7 +25,7 @@ const DraggableMarker = observer(() => {
       draggable="true"
       eventHandlers={eventHandlers}
       position={[Store.Location.coords.lat, Store.Location.coords.lng]}
-      ref={markerRef}
+      ref={ markerRef }
     >
       <Popup minWidth={90}>
         <h3>Установите маркер в месте проведения мероприятия</h3>
