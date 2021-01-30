@@ -1,17 +1,64 @@
 {
-  "battery": {
-    "image": "battery.svg",
-    "dragging": true,
-    "type": "plastic"
+  "glass-bootle-1": {
+    "image": "glass-bootle-1.png",
+    "type": "glass",
+    "scale": 0.12
   },
-  "lightBulb": {
-    "image": "light-bulb.svg",
-    "dragging": true,
-    "type": "glass"
+  "glass-bootle-2": {
+    "image": "glass-bootle-2.png",
+    "type": "glass",
+    "scale": 0.1
   },
-  "paper": {
-    "image": "paper.svg",
-    "dragging": true,
-    "type": "paper"
+  "glass-bootle-3": {
+    "image": "glass-bootle-3.png",
+    "type": "glass",
+    "scale": 0.1
+  },
+  "glass-goblet": {
+    "image": "glass-goblet.png",
+    "type": "glass",
+    "scale": 0.1
+  },
+
+  "paper-box": {
+    "image": "paper-box.svg",
+    "type": "paper",
+    "scale": 0.1
+  },
+  "paper-letters": {
+    "image": "paper-letters.svg",
+    "type": "paper",
+    "scale": 0.2
+  },
+  "paper-news": {
+    "image": "paper-news.svg",
+    "type": "paper",
+    "scale": 0.2
+  },
+  "paper-small-box": {
+    "image": "paper-small-box.svg",
+    "type": "paper",
+    "scale": 0.1
+  },
+
+  "plastic-bag": {
+    "image": "plastic-bag.svg",
+    "type": "plastic",
+    "scale": 0.1
+  },
+  "plastic-bootle": {
+    "image": "plastic-bootle.svg",
+    "type": "plastic",
+    "scale": 0.2
+  },
+  "plastic-container": {
+    "image": "plastic-container.svg",
+    "type": "plastic",
+    "scale": 0.11
+  },
+  "plastic-cup": {
+    "image": "plastic-cup.png",
+    "type": "plastic",
+    "scale": 0.04
   }
 }
