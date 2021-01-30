@@ -23,8 +23,7 @@ function App() {
             <Route path="/eventMap">
               <EventPage section="completion" />
             </Route>
-            {/* <Route path="/profile" component={ Profile } />
-            <Route path="/initiatives" component={ Initiatives } /> */}
+            {/* <Route path="/profile" component={ Profile } /> */}
           </Switch>
           <Route path="/initiatives" component={ Initiatives } />
         </div>

@@ -69,7 +69,7 @@ class StateCalendarMonth {
 
         let gridResultFunction = this.createGridOneMounth();
 
-        arrayDataAllEvents.then(( data ) => {
+        arrayDataAllEvents().then(( data ) => {
 
         let resultDataGrid = gridResultFunction.map(( item, index) => {
 
