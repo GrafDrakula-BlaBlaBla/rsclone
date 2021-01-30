@@ -43,7 +43,7 @@ import user from './../components/Calendar/user.svg';
 
     changeBlockOneDay() {
 
-      arrayDataAllEvents.then((data) => {
+      arrayDataAllEvents().then((data) => {
 
       if(data[this.year] === undefined){
         this.listEventsOneDay =  <li className="no-events" key={"no-events" + Math.ceil(Math.random()*10000000000)}>Пусто</li>;

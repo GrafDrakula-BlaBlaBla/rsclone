@@ -5,7 +5,8 @@ import stateCalendar from '../../state/StateCalendarOneDay.jsx'
 import stateCalendarMonth from '../../state/StateCalendarMonth.jsx'
 import './_Calendar.scss';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
-
+import arrowLeft from '../../modules/assets/green-array-left.svg';
+import arrowRight from '../../modules/assets/green-array-right.svg';
  // создание календаря на месяц arrayDataAllEvents
 
  const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
@@ -51,9 +52,9 @@ function clickCalendar( clickCalendarEvent ) {
     <div className="calendar" >
       <div className="wrapper-calendar-mounth">
         <div className="head-calendar">
-          <div className="button-click-calendar" onClick={ arrowLeftCalendar }>&#129152;</div>
+          <div className="button-click-calendar" onClick={ arrowLeftCalendar }><img src={ arrowLeft } alt="arrow-left"/></div>
           { nameMonth[stateCalendarMonth.stateMouth] } { stateCalendarMonth.stateYear }
-          <div className="button-click-calendar" onClick={ arrowRightCalendar }>&#129154;</div>
+          <div className="button-click-calendar" onClick={ arrowRightCalendar }><img src={ arrowRight } alt="arrow-right"/></div>
         </div>
         <div className="wrapper-day-for-week">{stateCalendarMonth.createDayOfWeek()}</div>
         <div className="wrapper-day-calendar" onClick={ clickCalendar } >
