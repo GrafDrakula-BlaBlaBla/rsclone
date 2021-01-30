@@ -21,17 +21,27 @@
     user-select: none;
     border-radius: 5px;
   }
-
+  .button-click-calendar {
+    display: flex;
+    align-items: center;
+    img {
+      height: 20px;
+      margin: 0;
+      padding: 0;
+    }
+  }
   .button-click-calendar:hover {
     cursor: pointer;
-    color: #5c9f61;
+    filter: saturate(200%);
   }
   .head-calendar {
     background: rgba(255, 255, 255, 0.9);
     display: flex;
+    align-items: center;
     justify-content: space-around;
     padding: 4px 10px;
-  }
+    font-weight: 600;
+    }
   .wrapper-day-for-week {
     display: grid;
     background: rgb(255, 255, 255);

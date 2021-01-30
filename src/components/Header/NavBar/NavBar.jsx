@@ -5,7 +5,7 @@ import styles from ".././_Header.module.scss";
 
 const items = [
   { nameRoute: "Главная", route: "/" },
-  { nameRoute: "Карта мероприятий", route: "/eventMap" },
+  { nameRoute: "Карта мероприятий", route: "/initiatives" },
   { nameRoute: "Создать мероприятие", route: "/createEvent" },
   { nameRoute: "Игра", route: "/game" },
 ];
