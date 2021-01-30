@@ -1,0 +1,17 @@
+{
+  "battery": {
+    "image": "battery.svg",
+    "dragging": true,
+    "type": "plastic"
+  },
+  "lightBulb": {
+    "image": "light-bulb.svg",
+    "dragging": true,
+    "type": "glass"
+  },
+  "paper": {
+    "image": "paper.svg",
+    "dragging": true,
+    "type": "paper"
+  }
+}

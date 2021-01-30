@@ -30,7 +30,7 @@ useEffect(() => {
 
 stateCalendarMonth.createOneMounth();
 
- }, [stateCalendarMonth.now])
+ }, [])
 
 useEffect(() => {
 

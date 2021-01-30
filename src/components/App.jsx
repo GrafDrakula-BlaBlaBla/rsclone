@@ -5,7 +5,7 @@ import Footer from "./Footer/Footer";
 import Initiatives from "./Initiatives/Initiatives";
 import MainPage from "./MainPage/MainPage";
 import EventPage from "./EventPage/EventPage";
-import Profile from "./Profile/Profile";
+import GamePage from './GamePage/GamePage';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -19,14 +19,12 @@ function App() {
             <Route path="/createEvent">
               <EventPage section="create" />
             </Route>
-            {/* <Route path="/createEvent"><EventPage/></Route> */}
             <Route path="/eventMap">
               <EventPage section="completion" />
             </Route>
-            {/* <Route path="/profile" component={ Profile } />
-            <Route path="/initiatives" component={ Initiatives } /> */}
           </Switch>
           <Route path="/initiatives" component={ Initiatives } />
+          <Route path="/game" component={ GamePage } />
         </div>
         <Footer />
       </div>

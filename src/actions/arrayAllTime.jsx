@@ -4,10 +4,7 @@ const arrayDataAllEvents = resultFetch.then((data) => {
 
   const arrayWithData = []
 
-  data.map((item) => {
-    createDataItem(item);
-
-  })
+  data.map((item) => createDataItem(item));
   function createDataItem(dateOne) {
 
     let dateOneStart =  dateOne['start'].hasOwnProperty('dateTime') ? new Date(dateOne['start']['dateTime']) : new Date(dateOne['start']['date']);
