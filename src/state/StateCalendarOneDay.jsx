@@ -4,6 +4,7 @@ import arrayDataAllEvents from './../actions/arrayAllTime.jsx';
 import user from './../components/Calendar/user.svg';
 
  class StateCalendar {
+
     allToday = new Date();
     dayToday = this.allToday.getDate();
     mounthToday = this.allToday.getMonth();

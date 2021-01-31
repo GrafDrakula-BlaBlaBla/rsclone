@@ -9,8 +9,7 @@ const Coords = ({ locationStore }) => {
   runInAction(() => {
     locationStore.coords.lat = locationStore.coords.lat ?? 53.902284 + Math.random()/100;
     locationStore.coords.lng = locationStore.coords.lng ?? 27.561831 + Math.random()/100;
-    console.log(locationStore.coords.lat);
-  });
+    });
 
   return (
     <Observer>
