@@ -6,7 +6,7 @@ const idUser = "6015781f16f2051ff6a5e36a"
 // запрос на сервер за данными пользователя
 export default function returnOneUser() {
 
-  const result = axios.post('http://localhost:8000/data-profile', {
+  const result = axios.post(process.env.REACT_APP_SERVER + 'data-profile', {
     idUser
   })
   .then(function (response) {

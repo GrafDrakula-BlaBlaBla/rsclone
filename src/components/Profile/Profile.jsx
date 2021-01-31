@@ -5,20 +5,16 @@ import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import EventsHistory from './EventsHistory/EventsHistory';
 import EventsList from './EventsList/EventsList';
 import RatingLeaves from '../RatingLeaves/RatingLeaves';
-import Store from './../../store/index';
-import { observer } from "mobx-react-lite";
+// import Store from './../../store/index';
+import { observer, inject } from "mobx-react";
 import env from "react-dotenv";
 
-const Profile = observer( () => {
-
-// export default function Profile() {
-const [userAvatar, setImgUser] = useState(userImg);
+const Profile = inject( "store" ) (observer( ({store}) => {
 
 useEffect(() => {
-Store.User.getValue()
-let urlImg = env.DOMAIN + Store.User.avatar;
-setImgUser(urlImg);
-console.log(process.env);
+
+store.User.getValue();
+
       }, [])
 
 
@@ -29,20 +25,19 @@ console.log(process.env);
           <div className="profile-info">
 
             <div className="user-pic">
-
-              <img className="user-pic-img" src={userImg } alt="user"/>
+              <img className="user-pic-img" src={ process.env.PUBLIC_URL + "/userIcon/" + store.User.avatar } alt="user"/>
             </div>
 
             <div className="profile-info-middle">
 
-              <div className="user-name">{ Store.User.name } </div>
-
+              <div className="user-name">{ store.User.name } </div>
               <div className="registration-date">
-                На портале с { Store.User.dataRegistartion }
+                На портале с { store.User.dataRegistartion }
               </div>
             </div>
             <div className="user-rate">
-                <RatingLeaves rating={ Store.User.range }/>
+                <RatingLeaves rating={ store.User.range }/>
+                <div className="oxygen"> { store.User.oxygen } кислорода</div>
             </div>
           </div>
           <EventsHistory />
@@ -54,7 +49,8 @@ console.log(process.env);
         </SectionWrapper>
       </div>
     </div>
-  );
-});
+    );
+  })
+)
 
 export default Profile;
