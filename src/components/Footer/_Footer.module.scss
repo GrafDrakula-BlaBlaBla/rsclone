@@ -25,6 +25,14 @@
     opacity: 0.7;
   }
 }
+.ButtonIconUser{
+  border-style: none;
+  background: white;
+  .iconUser{
+    width: 35px;
+    border-style: none;
+  }
+}
 
 @media (max-width: 1200px) {
 }

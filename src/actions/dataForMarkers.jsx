@@ -2,6 +2,7 @@ import resultFetch from  './requestInCalendarGoogle.jsx';
 import axios from 'axios';
 
 // слияние двух массивов данных
+
 export default function result() {
   const dataMarker = resultFetch().then( ( arrayData ) => {
   // перебор данных (списка) пришедших из базы
@@ -25,7 +26,7 @@ export default function result() {
       return concatArray;
     });
     
-    return result;
+   return result;
     })
   return dataMarker;
 }
