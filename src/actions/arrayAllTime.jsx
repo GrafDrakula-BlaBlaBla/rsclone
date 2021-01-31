@@ -18,19 +18,19 @@ export default function CreateCalendar () {
 
 
       //Начало
-      let start = dateOneStart.getDate();
-      let startHours = dateOneStart.getHours();
-      let startMinutes = dateOneStart.getMinutes();
-      let startMonth = dateOneStart.getMonth();
-      let startYear = dateOneStart.getFullYear();
+      const start = dateOneStart.getDate();
+      const startHours = dateOneStart.getHours();
+      const startMinutes = dateOneStart.getMinutes();
+      const startMonth = dateOneStart.getMonth();
+      const startYear = dateOneStart.getFullYear();
       //Окончание
-      let end = dateOneEnd.getDate();
-      let endHours = dateOneEnd.getHours();
-      let endMinutes = dateOneEnd.getMinutes();
-      let endMonth = dateOneEnd.getMonth();
-      let endYear = dateOneEnd.getFullYear();
+      const end = dateOneEnd.getDate();
+      const endHours = dateOneEnd.getHours();
+      const endMinutes = dateOneEnd.getMinutes();
+      const endMonth = dateOneEnd.getMonth();
+      const endYear = dateOneEnd.getFullYear();
 
-      let dataLoop = {
+      const dataLoop = {
         start: start,
         startHours: startHours,
         startMinutes: startMinutes,

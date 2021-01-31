@@ -9,6 +9,7 @@ import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import corsMiddleware from "./middleware/cors.middleware";
 import createMapMain from "./routes/event/createMapMain";
+import routerEventInfo from './routes/event/eventInfo';
 
 const PORT = config.get("serverPort");
 
@@ -23,6 +24,7 @@ app.use(`/`, signup); // папка с файлами роутинга
 app.use(`/`, auth); // папка с файлами роутинга
 app.use(`/`, createEvent); // папка с файлами роутинга
 app.use(`/`, createMapMain); // папка с файлами роутинга
+app.use('/', routerEventInfo);
 
 const start = async () => {
   try {

@@ -10,6 +10,7 @@ function loader() {
     .add('containersSprites', `${process.env.PUBLIC_URL}/game/containers/containers.json`)
     .add('button', buttonImg)
     .add('levelBackground', backgroundImg)
+  console.log(`${process.env.PUBLIC_URL}/game/containers/containers.json`)
 
   game.sounds.victory = new Howl({
     src: [`${process.env.PUBLIC_URL}/game/game-victory.mp3`]

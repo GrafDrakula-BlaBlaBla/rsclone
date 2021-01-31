@@ -113,11 +113,10 @@ export default class Event {
 
     const rules = {
       eventTitle: 'required',
-      startDate: 'numeric',
+      startDate: 'numeric|valueTime',
       endDate:'numeric',
       goal: 'required|string',
       description: 'required|string',
-      startDate: 'valueTime'
     };
 
     const changeValue =  ( ) => {

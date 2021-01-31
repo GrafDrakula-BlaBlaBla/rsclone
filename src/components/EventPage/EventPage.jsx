@@ -8,6 +8,8 @@ import EventCompletion from "./EventCompletion/EventCompletion";
 import EventCreation from "./EventCreation/EventCreation";
 import SectionWrapper from "../SectionWrapper/SectionWrapper";
 import resultFetch from  '../../actions/requestInCalendarGoogle.jsx';
+import axios from 'axios';
+
 
 const EventPage = inject("store")(({ store, section }) => {
   const [eventData, setEventData] = useState({
@@ -21,12 +23,12 @@ const EventPage = inject("store")(({ store, section }) => {
   useEffect(() => {
     resultFetch().then((data) => {
       const currenItem = data.find((elem) => elem.id === eventHash);
-      console.log(currenItem)
       setEventData({
         title: currenItem.summary,
         startDate: new Date(currenItem.start.dateTime),
         endDate: new Date(currenItem.end.dateTime)
       });
+      axios.post('http://localhost:8000/eventInfo', { googleId: currenItem.id }).then((data) => console.log(data));
     });
   }, [eventHash]);
 
