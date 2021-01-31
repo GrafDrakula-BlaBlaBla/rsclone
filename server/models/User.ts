@@ -10,7 +10,7 @@ const User = new Schema({
   sex: { type: String },
   contacts: { type: Array },
   location: { type: Object },
-  finishedGame: { type: Date },
+  finishedGameDate: { type: Date },
 });
 
 export default model("User", User);

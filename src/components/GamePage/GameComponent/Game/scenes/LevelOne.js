@@ -20,15 +20,21 @@ export default class LevelOne extends PIXI.Container {
   }
 
   start() {
-    this.game.setIsGameRules(true);
     this.level = 'started';
 
+    const viewWidth = (this.app.renderer.width / this.app.renderer.resolution);
     const viewHeight = (this.app.renderer.height / this.app.renderer.resolution);
     const background = PIXI.Sprite.from('levelBackground');
-    background.scale.x = viewHeight / 3000;
+    console.log(viewHeight)
+    if (viewWidth > viewHeight) {
+      background.scale.x = viewWidth / 3400;
+    } else {
+      background.scale.x = viewHeight / 2800;
+    }
     background.scale.y = background.scale.x;
-    background.anchor.set(0.5, 0);
+    background.anchor.set(0.5, 1);
     background.x = this.app.view.clientWidth / 2;
+    background.y = this.app.view.offsetHeight;
 
     const menuBtn = new Button({
       label:'Меню',
@@ -55,29 +61,24 @@ export default class LevelOne extends PIXI.Container {
 
     for (const key in containersList) {
       const item = new PIXI.Sprite.from(containersList[key].image);
-      item.scale.set(0.4);
+      item.scale.set(0.38);
       item.x = (Math.trunc(this.app.view.offsetWidth / 3) * containersList[key].position)
       / 2 + (Math.trunc(this.app.view.offsetWidth / 3) / 2);
-      item.y = this.app.view.offsetHeight - (item.height / 2) - 10;
+      item.y = this.app.view.offsetHeight - (item.height / 2) - 50;
       item.type = containersList[key].type;
       this.containers[key] = item;
       this.addChild(this.containers[key]);
     }
 
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 2; i++) {
       for (const key in itemsList) {
         const item = new TrashItem(itemsList[key].image);
-        // const item = new PIXI.Sprite.from(itemsList[key].image);
-        item.width = 30;
-        item.height = 30;
+        item.scale.set(itemsList[key].scale + 0.01);
         item.x = Math.floor(Math.random() * (this.app.view.offsetWidth - 60)) + 30;
         item.y = Math.floor(Math.random() * (this.app.view.offsetHeight - 550)) + 380;
         item.type = itemsList[key].type;
-
-        if (itemsList[key].dragging) {
-          item.interactive = true;
-          dragging(item);
-        }
+        item.interactive = true;
+        dragging(item);
         
         this.trashCounter += 1;
         this.addChild(item);
