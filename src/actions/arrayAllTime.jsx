@@ -1,13 +1,12 @@
-import resultFetch from  './RequestCalendar.jsx';
+import resultFetch from  './requestInCalendarGoogle.jsx';
 
-const arrayDataAllEvents = resultFetch.then((data) => {
+export default function CreateCalendar () {
+
+const arrayDataAllEvents = resultFetch().then((data) => {
 
   const arrayWithData = []
 
-  data.map((item) => {
-    createDataItem(item);
-
-  })
+  data.map((item) => createDataItem(item));
   function createDataItem(dateOne) {
 
     let dateOneStart =  dateOne['start'].hasOwnProperty('dateTime') ? new Date(dateOne['start']['dateTime']) : new Date(dateOne['start']['date']);
@@ -82,4 +81,5 @@ const arrayDataAllEvents = resultFetch.then((data) => {
 
 })
 
-export default arrayDataAllEvents;
+return arrayDataAllEvents;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./_RegModal.scss";
-import { NavLink, Route, Switch } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 
 import RegModalMain from "./Main/RegModalMain";
 

@@ -9,7 +9,7 @@ Date.prototype.daysInMonth = function() {
 class StateCalendarMonth {
 
   dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
-  
+
   now = new Date();
   nowDay = this.now.getDate();
   stateMouth = this.now.getMonth();
@@ -30,8 +30,8 @@ class StateCalendarMonth {
 
     for (var i = 0; i < 7; i++) {
       let item =
-      <div className="day-of-week" >
-        <div > {this.dayOfWeek[i]}</div>
+      <div className="day-of-week" key={"day-of-" + i }>
+        <div key={"day-of-week-" + i }> {this.dayOfWeek[i]}</div>
       </div>
       daysForWeekElem.push(item);
     }
@@ -69,7 +69,7 @@ class StateCalendarMonth {
 
         let gridResultFunction = this.createGridOneMounth();
 
-        arrayDataAllEvents.then(( data ) => {
+        arrayDataAllEvents().then(( data ) => {
 
         let resultDataGrid = gridResultFunction.map(( item, index) => {
 
