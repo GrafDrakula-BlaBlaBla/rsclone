@@ -1,5 +1,4 @@
 import React, { useRef, useMemo } from "react";
-import "./_Map.scss";
 import { Marker, Popup } from "react-leaflet";
 import { observer } from "mobx-react-lite";
 import Store from "../../store/index.js";
@@ -7,24 +6,20 @@ import Store from "../../store/index.js";
 const DraggableMarker = observer(() => {
   const markerRef = useRef(null);
 
-  const eventHandlers = useMemo(
-    () => ({
-      dragend() {
-        const marker = markerRef.current;
-        if (marker != null) {
-          Store.Location.draggableMarker(marker.getLatLng());
-          console.log(marker.getLatLng());
-        }
-      },
-    }),
-    [],
-  );
+  const eventHandlers = useMemo(() => ({
+    dragend() {
+      const marker = markerRef.current;
+      if (marker != null) {
+        Store.Location.draggableMarker(marker.getLatLng());
+      }
+    },
+  }), []);
 
   return (
     <Marker
       draggable="true"
       eventHandlers={eventHandlers}
-      position={[Store.Location.coords.lat, Store.Location.coords.lng]}
+      position={ [Store.Location.coords.lat, Store.Location.coords.lng] }
       ref={ markerRef }
     >
       <Popup minWidth={90}>

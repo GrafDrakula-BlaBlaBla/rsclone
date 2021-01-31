@@ -22,6 +22,9 @@ function App() {
             <Route path="/eventMap">
               <EventPage section="completion" />
             </Route>
+            <Route path="/event">
+              <EventPage />
+            </Route>
           </Switch>
           <Route path="/initiatives" component={ Initiatives } />
           <Route path="/game" component={ GamePage } />
