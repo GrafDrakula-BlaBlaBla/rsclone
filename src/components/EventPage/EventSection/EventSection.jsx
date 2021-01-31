@@ -3,33 +3,7 @@ import styles from './_EventSection.module.scss';
 import userImg from '../../../modules/assets/user.svg'
 import RatingLeaves from '../../RatingLeaves/RatingLeaves';
 
-const eventData = {
-  name: 'Сбор мусора',
-
-  ownerName: 'Ирина',
-
-  ownerRate: 4,
-
-  peoples: 8,
-
-  tasks: `Пищевые отходы можно утилизировать отдельно.
-    Если вы живете в городской квартире — установите
-    в кухонной раковине измельчитель (диспоузер).
-    Через него вместе с канализационными стоками отходы попадут
-    на очистные сооружения города, а затем их превратят в
-    биогаз и техногенный грунт.`,
-
-  goals: `Разделение мусора (также раздельный сбор мусора,
-    селективный сбор мусора) — практика сбора и сортировки
-    мусора с учётом его происхождения и пригодности к
-    переработке или вторичному использованию.
-    Раздельный сбор мусора позволяет отделить
-    перерабатываемые отходы от неперерабатываемых,
-    а также выделить отдельные типы отходов,
-    пригодные для вторичного использования.`
-}
-
-export default function EventSection () {
+export default function EventSection({ eventData }) {
   return (
     <div className={ styles.main }>
       <div className={ styles.owner }>

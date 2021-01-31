@@ -1,7 +1,7 @@
 import { makeObservable, action, observable } from "mobx";
 import axios from 'axios';
 import * as Validator from 'validatorjs';
-import  Store from './index';
+import Store from './index';
 
 export default class Event {
   eventTitle = "";
@@ -102,7 +102,6 @@ export default class Event {
   };
 
   createEvent = () => {
-
     const event = {
       eventTitle: this.eventTitle,
       startDate: Date.parse(this.startDate + " "+ this.time),
@@ -141,8 +140,8 @@ export default class Event {
     }
 
     const checkTime = () => {
-          return event.startDate < event.endDate;
-              }
+      return event.startDate < event.endDate;
+    }
 
     Validator.register('valueTime', checkTime, 'Укажите правильную последовательность начала и окончания мероприятия');
 
@@ -165,23 +164,23 @@ export default class Event {
       this.warningEventEndDate = validation.errors.first('endDate');
       this.warningEventGoal = validation.errors.first('goal');
       this.warningEventDescription = validation.errors.first('description');
-        }
+    }
 
-        if (validation.passes()) {
-        axios.post('http://localhost:8000/create', {
-          event
-        })
-        .then(function (response) {
-          if(response.status === 200){
-            changeValue();
-            changeValueFalse();
-          }
-        })
-        .catch(function (error) {
-
-        })
-        .then(function () {
-        });
+    if (validation.passes()) {
+    axios.post('http://localhost:8000/create', {
+      event
+    })
+    .then(function (response) {
+      if(response.status === 200){
+        changeValue();
+        changeValueFalse();
       }
+    })
+    .catch(function (error) {
+
+    })
+    .then(function () {
+    });
+    }
   };
 }
