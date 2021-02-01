@@ -41,7 +41,7 @@
     justify-content: space-around;
     padding: 4px 10px;
     font-weight: 600;
-    }
+  }
   .wrapper-day-for-week {
     display: grid;
     background: rgb(255, 255, 255);
@@ -71,12 +71,16 @@
         text-align: center;
       }
       .one-event-calendar {
+        width: 100%;
         text-align: left;
         background: white;
         color: black;
         padding: 5px;
-        border: none;
-        width: 100%;
+        margin: 0;
+        border: 0;
+        text-decoration: none;
+        font-size: 0.64em;
+        line-height: 1em;
       }
       .one-event-calendar:hover {
         background: RGBA(92, 159, 97, 0.2);
@@ -106,7 +110,7 @@
   user-select: none;
 }
 
-.button-create-new-evernt {
+.button-create-new-event {
   width: 150px;
   margin-top: 10px;
   margin-left: 10px;

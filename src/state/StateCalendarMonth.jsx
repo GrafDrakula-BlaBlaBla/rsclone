@@ -1,160 +1,114 @@
-/* eslint-disable no-extend-native */
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeAutoObservable } from "mobx";
-import arrayDataAllEvents from "./../actions/arrayAllTime.jsx";
-
-Date.prototype.daysInMonth = function () {
-  return 33 - new Date(this.getFullYear(), this.getMonth(), 33).getDate();
-};
+import arrayDataAllEvents from './../actions/arrayAllTime.jsx';
 
 class StateCalendarMonth {
-  dayOfWeek = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  dayOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 
   now = new Date();
   nowDay = this.now.getDate();
   stateMouth = this.now.getMonth();
   stateYear = this.now.getFullYear();
-  nowDaysInMonth = this.now.daysInMonth();
+  nowDaysInMonth = new Date(this.now.getFullYear(), this.now.getMonth(), 0).getDate();
   firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
   nowDayOfWeek = this.firstDayForWeek.getDay();
   gridOneMount = null;
 
-  constructor() {
-    makeAutoObservable(this);
-  }
-
-  createDayOfWeek() {
+  createDayOfWeek(){
     const daysForWeekElem = [];
 
-    for (var i = 0; i < 7; i++) {
-      let item = (
-        <div className="day-of-week" key={"day-of-" + i}>
-          <div key={"day-of-week-" + i}> {this.dayOfWeek[i]}</div>
-        </div>
-      );
+    for (let i = 0; i < 7; i++) {
+      const item =
+      <div className="day-of-week" key={"day-of-" + i }>
+        <div key={"day-of-week-" + i }>{this.dayOfWeek[i]}</div>
+      </div>;
       daysForWeekElem.push(item);
     }
     return daysForWeekElem;
   }
+
   // Создание элемента мероприятия
   createEventsElem(indexDataGrid, data) {
-    let arrayEventsOneDayCaltnlar = [];
-    for (var i = 0; i < data[indexDataGrid].length; i++) {
-      let idEvent = data[indexDataGrid][i]["id"];
-
-      let item = (
-        <button
-          className="one-event-calendar btn btn-primary"
-          type="button"
-          data-toggle="modal"
-          data-target={idEvent}
-          key={idEvent}
+    const eventsItems = [];
+    for (let i = 0; i < data[indexDataGrid].length; i++) {
+      const idEvent = data[indexDataGrid][i]["id"];
+      const item =
+        <Link
+          to = {{ pathname: "/eventInfo", hash: idEvent }}
+          className = "one-event-calendar btn btn-primary"
+          type = "button" data-toggle="modal"
+          data-target = { idEvent }
+          key = { idEvent }
+          onClick = { () => console.log(data[indexDataGrid][i]) }
         >
-          {data[indexDataGrid][i]["sammary"]}
-        </button>
-      );
-      arrayEventsOneDayCaltnlar.push(item);
+          { data[indexDataGrid][i]['sammary'] }
+        </Link>
+      eventsItems.push(item);
     }
-    return arrayEventsOneDayCaltnlar;
+    return eventsItems;
   }
 
   createGridOneMounth() {
     let position;
-    let dataGrid = new Array(35);
+    const dataGrid = new Array(35);
     dataGrid.fill(null);
-    this.nowDayOfWeek !== 0
-      ? (position = this.nowDayOfWeek - 1)
-      : (position = 7);
+    (this.nowDayOfWeek !== 0) ? position = this.nowDayOfWeek - 1 :  position = 7 ;
+
     // создание сетки дней (массив с пустыми индексами) СТРУКТУРА
-    for (var i = 0; i < this.nowDaysInMonth; i++) {
-      dataGrid[position + i] = i + 1;
+    for (let i = 0; i < this.nowDaysInMonth; i++) {
+      dataGrid[position + i] = i + 1 ;
     }
     return dataGrid;
   }
 
   createOneMounth() {
-    let gridResultFunction = this.createGridOneMounth();
+    const gridResultFunction = this.createGridOneMounth();
 
-    arrayDataAllEvents().then((data) => {
-      let resultDataGrid = gridResultFunction.map((item, index) => {
+    arrayDataAllEvents().then(( data ) => {
+      const resultDataGrid = gridResultFunction.map(( item, id ) => {
+
         // Перебор структуры
-        let className = "day";
-
-        if (data.hasOwnProperty(this.stateYear)) {
-          if (data[this.stateYear].hasOwnProperty(this.stateMouth)) {
-            if (data[this.stateYear][this.stateMouth].hasOwnProperty(item)) {
-              gridResultFunction[index] = (
-                <div
-                  className={className}
-                  key={"day-" + Math.ceil(Math.random() * 10000000000)}
-                >
-                  <div className="namber-day"> {item} </div>{" "}
-                  {this.createEventsElem(
-                    item,
-                    data[this.stateYear][this.stateMouth],
-                  )}{" "}
-                </div>
-              );
-            } else {
-              let itemWithoutData = (
-                <div
-                  className={className}
-                  key={Math.ceil(Math.random() * 10000000000)}
-                >
-                  <div className="namber-day">{item} </div>
-                </div>
-              );
-
-              gridResultFunction[index] = itemWithoutData;
-            }
-          } else {
-            let itemWithoutData = (
-              <div
-                className={className}
-                key={Math.ceil(Math.random() * 10000000000)}
-              >
-                <div className="namber-day"> {item} </div>
-              </div>
-            );
-            gridResultFunction[index] = itemWithoutData;
-          }
-        } else {
-          let itemWithoutData = (
-            <div
-              className={className}
-              key={Math.ceil(Math.random() * 10000000000)}
-            >
-              <div className="namber-day">{item} </div>
+        if (data[this.stateYear].hasOwnProperty(this.stateMouth) && data[this.stateYear][this.stateMouth].hasOwnProperty(item)) {
+          return (
+            <div className= { 'day' } key={ 'day-' + id} >
+              <div className="namber-day">{ item }</div>
+              { this.createEventsElem(item, data[this.stateYear][this.stateMouth]) }
             </div>
           );
-          gridResultFunction[index] = itemWithoutData;
+        } else {
+          return (
+            <div className={ 'day' } key={'day-' + id}>
+              <div className="namber-day">{ item } </div>
+            </div>
+          );
         }
-        return gridResultFunction[index];
       });
+
       this.gridOneMount = resultDataGrid;
     });
   }
 
   arrowRightCalendarState() {
-    this.stateMouth === 11
-      ? (this.now = new Date(this.stateYear + 1, 0, 1))
-      : (this.now = new Date(this.stateYear, this.stateMouth + 1, 1));
+    this.stateMouth === 11 ? this.now = new Date(this.stateYear + 1, 0, 1) : this.now =  new Date(this.stateYear, this.stateMouth + 1, 1);
     this.nowDay = this.now.getDate();
     this.stateMouth = this.now.getMonth();
     this.stateYear = this.now.getFullYear();
-    this.nowDaysInMonth = this.now.daysInMonth();
     this.firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
     this.nowDayOfWeek = this.firstDayForWeek.getDay();
   }
 
-  arrowLeftCalendarState() {
-    this.stateMouth === 0
-      ? (this.now = new Date(this.stateYear - 1, 11, 1))
-      : (this.now = new Date(this.stateYear, this.stateMouth - 1, 1));
+  }
+
+  arrowLeftCalendarState(){
+    this.stateMouth === 0 ? this.now = new Date(this.stateYear - 1, 11, 1) : this.now =  new Date(this.stateYear, this.stateMouth-1, 1);
     this.nowDay = this.now.getDate();
     this.stateMouth = this.now.getMonth();
     this.stateYear = this.now.getFullYear();
-    this.nowDaysInMonth = this.now.daysInMonth();
     this.firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
     this.nowDayOfWeek = this.firstDayForWeek.getDay();
   }

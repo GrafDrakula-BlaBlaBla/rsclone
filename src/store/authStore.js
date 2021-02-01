@@ -145,6 +145,9 @@ export default class Registration {
           password,
         },
       );
+      
+      // ЗАПИСАТЬ В LOCALSTORE
+
       console.log(response.data);
       alert(response.data.status);
     } catch (e) {

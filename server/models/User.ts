@@ -1,6 +1,7 @@
-import { Schema, model, ObjectId } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const User = new Schema({
+  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   userName: { type: String, required: true },
@@ -10,7 +11,7 @@ const User = new Schema({
   sex: { type: String },
   contacts: { type: Array },
   location: { type: Object },
-  finishedGame: { type: Boolean },
+  finishedGameDate: { type: Date },
 });
 
 export default model("User", User);

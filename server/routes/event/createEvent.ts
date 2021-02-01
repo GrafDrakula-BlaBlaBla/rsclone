@@ -77,17 +77,22 @@ routerEvent.post("/create", async (req, res) => {
     const auth = await authenticate(key);
     const idEventCalendarGoogle = await createEvent(auth, eventTitle, description, startDate, endDate);
 
+    // Извлечь id пользователя и записать в переменную
+    const user = "6015781f16f2051ff6a5e36a";
+
     const event: any = new Event({
-      idEventCalendarGoogle,
-      eventTitle,
-      startDate,
-      endDate,
-      location,
-      goal,
-      description,
-    });
+        idEventCalendarGoogle,
+        eventTitle,
+        startDate,
+        endDate,
+        location,
+        goal,
+        description,
+        user,
+      });
 
     await event.save();
+
     return await res.json();
 
   } catch (e) {

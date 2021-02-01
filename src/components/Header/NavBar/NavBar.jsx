@@ -12,8 +12,11 @@ const items = [
 
 const NavBar = ({ change }) => {
   const navbarList = items.map((el, i) => (
-    <Link key={`${i + i}`} to={`${el.route}`} className={styles.link}>
-      <li className={styles.menu_item} onClick={change}>
+    <Link to={`${el.route}`} className={styles.link} key={ `${el.nameRoute} + ${i}` }>
+      <li
+        className={styles.menu_item}
+        onClick={change}
+      >
         {el.nameRoute}
       </li>
     </Link>

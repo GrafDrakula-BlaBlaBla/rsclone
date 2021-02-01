@@ -24,7 +24,7 @@ export default function RatingModal({ setModalState, levels }) {
           <p className={ styles.levels_title }>Уровни</p>
           { levels.map((elem, id) => {
             return (
-              <div className={ styles.level }>
+              <div className={ styles.level } key={ id }>
                 <Leaves rating={ id + 1 } />
                 <p className={ styles.level_title }>{elem}</p>
               </div>
@@ -36,8 +36,8 @@ export default function RatingModal({ setModalState, levels }) {
             Для получения нового уровня нужны очки которые можно получить:
           </p>
           <div className={ styles.links }>
-            <Link className={ styles.links_item + ' green_btn' } to='/'>Инициатива</Link>
-            <Link className={ styles.links_item + ' green_btn' } to='/'>Игра</Link>
+            <Link className={ styles.links_item + ' green_btn' } to='/initiatives'>Инициатива</Link>
+            <Link className={ styles.links_item + ' green_btn' } to='/game'>Игра</Link>
           </div>
         </div>
       </div>

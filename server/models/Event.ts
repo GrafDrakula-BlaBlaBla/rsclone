@@ -1,7 +1,7 @@
-import { Schema, model, ObjectId } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const Event = new Schema({
-  idEventCalendarGoogle: { type: String },
+  idEventCalendarGoogle: { type: String, required: true },
   eventTitle: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
@@ -10,6 +10,8 @@ const Event = new Schema({
   description: { type: String, required: true },
   photo: { type: String },
   user: { type: Schema.Types.ObjectId, ref: "User" },
+  completed: {type: Boolean},
+  members: {type: Array}
 });
 
 export default model("Event", Event);

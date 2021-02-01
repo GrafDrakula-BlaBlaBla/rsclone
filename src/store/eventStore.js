@@ -1,7 +1,7 @@
 import { makeObservable, action, observable } from "mobx";
-import axios from "axios";
-import * as Validator from "validatorjs";
-import Store from "./index";
+import axios from 'axios';
+import * as Validator from 'validatorjs';
+import Store from './index';
 
 export default class Event {
   eventTitle = "";
@@ -111,13 +111,11 @@ export default class Event {
     };
 
     const rules = {
-      eventTitle: "required",
-      startDate: "numeric",
-      endDate: "numeric",
-      goal: "required|string",
-      description: "required|string",
-      // eslint-disable-next-line no-dupe-keys
-      startDate: "valueTime",
+      eventTitle: 'required',
+      startDate: 'numeric|valueTime',
+      endDate:'numeric',
+      goal: 'required|string',
+      description: 'required|string',
     };
 
     const changeValue = () => {
@@ -141,7 +139,9 @@ export default class Event {
 
     const checkTime = () => {
       return event.startDate < event.endDate;
-    };
+    }
+
+    Validator.register('valueTime', checkTime, 'Укажите правильную последовательность начала и окончания мероприятия');
 
     Validator.register(
       "valueTime",
@@ -151,36 +151,39 @@ export default class Event {
 
     let validation = new Validator(event, rules, {
       "required.eventTitle": "Оязательное поле",
-      "numeric.startDate": "Выберите время и дату начала мероприятия",
-      "numeric.endDate": "Выберите время и дату окончания мероприятия",
-      "required.goal": "Обязательное поле",
-      "required.description": "Обязательное поле",
-      "string.description": "Опишите словами мероприятие",
-      "valueTime.startDate":
-        "Время начала мероприятия должно быть меньше окончания",
-    });
+      "numeric.startDate" : "Выберите время и дату начала мероприятия",
+      "numeric.endDate" : "Выберите время и дату окончания мероприятия",
+      "required.goal" : "Обязательное поле",
+      "required.description" : "Обязательное поле",
+      "string.description" : "Опишите словами мероприятие",
+      "valueTime.startDate": 'Время начала мероприятия должно быть меньше окончания',
+      });
 
-    if (validation.fails()) {
-      this.warningEventTitle = validation.errors.first("eventTitle");
-      this.warningEventStartDate = validation.errors.first("startDate");
-      this.warningEventEndDate = validation.errors.first("endDate");
-      this.warningEventGoal = validation.errors.first("goal");
-      this.warningEventDescription = validation.errors.first("description");
+
+
+    if(validation.fails()){
+      this.warningEventTitle = validation.errors.first('eventTitle');
+      this.warningEventStartDate = validation.errors.first('startDate');
+      this.warningEventEndDate = validation.errors.first('endDate');
+      this.warningEventGoal = validation.errors.first('goal');
+      this.warningEventDescription = validation.errors.first('description');
     }
 
     if (validation.passes()) {
-      axios
-        .post("http://localhost:8000/create", {
-          event,
-        })
-        .then(function (response) {
-          if (response.status === 200) {
-            changeValue();
-            changeValueFalse();
-          }
-        })
-        .catch(function (error) {})
-        .then(function () {});
+    axios.post('http://localhost:8000/create', {
+      event
+    })
+    .then(function (response) {
+      if(response.status === 200){
+        changeValue();
+        changeValueFalse();
+      }
+    })
+    .catch(function (error) {
+
+    })
+    .then(function () {
+    });
     }
   };
 }

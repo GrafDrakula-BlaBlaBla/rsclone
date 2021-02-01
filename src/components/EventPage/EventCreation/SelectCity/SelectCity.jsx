@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { Observer } from "mobx-react";
-
 import styles from "./_SelectCity.module.scss";
 
 export default function SelectCity({ locationStore, region }) {
@@ -38,7 +37,7 @@ export default function SelectCity({ locationStore, region }) {
     }
   };
 
-  const cityListRender = (cityList) => {
+  const cityListRender = () => {
     document.addEventListener("click", inputBlur);
 
     return (
