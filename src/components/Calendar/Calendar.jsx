@@ -7,7 +7,6 @@ import './_Calendar.scss';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import arrowLeft from '../../modules/assets/green-array-left.svg';
 import arrowRight from '../../modules/assets/green-array-right.svg';
-// создание календаря на месяц arrayDataAllEvents
 
 const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -15,13 +14,11 @@ const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель'
 
 const Calendar = observer(() => {
 
-  // переключение в лево
   function arrowLeftCalendar() {
     stateCalendar.changeBlockOneDay();
     stateCalendarMonth.arrowLeftCalendarState();
   }
 
-  // переключение в право
   function arrowRightCalendar() {
     stateCalendar.changeBlockOneDay();
     stateCalendarMonth.arrowRightCalendarState();

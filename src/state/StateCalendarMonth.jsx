@@ -98,7 +98,6 @@ class StateCalendarMonth {
     this.nowDay = this.now.getDate();
     this.stateMouth = this.now.getMonth();
     this.stateYear = this.now.getFullYear();
-    this.nowDaysInMonth = this.now.daysInMonth();
     this.firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
     this.nowDayOfWeek = this.firstDayForWeek.getDay();
 
@@ -109,7 +108,6 @@ class StateCalendarMonth {
     this.nowDay = this.now.getDate();
     this.stateMouth = this.now.getMonth();
     this.stateYear = this.now.getFullYear();
-    this.nowDaysInMonth = this.now.daysInMonth();
     this.firstDayForWeek = new Date(this.stateYear, this.stateMouth, 1);
     this.nowDayOfWeek = this.firstDayForWeek.getDay();
   }

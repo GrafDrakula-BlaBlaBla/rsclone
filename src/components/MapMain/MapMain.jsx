@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './_MapMain.scss';
 import { MapContainer, TileLayer, ZoomControl  } from 'react-leaflet';
 import Legend from './Legend';
-import stateMap from  '../../state/stateMap.jsx';
-import { observer } from "mobx-react-lite";
+import Marker from './Marker/Marker';
+import axios from 'axios';
 
-const MapMain = observer (() => {
+export default function MapMain() {
+  const [markers, setMarkers] = useState([]);
 
-useEffect(() => {
 
-stateMap.createMarkerTooltip();
-
- }, [])
+  useEffect(() => {
+    axios.post('http://localhost:8000/create-map-main', {}).then((data) => {
+      setMarkers(data.data.map((event) => <Marker event={event}/>));
+    });
+  }, []);
 
   return(
     <div className="map-contener">
@@ -21,12 +23,10 @@ stateMap.createMarkerTooltip();
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png?api_key=ab46a637-81e8-4df5-9f58-48897cbf8160"
         />
-        { stateMap.markers }
+        { markers }
         <Legend />
         <ZoomControl position="topright" />
       </MapContainer>
     </div>
   );
-})
-
-export default MapMain;
+}
