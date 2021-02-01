@@ -12,6 +12,9 @@ import dataEventUser from "./routes/profile/dataEventUser";
 import corsMiddleware from "./middleware/cors.middleware";
 import createMapMain from "./routes/event/createMapMain";
 import routerEventInfo from './routes/event/eventInfo';
+import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
+import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
+import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 
 const PORT = config.get("serverPort");
 
@@ -29,8 +32,9 @@ app.use(`/`, createMapMain); // папка с файлами роутинга
 app.use(`/`, dataForProfile); // папка с файлами роутинга
 app.use('/', routerEventInfo);
 app.use('/', dataEventUser);
-
-
+app.use('/', dataAboutNowEvents);
+app.use('/', dataAboutPastEvents);
+app.use('/', dataAboutFeatureEvents);
 
 const start = async () => {
   try {
