@@ -104,8 +104,9 @@
   "react-dotenv": {
     "whitelist": [
       "REACT_APP_IMG",
-      "REACT_APP_SERVER"]
-    },
+      "REACT_APP_SERVER"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -118,7 +119,6 @@
       "last 1 safari version"
     ]
   },
-
   "devDependencies": {
     "@types/leaflet": "^1.5.19",
     "@types/mongoose": "^5.10.3",
