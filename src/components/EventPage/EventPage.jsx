@@ -1,37 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { inject } from "mobx-react";
-import styles from "./_EventPage.module.scss";
-import { useLocation } from 'react-router-dom'
+import styles from "./_EventPage.module.scss";  
 import Map from "../Map/Map";
-import EventSection from "./EventSection/EventSection";
 import EventCompletion from "./EventCompletion/EventCompletion";
 import EventCreation from "./EventCreation/EventCreation";
 import SectionWrapper from "../SectionWrapper/SectionWrapper";
-import resultFetch from  '../../actions/requestInCalendarGoogle.jsx';
-import axios from 'axios';
-
 
 const EventPage = inject("store")(({ store, section }) => {
-  const [eventData, setEventData] = useState({
-    title: '',
-    startDate: null,
-    endDate: null
-  });
-  
-  const eventHash = useLocation().hash.slice(1);
-  
-  useEffect(() => {
-    resultFetch().then((data) => {
-      const currenItem = data.find((elem) => elem.id === eventHash);
-      setEventData({
-        title: currenItem.summary,
-        startDate: new Date(currenItem.start.dateTime),
-        endDate: new Date(currenItem.end.dateTime)
-      });
-      axios.post('http://localhost:8000/eventInfo', { googleId: currenItem.id }).then((data) => console.log(data));
-    });
-  }, [eventHash]);
-
   function checkSection() {
     if (section === "create") {
       return (
@@ -50,21 +25,6 @@ const EventPage = inject("store")(({ store, section }) => {
           time="с 12.12.2020 - по 02.02.2021"
         >
           <EventCompletion />
-        </SectionWrapper>
-      );
-    } else {
-      return (
-        <SectionWrapper
-          // storeEvent={storeEvent}
-          title={ eventData.title }
-          time={
-            eventData.startDate !== null && eventData.endDate !== null
-            ? `с ${eventData.startDate.getDate()}.${eventData.startDate.getMonth()}.${eventData.startDate.getFullYear()}
-            - по ${eventData.endDate.getDate()}.${eventData.endDate.getMonth()}.${eventData.endDate.getFullYear()}`
-            : ''
-          }
-        >
-          <EventSection eventData={eventData}/>
         </SectionWrapper>
       );
     }
