@@ -27,6 +27,6 @@ yarn-debug.log*
 yarn-error.log*
 
 #key Google
-.env
+
 .apiGoogleconfig.json
 /server/routes/event/key/
