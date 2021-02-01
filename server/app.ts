@@ -8,10 +8,15 @@ import signUp from "./routes/auth/routeSignUp";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import dataForProfile from "./routes/profile/dataForProfile";
+import dataEventUser from "./routes/profile/dataEventUser";
 import corsMiddleware from "./middleware/cors.middleware";
 import createMapMain from "./routes/event/createMapMain";
 import routerEventInfo from './routes/event/eventInfo';
+import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
+import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
+import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 import userInfo from './routes/userInfo';
+
 
 const PORT: Number = config.get("serverPort");
 
@@ -29,9 +34,14 @@ app.use(`/`, createEvent);
 app.use(`/`, createMapMain);
 app.use(`/`, dataForProfile);
 app.use('/', routerEventInfo);
+app.use('/', dataEventUser);
+app.use('/', dataAboutNowEvents);
+app.use('/', dataAboutPastEvents);
+app.use('/', dataAboutFeatureEvents);
 app.use('/', userInfo);
 
 const start = async (): Promise<void> => {
+
   try {
     await mongoose.connect(config.get("urlDB"));
 
