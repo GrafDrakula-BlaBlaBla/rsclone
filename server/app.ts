@@ -8,6 +8,7 @@ import signup from "./routes/auth/routeSignup";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import dataForProfile from "./routes/profile/dataForProfile";
+import dataEventUser from "./routes/profile/dataEventUser";
 import corsMiddleware from "./middleware/cors.middleware";
 import createMapMain from "./routes/event/createMapMain";
 import routerEventInfo from './routes/event/eventInfo';
@@ -27,6 +28,8 @@ app.use(`/`, createEvent); // папка с файлами роутинга
 app.use(`/`, createMapMain); // папка с файлами роутинга
 app.use(`/`, dataForProfile); // папка с файлами роутинга
 app.use('/', routerEventInfo);
+app.use('/', dataEventUser);
+
 
 
 const start = async () => {

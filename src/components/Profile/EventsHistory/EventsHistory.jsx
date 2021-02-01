@@ -19,7 +19,9 @@ const events = [
   },
 ];
 
+
 export default function EventsHistory() {
+
   return (
     <div className="events-history">
       <div className="events-history-title">История событий</div>

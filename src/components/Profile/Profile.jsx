@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './_Profile.scss';
-import userImg from '../../modules/assets/user.svg';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import EventsHistory from './EventsHistory/EventsHistory';
 import EventsList from './EventsList/EventsList';
 import RatingLeaves from '../RatingLeaves/RatingLeaves';
-// import Store from './../../store/index';
 import { observer, inject } from "mobx-react";
-import env from "react-dotenv";
 
 const Profile = inject( "store" ) (observer( ({store}) => {
 

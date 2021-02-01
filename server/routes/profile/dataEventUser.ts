@@ -1,15 +1,18 @@
 import { Router } from "express";
-import User from "../../models/User";
+import Event from "../../models/Event";
 import * as config from "config";
 
 const router = Router();
+
 
 router.post("/data-event-profile", async (req, res) => {
   try {
     const {
             idUser,
           } = await req.body
-    return res.json({ message: "Work server!" });
+    const events = await Event.find({$or : [ {user: idUser }, { members:  {$in : [ idUser ]}}] })
+
+    return res.json( [events] );
 
   } catch (e) {
 
