@@ -4,6 +4,7 @@ import { makeAutoObservable } from "mobx"
 import arrayDataAllEvents from './../actions/arrayAllTime.jsx';
 import user from './../components/Calendar/user.svg';
 
+
 class StateCalendar {
   allToday = new Date();
   dayToday = this.allToday.getDate();
@@ -17,6 +18,7 @@ class StateCalendar {
   status = null;
   eventsTextLeft = null;
   linkAdd = null;
+
 
   constructor() {
       makeAutoObservable(this)

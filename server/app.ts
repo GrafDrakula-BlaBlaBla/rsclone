@@ -7,6 +7,7 @@ import * as logger from "morgan";
 import signUp from "./routes/auth/routeSignUp";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
+import dataForProfile from "./routes/profile/dataForProfile";
 import corsMiddleware from "./middleware/cors.middleware";
 import createMapMain from "./routes/event/createMapMain";
 import routerEventInfo from './routes/event/eventInfo';
@@ -26,6 +27,7 @@ app.use(`/`, signUp);
 app.use(`/`, auth);
 app.use(`/`, createEvent);
 app.use(`/`, createMapMain);
+app.use(`/`, dataForProfile);
 app.use('/', routerEventInfo);
 app.use('/', userInfo);
 

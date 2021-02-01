@@ -7,7 +7,8 @@ import MainPage from './MainPage/MainPage';
 import EventPage from './EventPage/EventPage';
 import EventInfo from './EventInfo/EventInfo';
 import GamePage from './GamePage/GamePage';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Profile from "./Profile/Profile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <EventInfo />
             </Route>
           </Switch>
+          <Route path="/profile" component={ Profile } />
           <Route path="/initiatives" component={ Initiatives } />
           <Route path="/game" component={ GamePage } />
         </div>
