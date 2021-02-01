@@ -10,6 +10,7 @@ import { observer, inject } from "mobx-react";
 
 //id пользователя
 const id ="6015781f16f2051ff6a5e36a";
+
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
@@ -18,7 +19,7 @@ const EventsList = inject( "store" ) (observer( ({store}) => {
 const [filteredCards, setFilteredCards] = useState([]);
 
 useEffect(() => {
-  evetnsProfile().then(( data ) => {
+  evetnsProfile(id).then(( data ) => {
       const itemList = createCards(data);
       setFilteredCards(itemList)
   })
@@ -50,7 +51,7 @@ const pastEvent = () => {
 
 const userEvent = () => {
 
-  evetnsProfile().then(( data ) => {
+  evetnsProfile(id).then(( data ) => {
       const itemList = createCards(data);
       setFilteredCards(itemList)
   })
