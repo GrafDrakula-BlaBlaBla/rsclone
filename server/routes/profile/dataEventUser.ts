@@ -10,7 +10,7 @@ router.post("/data-event-profile", async (req, res) => {
     const {
             idUser,
           } = await req.body
-    const events = await Event.find({$or : [ {user: idUser }, { members:  {$in : [ idUser ]}}] })
+    const events = await Event.find({$or : [ {user: idUser }, { members:  {$in : [ idUser ]}}] }).sort( {startDate : -1} )
 
     return res.json( [events] );
 
