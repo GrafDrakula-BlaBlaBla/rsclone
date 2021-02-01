@@ -38,9 +38,9 @@ class Game {
     this.app.renderer.resize(parent.clientWidth, parent.clientHeight);
   }
 
-  sceneSwitcher(sceneName) {
+  sceneSwitcher(sceneName, props) {
     this.app.stage.removeChildren();
-    this.currentScene = new this.scenes[sceneName]();
+    this.currentScene = new this.scenes[sceneName](props && props);
     this.currentScene.start();
   }
 }

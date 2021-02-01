@@ -7,9 +7,9 @@ import containersList from '../containersList.json';
 import itemsList from '../itemsList.json';
 
 export default class LevelOne extends PIXI.Container {
-  constructor() {
+  constructor(items) {
     super();
-
+    this.items = items;
     this.game = global.game;
     this.app = this.game.app;
     this.score = 0;
@@ -70,7 +70,7 @@ export default class LevelOne extends PIXI.Container {
       this.addChild(this.containers[key]);
     }
 
-    for (let i = 0; i <= 2; i++) {
+    for (let i = 1; i <= this.items; i++) {
       for (const key in itemsList) {
         const item = new TrashItem(itemsList[key].image);
         item.scale.set(itemsList[key].scale + 0.01);
