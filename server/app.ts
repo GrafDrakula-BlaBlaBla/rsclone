@@ -1,10 +1,10 @@
-// const createError = require("http-errors"); // содержит коды ошиьок с их описанием
+// const createError = require("http-errors"); errors code
 import * as express from "express";
 import * as mongoose from "mongoose";
 import * as config from "config";
-import * as logger from "morgan"; // логирование всех действий
+import * as logger from "morgan";
 
-import signup from "./routes/auth/routeSignup";
+import signUp from "./routes/auth/routeSignUp";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import dataForProfile from "./routes/profile/dataForProfile";
@@ -15,8 +15,10 @@ import routerEventInfo from './routes/event/eventInfo';
 import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
+import userInfo from './routes/userInfo';
 
-const PORT = config.get("serverPort");
+
+const PORT: Number = config.get("serverPort");
 
 // * Создание сервера
 const app = express();
@@ -25,20 +27,22 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(`/`, signup); // папка с файлами роутинга
-app.use(`/`, auth); // папка с файлами роутинга
-app.use(`/`, createEvent); // папка с файлами роутинга
-app.use(`/`, createMapMain); // папка с файлами роутинга
-app.use(`/`, dataForProfile); // папка с файлами роутинга
+// routing folders
+app.use(`/`, signUp);
+app.use(`/`, auth);
+app.use(`/`, createEvent);
+app.use(`/`, createMapMain);
+app.use(`/`, dataForProfile);
 app.use('/', routerEventInfo);
 app.use('/', dataEventUser);
 app.use('/', dataAboutNowEvents);
 app.use('/', dataAboutPastEvents);
 app.use('/', dataAboutFeatureEvents);
+app.use('/', userInfo);
 
-const start = async () => {
+const start = async (): Promise<void> => {
+
   try {
-    // * подключение к БД
     await mongoose.connect(config.get("urlDB"));
 
     app.listen(PORT, () => {

@@ -10,9 +10,9 @@ const Profile = inject( "store" ) (observer( ({store}) => {
 
 useEffect(() => {
 
-store.User.getValue();
+  store.User.getValue();
 
-      }, [])
+}, [store.User])
 
 
   return (

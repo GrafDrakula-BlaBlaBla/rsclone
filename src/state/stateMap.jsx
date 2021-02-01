@@ -1,8 +1,8 @@
+import React from "react";
 import { makeAutoObservable } from "mobx";
-import dataMarker from './../actions/dataForMarkers';
 import L from 'leaflet';
 import { Marker, Tooltip } from 'react-leaflet';
-import React from "react";
+import axios from 'axios';
 
 class stateMap {
   constructor() {
@@ -11,8 +11,9 @@ class stateMap {
   }
 
   createMarkerTooltip() {
-    dataMarker().then((data) => {
+    axios.post('http://localhost:8000/create-map-main', {}).then((data) => {
       const now = new Date();
+      const events = data.data;
 
       function addZero(number) {
         if (number < 10) {
@@ -21,11 +22,11 @@ class stateMap {
         return number;
       }
 
-      const createMarker = data.map((oneEvent) => {
+      const createMarker = events.map((oneEvent) => {
 
         let classNameMarker;
-        const dateOneStart = oneEvent['start'].hasOwnProperty('dateTime') ? new Date(oneEvent['start']['dateTime']) : new Date(oneEvent['start']['date']);
-        const dateOneEnd = oneEvent['end'].hasOwnProperty('dateTime') ? new Date(oneEvent['end']['dateTime']) : new Date(oneEvent['end']['date']);
+        const dateOneStart = new Date(oneEvent.startDate);
+        const dateOneEnd = new Date(oneEvent.endDate);
 
         if (dateOneStart < now && dateOneEnd < now) {
           classNameMarker = "color-red"
@@ -39,19 +40,20 @@ class stateMap {
         const nameMonth = ['января', 'февраля', 'марта', 'апреля', 'мая',
           'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
-        let stateDayStart = dateOneStart.getDate();
-        let stateMouthStart = dateOneStart.getMonth();
-        let stateYearStart = dateOneStart.getFullYear();
-        let stateHoursStart = dateOneStart.getHours();
-        let stateMinutesStart = dateOneStart.getMinutes();
+        const stateDayStart = dateOneStart.getDate();
+        const stateMouthStart = dateOneStart.getMonth();
+        const stateYearStart = dateOneStart.getFullYear();
+        const stateHoursStart = dateOneStart.getHours();
+        const stateMinutesStart = dateOneStart.getMinutes();
 
-        let stateDayEnd = dateOneEnd.getDate();
-        let stateMouthEnd = dateOneEnd.getMonth();
-        let stateYearEnd = dateOneEnd.getFullYear();
-        let stateHoursEnd = dateOneEnd.getHours();
-        let stateMinutesEnd = dateOneEnd.getMinutes();
-        let cord = [oneEvent.location.lat, oneEvent.location.lng];
-        let markerCustom = L.divIcon({
+        const stateDayEnd = dateOneEnd.getDate();
+        const stateMouthEnd = dateOneEnd.getMonth();
+        const stateYearEnd = dateOneEnd.getFullYear();
+        const stateHoursEnd = dateOneEnd.getHours();
+        const stateMinutesEnd = dateOneEnd.getMinutes();
+        const cord = [oneEvent.location.lat, oneEvent.location.lng];
+        
+        const markerCustom = L.divIcon({
           className: classNameMarker,
           shadowSize: [12, 12],
           iconSize: [18, 18]
@@ -59,8 +61,8 @@ class stateMap {
 
         return (
           <Marker position={cord} icon={markerCustom} key={oneEvent.id}>
-            <Tooltip key={"tooltip-" + oneEvent.id}>
-              <div className="popUpEvent-" key={"tooltip-div-" + oneEvent.id}>
+            <Tooltip>
+              <div className="popUpEvent-">
                 <h3>{oneEvent.summary}</h3>
                 <p> c {stateDayStart} {nameMonth[stateMouthStart]} {stateYearStart} {stateHoursStart}:{addZero(stateMinutesStart)}</p>
                 <p> до {stateDayEnd} {nameMonth[stateMouthEnd]} {stateYearEnd}  {stateHoursEnd}:{addZero(stateMinutesEnd)} </p>
@@ -70,6 +72,7 @@ class stateMap {
           </Marker>
         );
       });
+
       this.markers = createMarker;
     });
   }

@@ -59,7 +59,7 @@ class StateCalendar {
                   <img src={ user } alt="user-avatar"/><p>Имя</p>
                 </div>
                 <p>{item.sammary}</p>
-                <Link to={{ pathname: "/event", hash: item.id }}>{ this.linkAdd }</Link>
+                <Link to={{ pathname: "/eventInfo", hash: item.id }}>{ this.linkAdd }</Link>
               </li>
               );
           });

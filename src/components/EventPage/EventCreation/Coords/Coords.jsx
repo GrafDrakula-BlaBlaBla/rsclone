@@ -2,14 +2,14 @@ import React from "react";
 import { Observer } from "mobx-react";
 import { runInAction } from "mobx";
 
-import styles from ".././_EventCreation.module.scss";
+import styles from "../_EventCreation.module.scss";
 
 const Coords = ({ locationStore }) => {
 
   runInAction(() => {
     locationStore.coords.lat = locationStore.coords.lat ?? 53.902284 + Math.random()/100;
     locationStore.coords.lng = locationStore.coords.lng ?? 27.561831 + Math.random()/100;
-    });
+  });
 
   return (
     <Observer>
