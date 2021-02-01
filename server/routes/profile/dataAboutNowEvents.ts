@@ -5,13 +5,15 @@ import * as config from "config";
 const router = Router();
 
 
-router.post("/data-event-profile", async (req, res) => {
+router.post("/data-now-event", async (req, res) => {
   try {
     const {
             idUser,
           } = await req.body
-    const events = await Event.find({$or : [ {user: idUser }, { members:  {$in : [ idUser ]}}] }).sort( {startDate : -1} )
 
+    const now = new Date();
+
+    const events =  await Event.find({$and : [ { endDate: { $gte: now.toJSON() } }, { startDate:  { $lte: now.toJSON() } }] })
     return res.json( [events] );
 
   } catch (e) {

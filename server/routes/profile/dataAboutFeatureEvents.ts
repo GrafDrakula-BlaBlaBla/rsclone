@@ -5,12 +5,15 @@ import * as config from "config";
 const router = Router();
 
 
-router.post("/data-event-profile", async (req, res) => {
+router.post("/data-feature-event", async (req, res) => {
   try {
     const {
             idUser,
           } = await req.body
-    const events = await Event.find({$or : [ {user: idUser }, { members:  {$in : [ idUser ]}}] }).sort( {startDate : -1} )
+
+    const now = new Date();
+
+    const events = await Event.find({ startDate: { $gt: now.toJSON() } })
 
     return res.json( [events] );
 
