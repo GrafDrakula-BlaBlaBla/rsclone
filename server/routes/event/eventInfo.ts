@@ -5,13 +5,13 @@ const routerEventInfo = Router();
 
 routerEventInfo.post("/eventInfo", async (req, res) => {
   try {
-    const googleId = await req.body;
-    
+    const { googleId } = await req.body;
+
     const currentEvent = await Event.findOne({idEventCalendarGoogle: googleId});
 
-    return res.json({currentEvent});
+    return res.json(currentEvent);
   } catch (e) {
-    res.send({ message: `SERVWR ERROR ${e}` });
+    res.send({ message: `Server ERROR ${e}` });
   }
 });
 
