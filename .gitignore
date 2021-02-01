@@ -29,4 +29,4 @@ yarn-error.log*
 #key Google
 
 .apiGoogleconfig.json
-/server/routes/event/key/
+/server/routes/event/key
