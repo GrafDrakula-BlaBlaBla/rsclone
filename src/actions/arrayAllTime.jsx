@@ -1,85 +1,96 @@
-import resultFetch from  './requestInCalendarGoogle.jsx';
+/* eslint-disable no-array-constructor */
+import resultFetch from "./requestInCalendarGoogle.jsx";
 
-export default function CreateCalendar () {
+export default function CreateCalendar() {
+  const arrayDataAllEvents = resultFetch().then((data) => {
+    const arrayWithData = [];
 
-const arrayDataAllEvents = resultFetch().then((data) => {
+    data.map((item) => createDataItem(item));
+    function createDataItem(dateOne) {
+      let dateOneStart = dateOne["start"].hasOwnProperty("dateTime")
+        ? new Date(dateOne["start"]["dateTime"])
+        : new Date(dateOne["start"]["date"]);
+      let dateOneEnd = dateOne["end"].hasOwnProperty("dateTime")
+        ? new Date(dateOne["end"]["dateTime"])
+        : new Date(dateOne["end"]["date"]);
 
-  const arrayWithData = []
+      let sammary = dateOne["summary"];
+      let description = dateOne["description"];
+      let location = dateOne["location"];
+      let id = dateOne["id"];
 
-  data.map((item) => createDataItem(item));
-  function createDataItem(dateOne) {
+      //Начало
+      let start = dateOneStart.getDate();
+      let startHours = dateOneStart.getHours();
+      let startMinutes = dateOneStart.getMinutes();
+      let startMonth = dateOneStart.getMonth();
+      let startYear = dateOneStart.getFullYear();
+      //Окончание
+      let end = dateOneEnd.getDate();
+      let endHours = dateOneEnd.getHours();
+      let endMinutes = dateOneEnd.getMinutes();
+      let endMonth = dateOneEnd.getMonth();
+      let endYear = dateOneEnd.getFullYear();
 
-    let dateOneStart =  dateOne['start'].hasOwnProperty('dateTime') ? new Date(dateOne['start']['dateTime']) : new Date(dateOne['start']['date']);
-    let dateOneEnd =  dateOne['end'].hasOwnProperty('dateTime') ? new Date(dateOne['end']['dateTime']) : new Date(dateOne['end']['date']);
+      let dataLoop = {
+        start: start,
+        startHours: startHours,
+        startMinutes: startMinutes,
+        startMonth: startMonth,
+        startYear: startYear,
+        end: end,
+        endHours: endHours,
+        endMinutes: endMinutes,
+        endMonth: endMonth,
+        endYear: endYear,
+        sammary: sammary,
+        description: description,
+        location: location,
+        id: id,
+      };
 
-    let sammary = dateOne['summary'];
-    let description = dateOne['description'];
-    let location = dateOne['location'];
-    let id = dateOne['id'];
-
-
-    //Начало
-    let start = dateOneStart.getDate();
-    let startHours = dateOneStart.getHours();
-    let startMinutes = dateOneStart.getMinutes();
-    let startMonth = dateOneStart.getMonth();
-    let startYear = dateOneStart.getFullYear();
-    //Окончание
-    let end = dateOneEnd.getDate();
-    let endHours = dateOneEnd.getHours();
-    let endMinutes = dateOneEnd.getMinutes();
-    let endMonth = dateOneEnd.getMonth();
-    let endYear = dateOneEnd.getFullYear();
-
-    let dataLoop = {
-      start: start,
-      startHours: startHours,
-      startMinutes: startMinutes,
-      startMonth: startMonth,
-      startYear: startYear,
-      end: end,
-      endHours: endHours,
-      endMinutes: endMinutes,
-      endMonth: endMonth,
-      endYear: endYear,
-      sammary: sammary,
-      description: description,
-      location: location,
-      id: id,
-    }
-
-    for (var d = dateOneStart; d <= dateOneEnd; d.setDate(d.getDate() + 1)) {
-
-      if (!arrayWithData.hasOwnProperty(d.getFullYear())) {
-
+      for (var d = dateOneStart; d <= dateOneEnd; d.setDate(d.getDate() + 1)) {
+        if (!arrayWithData.hasOwnProperty(d.getFullYear())) {
           arrayWithData[d.getFullYear()] = new Array();
           arrayWithData[d.getFullYear()][d.getMonth()] = new Array();
-          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()] = [dataLoop];
-
-      }else if(arrayWithData.hasOwnProperty(d.getFullYear()) &&
-            !arrayWithData[d.getFullYear()].hasOwnProperty(d.getMonth())){
-
-            arrayWithData[d.getFullYear()].push([d.getMonth()]);
-            arrayWithData[d.getFullYear()][d.getMonth()] = new Array();
-            arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()] = [dataLoop];
-
-        } else if(arrayWithData.hasOwnProperty(d.getFullYear()) &&
-        arrayWithData[d.getFullYear()].hasOwnProperty(d.getMonth()) &&
-      !arrayWithData[d.getFullYear()][d.getMonth()].hasOwnProperty(d.getDate())){
-
-          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()] = [dataLoop];
-      }else if(arrayWithData.hasOwnProperty(d.getFullYear()) &&
-      arrayWithData[d.getFullYear()].hasOwnProperty(d.getMonth()) &&
-      arrayWithData[d.getFullYear()][d.getMonth()].hasOwnProperty(d.getDate())){
-
-          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()].push(dataLoop);
+          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()] = [
+            dataLoop,
+          ];
+        } else if (
+          arrayWithData.hasOwnProperty(d.getFullYear()) &&
+          !arrayWithData[d.getFullYear()].hasOwnProperty(d.getMonth())
+        ) {
+          arrayWithData[d.getFullYear()].push([d.getMonth()]);
+          arrayWithData[d.getFullYear()][d.getMonth()] = new Array();
+          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()] = [
+            dataLoop,
+          ];
+        } else if (
+          arrayWithData.hasOwnProperty(d.getFullYear()) &&
+          arrayWithData[d.getFullYear()].hasOwnProperty(d.getMonth()) &&
+          !arrayWithData[d.getFullYear()][d.getMonth()].hasOwnProperty(
+            d.getDate(),
+          )
+        ) {
+          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()] = [
+            dataLoop,
+          ];
+        } else if (
+          arrayWithData.hasOwnProperty(d.getFullYear()) &&
+          arrayWithData[d.getFullYear()].hasOwnProperty(d.getMonth()) &&
+          arrayWithData[d.getFullYear()][d.getMonth()].hasOwnProperty(
+            d.getDate(),
+          )
+        ) {
+          arrayWithData[d.getFullYear()][d.getMonth()][d.getDate()].push(
+            dataLoop,
+          );
         }
+      }
     }
-  }
 
     return arrayWithData;
+  });
 
-})
-
-return arrayDataAllEvents;
+  return arrayDataAllEvents;
 }

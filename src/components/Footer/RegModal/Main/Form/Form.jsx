@@ -3,13 +3,13 @@ import { inject } from "mobx-react";
 
 import Input from "../../Input/Input";
 
-import "./_Form.scss";
+import "./_Form.module.scss";
 
 const Form = inject("store")(({ store }) => {
   return (
-    <div className="reg-modal__folders">
+    <form className="reg-modal__folders">
       <Input user={store.Registration} />
-    </div>
+    </form>
   );
 });
 

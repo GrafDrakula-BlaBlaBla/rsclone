@@ -7,6 +7,7 @@ export default function SelectCity({ locationStore, region }) {
   const input = useRef(null);
   const cityListRef = useRef(null);
   const [inputState, setInputState] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [cities, setCities] = useState(region.cities);
   const [selectedCity, setSelectedCity] = useState("Минск");
 
