@@ -8,7 +8,6 @@ import { observer, inject } from "mobx-react";
 
 const Profile = inject( "store" ) (observer( ({store}) => {
 
-const [nameUser, chageName] = setState([]);
 
 useEffect(() => {
 
