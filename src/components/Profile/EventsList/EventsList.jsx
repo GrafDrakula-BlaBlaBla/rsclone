@@ -67,7 +67,7 @@ function createCards(data, id) {
     let type = (id === item['user']) ? "инициатива" : "мероприятие";
     let startDate = new Date(item['startDate']);
     let endDate = new Date(item['endDate']);
-console.log(item);
+
     let oneEvent = {
         title: item['eventTitle'],
         type: type,
