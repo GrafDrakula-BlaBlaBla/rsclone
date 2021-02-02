@@ -33,12 +33,14 @@ router.post(
       }
 
       const hashPassword = await bcrypt.hash(password, 5);
-
-      const user = new User({ email, password: hashPassword });
+      const now = new Date();
+      
+      const user = new User({ email, password: hashPassword, avatar: "user.svg", dataRegistartion: now, range: 0 });
 
       await user.save();
 
       return res.json({ message: `User was created` });
+      
     } catch (e) {
       res.send({ message: `SERVER ERROR ${e}` });
     }

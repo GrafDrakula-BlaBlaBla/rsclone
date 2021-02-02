@@ -1,6 +1,7 @@
 import { Router } from "express";
 import Event from "../../models/Event";
 import * as config from "config";
+import * as jwt from "jsonwebtoken";
 
 const router = Router();
 
@@ -10,7 +11,10 @@ router.post("/data-event-profile", async (req, res) => {
     const {
             idUser,
           } = await req.body
-    const events = await Event.find({$or : [ {user: idUser }, { members:  {$in : [ idUser ]}}] }).sort( {startDate : -1} )
+
+    const decoded = jwt.decode(idUser);
+
+    const events = await Event.find({$or : [ {user: decoded['id'] }, { members:  {$in : [ decoded['id'] ]}}] }).sort( {startDate : -1} )
 
     return res.json( [events] );
 

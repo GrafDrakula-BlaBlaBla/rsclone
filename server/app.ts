@@ -4,7 +4,7 @@ import * as mongoose from "mongoose";
 import * as config from "config";
 import * as logger from "morgan";
 
-import signUp from "./routes/auth/routeSignUp";
+import signUp from "./routes/auth/routeSignup";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import dataForProfile from "./routes/profile/dataForProfile";

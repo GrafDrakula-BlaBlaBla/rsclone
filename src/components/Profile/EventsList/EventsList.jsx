@@ -9,7 +9,7 @@ import  dataAboutPastEvents from '../../../actions/dataAboutPastEvents';
 import { observer, inject } from "mobx-react";
 
 //id пользователя
-const id ="6015781f16f2051ff6a5e36a";
+
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
@@ -17,17 +17,21 @@ const EventsList = inject( "store" ) (observer( ({store}) => {
 
 const [filteredCards, setFilteredCards] = useState([]);
 
+const id = store.User.idUser();
+
 useEffect(() => {
-  evetnsProfile().then(( data ) => {
-      const itemList = createCards(data);
+
+  evetnsProfile( id ).then(( data ) => {
+      const itemList = createCards(data, store.User.decodeId());
       setFilteredCards(itemList)
   })
+
 }, [])
 
 const nowEvent = () => {
 
   dataNowEvents().then(( data ) => {
-      const itemList = createCards(data);
+      const itemList = createCards(data, store.User.decodeId());
       setFilteredCards(itemList)
   })
 }
@@ -35,7 +39,7 @@ const nowEvent = () => {
 const featureEvent = () => {
 
   dataAboutFeatureEvents().then(( data ) => {
-      const itemList = createCards(data);
+      const itemList = createCards(data,  store.User.decodeId());
       setFilteredCards(itemList)
   })
 }
@@ -43,21 +47,21 @@ const featureEvent = () => {
 const pastEvent = () => {
 
   dataAboutPastEvents().then(( data ) => {
-      const itemList = createCards(data);
+      const itemList = createCards(data,  store.User.decodeId());
       setFilteredCards(itemList)
   })
 }
 
 const userEvent = () => {
+  evetnsProfile( id ).then(( data ) => {
 
-  evetnsProfile().then(( data ) => {
-      const itemList = createCards(data);
+      const itemList = createCards(data,  store.User.decodeId());
       setFilteredCards(itemList)
   })
 }
 
 
-function createCards(data) {
+function createCards(data, id) {
 
   const result = data[0].map( ( item, index ) =>{
     let type = (id === item['user']) ? "инициатива" : "мероприятие";

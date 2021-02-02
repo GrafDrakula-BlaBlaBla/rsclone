@@ -112,10 +112,12 @@ export default class Event {
 
     const rules = {
       eventTitle: 'required',
-      startDate: 'numeric|valueTime',
+      startDate: 'numeric',
       endDate:'numeric',
       goal: 'required|string',
       description: 'required|string',
+      startDate: 'valueTime',
+
     };
 
     const changeValue =  ( ) => {
@@ -162,23 +164,23 @@ export default class Event {
       this.warningEventEndDate = validation.errors.first('endDate');
       this.warningEventGoal = validation.errors.first('goal');
       this.warningEventDescription = validation.errors.first('description');
-    }
+    }else{
+      console.log("pass");
+      axios.post('http://localhost:8000/create', {
+        event
+      })
+      .then(function (response) {
+        console.log("hello");
+        if(response.status === 200){
+          changeValue();
+          changeValueFalse();
+          console.log("200");
+        }
+        console.log(response);
+      })
+      .catch(function (error) {
 
-    if (validation.passes()) {
-    axios.post('http://localhost:8000/create', {
-      event
-    })
-    .then(function (response) {
-      if(response.status === 200){
-        changeValue();
-        changeValueFalse();
-      }
-    })
-    .catch(function (error) {
-
-    })
-    .then(function () {
-    });
+      })
     }
   };
 }
