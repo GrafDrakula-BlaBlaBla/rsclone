@@ -1,68 +1,81 @@
-import React, {useEffect} from 'react';
-import OneDay from  './OneDay.jsx';
-import { observer } from "mobx-react-lite";
-import stateCalendar from '../../state/StateCalendarOneDay.jsx'
-import stateCalendarMonth from '../../state/StateCalendarMonth.jsx'
-import './_Calendar.scss';
+import React, { useState, useEffect } from 'react';
+import MonthSection from './MonthSection/MonthSection'
+import DaySection from  './DaySection/DaySection.jsx';
+import styles from './_Calendar.module.scss';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
-import arrowLeft from '../../modules/assets/green-array-left.svg';
-import arrowRight from '../../modules/assets/green-array-right.svg';
+import arrayDataAllEvents from '../../actions/arrayAllTime.jsx';
 
-const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
-'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-
-
-const Calendar = observer(() => {
-
-  function arrowLeftCalendar() {
-    stateCalendar.changeBlockOneDay();
-    stateCalendarMonth.arrowLeftCalendarState();
-  }
-
-  function arrowRightCalendar() {
-    stateCalendar.changeBlockOneDay();
-    stateCalendarMonth.arrowRightCalendarState();
-  }
-
+export default function Calendar() {
+  const [allEvents, setAllEvents] = useState(null);
+  const [selectedYear, setSelectedYear] = useState();
+  const [selectedMonth, setSelectedMonth] = useState();
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [monthEvents, setMonthEvents] = useState([]);
+  const [dayEvents, setDayEvents] = useState([]);
+  
   useEffect(() => {
-    stateCalendarMonth.createOneMounth();
+    const date = new Date();
+    setSelectedYear(date.getFullYear());
+    setSelectedMonth(date.getMonth());
+    setSelectedDay(date.getDate());
+    arrayDataAllEvents().then((data) => {
+      setAllEvents(data);
+    });
   }, []);
 
-  function clickCalendar( clickCalendarEvent ) {
-    if(clickCalendarEvent.target.classList.contains("namber-day")){
-      stateCalendarMonth.nowDay = clickCalendarEvent.target.textContent;
-      stateCalendar.changeBlockOneDay(clickCalendarEvent.target.textContent)
+  useEffect(() => {
+    if(allEvents) {
+      if(allEvents[selectedYear] && allEvents[selectedYear][selectedMonth]) {
+        setMonthEvents(allEvents[selectedYear][selectedMonth]);
+        if(allEvents[selectedYear][selectedMonth][selectedDay + 1]) {
+          setDayEvents(allEvents[selectedYear][selectedMonth][selectedDay + 1]);
+        } else {
+          setDayEvents([]);
+        }
+      } else {
+        setMonthEvents([]);
+        setDayEvents([]);
+      }
     }
+  }, [allEvents, selectedYear, selectedMonth, selectedDay]);
+
+  function switchMonth(num) {
+    if (num > 0) {
+      if (selectedMonth === 11) {
+        setSelectedYear(selectedYear + 1);
+        setSelectedMonth(0);
+      } else {
+        setSelectedMonth(selectedMonth + 1);
+      }
+    } else if (num < 0) {
+      if (selectedMonth === 0) {
+        setSelectedYear(selectedYear - 1);
+        setSelectedMonth(11);
+      } else {
+        setSelectedMonth(selectedMonth - 1);
+      }
+    }
+    setSelectedDay(1);
   }
 
   return(
     <SectionWrapper>
-      <div className="calendar" >
-        <div className="wrapper-calendar-mounth">
-          <div className="head-calendar">
-            <div className="button-click-calendar" onClick={ arrowLeftCalendar }>
-              <img src={ arrowLeft } alt="arrow-left"/>
-            </div>
-            { nameMonth[stateCalendarMonth.stateMouth] } { stateCalendarMonth.stateYear }
-            <div className="button-click-calendar" onClick={ arrowRightCalendar }>
-              <img src={ arrowRight } alt="arrow-right"/>
-            </div>
-          </div>
-          <div className="wrapper-day-for-week">{stateCalendarMonth.createDayOfWeek()}</div>
-          <div className="wrapper-day-calendar" onClick={ clickCalendar } >
-            { stateCalendarMonth.gridOneMount }
-          </div>
-        </div>
-
-        <OneDay
-          mouth={ stateCalendarMonth.stateMouth }
-          day={ stateCalendarMonth.nowDay }
-          year={ stateCalendarMonth.stateYear }
-          status={ stateCalendar.status }
+      <div className={ styles.calendar } >
+        <MonthSection
+          selectedYear={ selectedYear }
+          selectedMonth={ selectedMonth }
+          setSelectedDay={ setSelectedDay }
+          monthEvents={ monthEvents }
+          switchMonth={ switchMonth }
+          selectedDay={ selectedDay }
+        />
+        <DaySection
+          dayEvents={ dayEvents }
+          selectedYear={ selectedYear }
+          selectedMonth={ selectedMonth }
+          selectedDay={ selectedDay }
         />
       </div>
     </SectionWrapper>
   );
-})
-
-export default Calendar;
+}
