@@ -15,13 +15,9 @@ import routerEventInfo from "./routes/event/eventInfo";
 import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
-<<<<<<< HEAD
 import userInfo from "./routes/userInfo";
 import completionEvent from "./routes/event/completionEvent";
-=======
-import userInfo from './routes/userInfo';
 import editProfile from "./routes/profile/editProfile";
->>>>>>> 40cae8c7d3185b29765c50b6637b6227b4d120ef
 
 const PORT: Number = config.get("serverPort");
 
@@ -38,23 +34,14 @@ app.use(`/`, auth);
 app.use(`/`, createEvent);
 app.use(`/`, createMapMain);
 app.use(`/`, dataForProfile);
-<<<<<<< HEAD
 app.use("/", routerEventInfo);
 app.use("/", dataEventUser);
 app.use("/", dataAboutNowEvents);
 app.use("/", dataAboutPastEvents);
 app.use("/", dataAboutFeatureEvents);
 app.use("/", userInfo);
+app.use("/", editProfile);
 app.use("/", completionEvent);
-=======
-app.use('/', routerEventInfo);
-app.use('/', dataEventUser);
-app.use('/', dataAboutNowEvents);
-app.use('/', dataAboutPastEvents);
-app.use('/', dataAboutFeatureEvents);
-app.use('/', userInfo);
-app.use('/', editProfile);
->>>>>>> 40cae8c7d3185b29765c50b6637b6227b4d120ef
 
 const start = async (): Promise<void> => {
   try {
