@@ -21,6 +21,7 @@ export default class User {
   id ="";
   eventsHistory = "";
   eventsList = "";
+  statusApp = this.statusUser();
 
 
   constructor() {
@@ -41,7 +42,23 @@ export default class User {
         getValue: action,
         idUser: action,
         decodeId: action,
+        statusUser: action,
+        statusApp: observable,
         })
+      }
+
+    statusUser () {
+
+      const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+      const now = new Date().getTime();
+      if(localStorage.getItem('ecologyBY') === null){
+        return true;
+        } else if (now > idToken.timestamp + 3600000){
+           localStorage.removeItem('ecologyBY');
+            return true;
+         }else{
+           return false;
+         }
       }
 
     idUser () {
