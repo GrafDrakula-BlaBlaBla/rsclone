@@ -82,7 +82,7 @@ export default class User {
      this.dataRegistartion =  date.getDate() + " "+ nameMonth[date.getMonth()] + " " + date.getFullYear();
      this.avatar = data[0].avatar;
      this.oxygen = data[0].range;
-     this.range = data[0].range < 1000 ? Math.ceil(data[0].range / 200) : 5 ;
+     this.range = data[0].range;
 
      evetnsProfile( this.idUser () ).then(( data ) => {
        if(this.gameDay !==  undefined){
