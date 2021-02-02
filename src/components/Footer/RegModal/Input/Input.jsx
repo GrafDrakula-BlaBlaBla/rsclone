@@ -6,8 +6,6 @@ const Input = observer(({ user }) => {
     email,
     password,
     userName,
-    isDirty,
-    isValid,
     inputs,
     getInputValue,
     validateForm,
@@ -28,12 +26,7 @@ const Input = observer(({ user }) => {
             }}
             // eslint-disable-next-line no-loop-func
             onBlur={(event) => {
-              validateForm(
-                input.type,
-                event.target,
-                event.target.value,
-                input.validations,
-              );
+              validateForm(input.type, event.target.value, input.validations);
               showError(input.type);
             }}
             value={

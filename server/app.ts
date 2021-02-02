@@ -4,19 +4,18 @@ import * as mongoose from "mongoose";
 import * as config from "config";
 import * as logger from "morgan";
 
-import signUp from "./routes/auth/routeSignUp";
+import signup from "./routes/auth/routeSignUp";
 import auth from "./routes/auth/routeAuth";
 import createEvent from "./routes/event/createEvent";
 import dataForProfile from "./routes/profile/dataForProfile";
 import dataEventUser from "./routes/profile/dataEventUser";
 import corsMiddleware from "./middleware/cors.middleware";
 import createMapMain from "./routes/event/createMapMain";
-import routerEventInfo from './routes/event/eventInfo';
+import routerEventInfo from "./routes/event/eventInfo";
 import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
-import userInfo from './routes/userInfo';
-
+import userInfo from "./routes/userInfo";
 
 const PORT: Number = config.get("serverPort");
 
@@ -28,20 +27,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routing folders
-app.use(`/`, signUp);
+app.use(`/`, signup);
 app.use(`/`, auth);
 app.use(`/`, createEvent);
 app.use(`/`, createMapMain);
 app.use(`/`, dataForProfile);
-app.use('/', routerEventInfo);
-app.use('/', dataEventUser);
-app.use('/', dataAboutNowEvents);
-app.use('/', dataAboutPastEvents);
-app.use('/', dataAboutFeatureEvents);
-app.use('/', userInfo);
+app.use("/", routerEventInfo);
+app.use("/", dataEventUser);
+app.use("/", dataAboutNowEvents);
+app.use("/", dataAboutPastEvents);
+app.use("/", dataAboutFeatureEvents);
+app.use("/", userInfo);
 
 const start = async (): Promise<void> => {
-
   try {
     await mongoose.connect(config.get("urlDB"));
 

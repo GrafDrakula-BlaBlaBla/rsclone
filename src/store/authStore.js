@@ -77,6 +77,7 @@ export default class Registration {
   };
 
   validateEmail = (type, value, listValidation) => {
+    debugger;
     if (!type === "email") {
       alert('Error email type is not "email"');
     }
@@ -86,15 +87,9 @@ export default class Registration {
 
     this.isValidEmail = re.test(value);
 
-    if (
-      value.length < maxLength &&
-      value.length > minLength &&
-      this.isValidEmail
-    ) {
-      this.isValid = true;
-    } else {
-      this.isValid = false;
-    }
+    value.length < maxLength && value.length > minLength && this.isValidEmail
+      ? (this.isValid = true)
+      : (this.isValid = false);
   };
 
   validatePassword = (type, value, listValidation) => {
@@ -145,7 +140,7 @@ export default class Registration {
           password,
         },
       );
-      
+
       // ЗАПИСАТЬ В LOCALSTORE
 
       console.log(response.data);
