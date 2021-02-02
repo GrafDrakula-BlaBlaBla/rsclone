@@ -16,6 +16,7 @@ import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 import userInfo from "./routes/userInfo";
+import completionEvent from "./routes/event/completionEvent";
 
 const PORT: Number = config.get("serverPort");
 
@@ -38,6 +39,7 @@ app.use("/", dataAboutNowEvents);
 app.use("/", dataAboutPastEvents);
 app.use("/", dataAboutFeatureEvents);
 app.use("/", userInfo);
+app.use("/", completionEvent);
 
 const start = async (): Promise<void> => {
   try {

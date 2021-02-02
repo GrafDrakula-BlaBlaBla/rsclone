@@ -55,6 +55,7 @@ export default class Registration {
       validateEmail: action,
       validatePassword: action,
       showError: action,
+      isError: action,
     });
   }
 
@@ -77,7 +78,6 @@ export default class Registration {
   };
 
   validateEmail = (type, value, listValidation) => {
-    debugger;
     if (!type === "email") {
       alert('Error email type is not "email"');
     }
@@ -98,9 +98,9 @@ export default class Registration {
     }
 
     const maxLength = listValidation.maxLength;
-    const minLength = listValidation.maxLength;
+    const minLength = listValidation.minLength;
 
-    if (value.length < maxLength && value.length > minLength) {
+    if (value.length <= maxLength && value.length >= minLength) {
       this.isValidPassword = true;
     } else {
       this.isValidPassword = false;
@@ -116,6 +116,26 @@ export default class Registration {
         : (this.userName = value);
     } catch (e) {
       alert("ERROR getInputValue method", e);
+    }
+  };
+
+  showError = (typeInput) => {
+    const span = document.querySelector(`.${typeInput}`);
+
+    if (typeInput === "email") {
+      this.isError(this.isValidEmail, span);
+    } else if (typeInput === "password") {
+      this.isError(this.isValidPassword, span);
+    }
+  };
+
+  isError = (status, span) => {
+    if (!status && span.classList.contains("hide")) {
+      span.classList.remove("hide");
+    }
+
+    if (status && !span.classList.contains("hide")) {
+      span.classList.add("hide");
     }
   };
 
@@ -142,22 +162,9 @@ export default class Registration {
       );
 
       // ЗАПИСАТЬ В LOCALSTORE
-
-      console.log(response.data);
       alert(response.data.status);
     } catch (e) {
       alert("ERROR authentication", e);
-    }
-  };
-
-  showError = (typeInput) => {
-    const span = document.querySelector(`.${typeInput}`);
-    if (!this.isValid && span.classList.contains("hide")) {
-      span.classList.remove("hide");
-    }
-
-    if (this.isValid && !span.classList.contains("hide")) {
-      span.classList.add("hide");
     }
   };
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./_Button.scss";
 
@@ -6,9 +7,11 @@ const Button = (props) => {
   const { onClick, className, label } = props;
 
   return (
-    <button onClick={onClick} className={className}>
-      {label}
-    </button>
+    <Link to="/profile">
+      <button className={className} onClick={onClick}>
+        {label}
+      </button>
+    </Link>
   );
 };
 

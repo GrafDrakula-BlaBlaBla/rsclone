@@ -1,7 +1,8 @@
 import { makeObservable, action, observable } from "mobx";
-import axios from 'axios';
-import * as Validator from 'validatorjs';
-import Store from './index';
+import axios from "axios";
+import * as Validator from "validatorjs";
+import Store from "./index";
+import result from "../actions/dataForMarkers";
 
 export default class Event {
   eventTitle = "";
@@ -42,6 +43,7 @@ export default class Event {
       getEventGoal: action,
       getEventDescription: action,
       createEvent: action,
+      getDataCompletionEvent: action,
     });
   }
 
@@ -111,13 +113,12 @@ export default class Event {
     };
 
     const rules = {
-      eventTitle: 'required',
-      startDate: 'numeric',
-      endDate:'numeric',
-      goal: 'required|string',
-      description: 'required|string',
-      startDate: 'valueTime',
-
+      eventTitle: "required",
+      startDate: "numeric",
+      endDate: "numeric",
+      goal: "required|string",
+      description: "required|string",
+      startDate: "valueTime",
     };
 
     const changeValue = () => {
@@ -141,9 +142,13 @@ export default class Event {
 
     const checkTime = () => {
       return event.startDate < event.endDate;
-    }
+    };
 
-    Validator.register('valueTime', checkTime, 'Укажите правильную последовательность начала и окончания мероприятия');
+    Validator.register(
+      "valueTime",
+      checkTime,
+      "Укажите правильную последовательность начала и окончания мероприятия",
+    );
 
     Validator.register(
       "valueTime",
@@ -153,39 +158,51 @@ export default class Event {
 
     let validation = new Validator(event, rules, {
       "required.eventTitle": "Оязательное поле",
-      "numeric.startDate" : "Выберите время и дату начала мероприятия",
-      "numeric.endDate" : "Выберите время и дату окончания мероприятия",
-      "required.goal" : "Обязательное поле",
-      "required.description" : "Обязательное поле",
-      "string.description" : "Опишите словами мероприятие",
-      "valueTime.startDate": 'Время начала мероприятия должно быть меньше окончания',
-      });
+      "numeric.startDate": "Выберите время и дату начала мероприятия",
+      "numeric.endDate": "Выберите время и дату окончания мероприятия",
+      "required.goal": "Обязательное поле",
+      "required.description": "Обязательное поле",
+      "string.description": "Опишите словами мероприятие",
+      "valueTime.startDate":
+        "Время начала мероприятия должно быть меньше окончания",
+    });
 
-
-
-    if(validation.fails()){
-      this.warningEventTitle = validation.errors.first('eventTitle');
-      this.warningEventStartDate = validation.errors.first('startDate');
-      this.warningEventEndDate = validation.errors.first('endDate');
-      this.warningEventGoal = validation.errors.first('goal');
-      this.warningEventDescription = validation.errors.first('description');
-    }else{
+    if (validation.fails()) {
+      this.warningEventTitle = validation.errors.first("eventTitle");
+      this.warningEventStartDate = validation.errors.first("startDate");
+      this.warningEventEndDate = validation.errors.first("endDate");
+      this.warningEventGoal = validation.errors.first("goal");
+      this.warningEventDescription = validation.errors.first("description");
+    } else {
       console.log("pass");
-      axios.post('http://localhost:8000/create', {
-        event
-      })
-      .then(function (response) {
-        console.log("hello");
-        if(response.status === 200){
-          changeValue();
-          changeValueFalse();
-          console.log("200");
-        }
-        console.log(response);
-      })
-      .catch(function (error) {
+      axios
+        .post("http://localhost:8000/create", {
+          event,
+        })
+        .then(function (response) {
+          console.log("hello");
+          if (response.status === 200) {
+            changeValue();
+            changeValueFalse();
+            console.log("200");
+          }
+          console.log(response);
+        })
+        .catch(function (error) {});
+    }
+  };
 
-      })
+  getDataCompletionEvent = (idEvent) => {
+    try {
+      const res = axios
+        .post(process.env.REACT_APP_SERVER + "eventCompletion", {
+          idEvent,
+        })
+        .then((response) => response);
+
+      console.log(result);
+    } catch (e) {
+      alert("GetDataCompletionEvent", e);
     }
   };
 }

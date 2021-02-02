@@ -17,8 +17,15 @@ const Input = observer(({ user }) => {
     for (const key in input) {
       return (
         <React.Fragment key={`${i}1`}>
-          <span className={`${input.type} hide`} data-type={`${input.type}`}>
-            {`Error message`}
+          <span
+            className={`${input.type} hide error`}
+            data-valid={`${input.type}`}
+          >
+            {input.type === "email"
+              ? `Email указан в невнрном формате`
+              : input.type === "password"
+              ? `Пароль должен состоять от 6 до 12 символов`
+              : `Unknown Error !`}
           </span>
           <input
             onChange={(event) => {
@@ -29,6 +36,7 @@ const Input = observer(({ user }) => {
               validateForm(input.type, event.target.value, input.validations);
               showError(input.type);
             }}
+            onFocus={() => (user.isDirty = false)}
             value={
               input.type === "email"
                 ? email
