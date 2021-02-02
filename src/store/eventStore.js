@@ -20,7 +20,6 @@ export default class Event {
   linkToPage = "";
 
   constructor() {
-
     makeObservable(this, {
       eventTitle: observable,
       time: observable,
