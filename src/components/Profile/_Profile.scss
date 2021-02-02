@@ -21,7 +21,20 @@
       .user-rate{
         text-align: center;
       }
+      .settings-pic{
+        align-self: self-end;
+        background: white;
+        border: none;
+        cursor: pointer;
 
+        img{
+            width: 25px;
+        }
+
+      }
+      .settings-pic:hover{
+        opacity: 0.5;
+      }
       .user-pic {
         width: 80px;
         height: 80px;
@@ -40,6 +53,9 @@
           margin-bottom: 20px;
           font-size: 1.2em;
           font-weight: 700;
+          input{
+            border: none;
+          }
         }
       }
     }

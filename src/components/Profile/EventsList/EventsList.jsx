@@ -67,9 +67,9 @@ function createCards(data, id) {
     let type = (id === item['user']) ? "инициатива" : "мероприятие";
     let startDate = new Date(item['startDate']);
     let endDate = new Date(item['endDate']);
-
+console.log(item);
     let oneEvent = {
-        title: item['description'],
+        title: item['eventTitle'],
         type: type,
         start: startDate.getDate() + " " +nameMonth[startDate.getMonth()]+ " " + startDate.getFullYear(),
         end:  endDate.getDate() + " " +nameMonth[endDate.getMonth()]+ " " + endDate.getFullYear(),
@@ -79,7 +79,7 @@ function createCards(data, id) {
 
   const itemList = result.map((value, id) => {
     return (<div className={ styles.card} key={id}>
-      <span className={ styles.card_title }>"{value.title}"</span>
+      <span className={ styles.card_title }>{value.title}</span>
       <span className={ styles.card_type }>Тип: {value.type}</span>
       <span >C {value.start}</span>
       <span >По {value.end}</span>
