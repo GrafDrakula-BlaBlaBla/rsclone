@@ -60,11 +60,16 @@
   flex-direction: column;
   justify-content: flex-start;
   background: white;
-  div {
-    background: #5c9f61;
-    font-size: 1rem;
-    color: white;
-    text-align: center;
+}
+
+.number_day {
+  background: #5c9f61;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+
+  &.active {
+    opacity: 0.5;
   }
 }
 

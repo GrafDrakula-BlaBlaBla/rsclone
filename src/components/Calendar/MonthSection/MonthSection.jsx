@@ -4,7 +4,7 @@ import styles from './_MonthSection.module.scss';
 import arrowLeft from '../../../modules/assets/green-array-left.svg';
 import arrowRight from '../../../modules/assets/green-array-right.svg';
 
-export default function MonthSection({ selectedYear, selectedMonth, setSelectedDay, monthEvents, switchMonth }) {
+export default function MonthSection({ selectedYear, selectedMonth, setSelectedDay, monthEvents, switchMonth, selectedDay }) {
   const [eventsGrid, setEventsGrid] = useState();
   const nameMonth = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май',
     'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
@@ -50,13 +50,16 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
     const result = createGridOneMont().map((elem, id) => {
       return(
         <div className={ styles.day } key={id}>
-          <div className={ styles.number_day } onClick={ () => setSelectedDay(elem + 1) }>{ elem } </div>
+          <div
+            className={ selectedDay === elem ? styles.number_day + ' ' + styles.active : styles.number_day}
+            onClick={ () => setSelectedDay(elem) }>{ elem }
+          </div>
           {createEventsElem(elem)}
         </div>
       );
     });
     setEventsGrid(result);
-  }, [monthEvents, selectedMonth, selectedYear, setSelectedDay]);
+  }, [monthEvents, selectedMonth, selectedYear, setSelectedDay, selectedDay]);
 
   return(
     <div className={ styles.wrapper }>
