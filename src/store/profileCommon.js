@@ -72,14 +72,15 @@ export default class User {
      this.range = data[0].range < 1000 ? Math.ceil(data[0].range / 200) : 5 ;
 
      evetnsProfile( this.idUser () ).then(( data ) => {
-
-       const userGame = {
-         eventTitle: 'Игру',
-         startDate: new Date(this.gameDay),
-         user: this.decodeId(),
+       if(this.gameDay !=  undefined){
+         const userGame = {
+           eventTitle: 'Игру',
+           startDate: new Date(this.gameDay),
+           user: this.decodeId(),
+         }
+         data[0].push(userGame);
        }
 
-       data[0].push(userGame);
        function sortByAge(arr) {
          arr.sort((a, b) => new Date(a.startDate) > new Date(b.startDate) ? 1 : -1);
        }
