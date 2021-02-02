@@ -48,7 +48,7 @@ export default function Markers({ event }) {
   });
 
   return (
-    <Marker position={cord} icon={markerCustom} key={event.id}>
+    <Marker position={cord} icon={markerCustom}>
       <Tooltip>
         <div>
           <h3>{event.summary}</h3>

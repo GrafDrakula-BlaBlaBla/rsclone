@@ -9,7 +9,6 @@ import dataAboutPastEvents from "../../../actions/dataAboutPastEvents";
 import { observer, inject } from "mobx-react";
 
 //id пользователя
-const id = "6015781f16f2051ff6a5e36a";
 
 const nameMonth = [
   "января",
@@ -28,54 +27,53 @@ const nameMonth = [
 
 const EventsList = inject("store")(
   observer(({ store }) => {
-    const { Event } = store;
-
     const [filteredCards, setFilteredCards] = useState([]);
+
+    const id = store.User.idUser();
 
     useEffect(() => {
       evetnsProfile(id).then((data) => {
-        const itemList = createCards(data);
+        const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
       });
     }, []);
 
     const nowEvent = () => {
       dataNowEvents().then((data) => {
-        const itemList = createCards(data);
+        const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
       });
     };
 
     const featureEvent = () => {
       dataAboutFeatureEvents().then((data) => {
-        const itemList = createCards(data);
+        const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
       });
     };
 
     const pastEvent = () => {
       dataAboutPastEvents().then((data) => {
-        const itemList = createCards(data);
+        const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
       });
     };
 
     const userEvent = () => {
       evetnsProfile(id).then((data) => {
-        const itemList = createCards(data);
+        const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
       });
     };
 
-    function createCards(data) {
+    function createCards(data, id) {
       const result = data[0].map((item, index) => {
         let type = id === item["user"] ? "инициатива" : "мероприятие";
         let startDate = new Date(item["startDate"]);
         let endDate = new Date(item["endDate"]);
 
         let oneEvent = {
-          idEvent: item["idEventCalendarGoogle"],
-          title: item["description"],
+          title: item["eventTitle"],
           type: type,
           start:
             startDate.getDate() +
@@ -95,20 +93,12 @@ const EventsList = inject("store")(
 
       const itemList = result.map((value, id) => {
         return (
-          <div
-            className={styles.card}
-            key={id}
-            data-idevent={`${value.idEvent}`}
-          >
-            <span className={styles.card_title}>"{value.title}"</span>
+          <div className={styles.card} key={id}>
+            <span className={styles.card_title}>{value.title}</span>
             <span className={styles.card_type}>Тип: {value.type}</span>
             <span>C {value.start}</span>
             <span>По {value.end}</span>
-            <Link
-              className={styles.more_btn + " green_btn"}
-              to="/eventCompletion"
-              onClick={() => Event.getDataCompletionEvent(value.idEvent)}
-            >
+            <Link className={styles.more_btn + " green_btn"} to="/event">
               Подробнее
             </Link>
           </div>
@@ -134,7 +124,6 @@ const EventsList = inject("store")(
             Мои
           </button>
         </div>
-        <div className={styles.cards_list}>{filteredCards}</div>
       </div>
     );
   }),

@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// получить из localstore
-// запрос на сервер за данными пользователя
-
 export default function returnEvents( idUser ) {
 
   const result = axios.post(process.env.REACT_APP_SERVER + 'data-event-profile', {

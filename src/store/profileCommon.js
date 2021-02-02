@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 import  profile from '../actions/profile';
 import  evetnsProfile from '../actions/EventsForProfile';
+import * as jwt from "jsonwebtoken";
 
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
@@ -17,13 +18,14 @@ export default class User {
   oxygen = "";
   eventsUser = "";
   gameDay = "";
-  id ="6015781f16f2051ff6a5e36a";
+  id ="";
   eventsHistory = "";
   eventsList = "";
-
+  statusApp = this.statusUser();
 
 
   constructor() {
+
       makeObservable(this,
       {
         name: observable,
@@ -32,46 +34,72 @@ export default class User {
         dataRegistartion: observable,
         location: observable,
         range: observable,
-        getValue: action,
         oxygen: observable,
         eventsUser: observable,
         gameDay:  observable,
         eventsHistory: observable,
         eventsList: observable,
-        events: action,
+        getValue: action,
+        idUser: action,
+        decodeId: action,
+        statusUser: action,
+        statusApp: observable,
         })
       }
 
-    events () {
+    statusUser () {
 
+      const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+      const now = new Date().getTime();
+      if(localStorage.getItem('ecologyBY') === null){
+        return true;
+        } else if (now > idToken.timestamp + 3600000){
+           localStorage.removeItem('ecologyBY');
+            return true;
+         }else{
+           this.getValue();
+           return false;
+         }
+      }
 
+    idUser () {
+      const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+        this.id = idToken.value;
+        return idToken.value;
+      }
+
+    decodeId(){
+      const decoded = jwt.decode(this.idUser());
+      return decoded['id'];
     }
 
    getValue () {
 
-     profile().then(( data ) => {
+     profile( this.idUser () ).then(( data ) => {
      this.gameDay = data[0].finishedGame;
      this.name = data[0].name;
      const date = new Date(data[0].dataRegistartion);
      this.dataRegistartion =  date.getDate() + " "+ nameMonth[date.getMonth()] + " " + date.getFullYear();
      this.avatar = data[0].avatar;
      this.oxygen = data[0].range;
-     this.range = data[0].range < 1000 ? Math.ceil(data[0].range / 200) : 5 ;
+     this.range = data[0].range;
 
-     evetnsProfile( this.id ).then(( data ) => {
-
-       const userGame = {
-         eventTitle: 'Игру',
-         startDate: new Date(this.gameDay),
-         user: this.id,
+     evetnsProfile( this.idUser () ).then(( data ) => {
+       if(this.gameDay !==  undefined){
+         const userGame = {
+           eventTitle: 'Игру',
+           startDate: new Date(this.gameDay),
+           user: this.decodeId(),
+         }
+         data[0].push(userGame);
        }
 
-       data[0].push(userGame);
        function sortByAge(arr) {
          arr.sort((a, b) => new Date(a.startDate) > new Date(b.startDate) ? 1 : -1);
        }
        sortByAge(data[0])
-       let idUser = this.id;
+
+       let idUser = this.decodeId();
 
        const itemList = createCards(data, idUser);
        this.eventsHistory = itemList;

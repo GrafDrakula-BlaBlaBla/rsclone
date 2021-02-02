@@ -9,7 +9,7 @@ const levels = [ 'Новичок', 'Любитель', 'Специалист', '
 export default function RatingLeaves({ rating }) {
   const [modalState, setModalState] = useState(false);
 
-  const currentRating = Math.round(rating / 2 / 10);
+  const currentRating = Math.round(rating / 2 / 100);
 
   return (
     <div className={ styles['rating-leaves-container'] }>

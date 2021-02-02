@@ -162,6 +162,13 @@ export default class Registration {
       );
 
       // ЗАПИСАТЬ В LOCALSTORE
+      const object = {
+        value: response.data.token,
+        timestamp: new Date().getTime(),
+      };
+      localStorage.setItem("ecologyBY", JSON.stringify(object));
+
+      // ЗАПИСАТЬ В LOCALSTORE
       alert(response.data.status);
     } catch (e) {
       alert("ERROR authentication", e);
