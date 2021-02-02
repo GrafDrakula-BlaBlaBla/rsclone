@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 import  profile from '../actions/profile';
 import  evetnsProfile from '../actions/EventsForProfile';
+import * as jwt from "jsonwebtoken";
 
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
@@ -17,13 +18,13 @@ export default class User {
   oxygen = "";
   eventsUser = "";
   gameDay = "";
-  id ="6015781f16f2051ff6a5e36a";
+  id ="";
   eventsHistory = "";
   eventsList = "";
 
 
-
   constructor() {
+
       makeObservable(this,
       {
         name: observable,
@@ -32,24 +33,36 @@ export default class User {
         dataRegistartion: observable,
         location: observable,
         range: observable,
-        getValue: action,
         oxygen: observable,
         eventsUser: observable,
         gameDay:  observable,
         eventsHistory: observable,
         eventsList: observable,
-        events: action,
+        getValue: action,
+        idUser: action,
+        decodeId: action,
         })
       }
 
-    events () {
+    idUser () {
+      const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+      const now = new Date().getTime() + 3600000;
+      // if(now > idToken.timestamp){
+        this.id = idToken.value;
+        return idToken.value;
+        // }else{
+        // localStorage.removeItem('ecologyBY');
+        // }
+      }
 
-
+    decodeId(){
+      const decoded = jwt.decode(this.idUser());
+      return decoded['id'];
     }
 
    getValue () {
 
-     profile().then(( data ) => {
+     profile( this.idUser () ).then(( data ) => {
      this.gameDay = data[0].finishedGame;
      this.name = data[0].name;
      const date = new Date(data[0].dataRegistartion);
@@ -58,12 +71,12 @@ export default class User {
      this.oxygen = data[0].range;
      this.range = data[0].range < 1000 ? Math.ceil(data[0].range / 200) : 5 ;
 
-     evetnsProfile( this.id ).then(( data ) => {
+     evetnsProfile( this.idUser () ).then(( data ) => {
 
        const userGame = {
          eventTitle: 'Игру',
          startDate: new Date(this.gameDay),
-         user: this.id,
+         user: this.decodeId(),
        }
 
        data[0].push(userGame);
@@ -71,7 +84,8 @@ export default class User {
          arr.sort((a, b) => new Date(a.startDate) > new Date(b.startDate) ? 1 : -1);
        }
        sortByAge(data[0])
-       let idUser = this.id;
+
+       let idUser = this.decodeId();
 
        const itemList = createCards(data, idUser);
        this.eventsHistory = itemList;

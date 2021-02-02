@@ -50,8 +50,10 @@ export default class Registration {
           password,
         },
       );
-      
+
       // ЗАПИСАТЬ В LOCALSTORE
+      const object = {value: response.data.token, timestamp: new Date().getTime()}
+      localStorage.setItem('ecologyBY', JSON.stringify(object));
 
       console.log(response.data);
       alert(response.data.status);

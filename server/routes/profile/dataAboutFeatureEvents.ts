@@ -7,9 +7,6 @@ const router = Router();
 
 router.post("/data-feature-event", async (req, res) => {
   try {
-    const {
-            idUser,
-          } = await req.body
 
     const now = new Date();
 
