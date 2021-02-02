@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 import axios from "axios";
 import { makeObservable, observable, action } from "mobx";
+import { resources } from "pixi.js";
 
 export default class Registration {
   email = "";
@@ -141,6 +142,7 @@ export default class Registration {
 
   signup = async (email, password) => {
     try {
+      debugger;
       const response = await axios.post(`http://localhost:8000/registration`, {
         email,
         password,
@@ -161,11 +163,13 @@ export default class Registration {
         },
       );
 
+      console.log(response);
+      const object = "test local store";
       // ЗАПИСАТЬ В LOCALSTORE
-      const object = {
-        value: response.data.token,
-        timestamp: new Date().getTime(),
-      };
+      // const object = {
+      //   value: response.data.token,
+      //   timestamp: new Date().getTime(),
+      // };
       localStorage.setItem("ecologyBY", JSON.stringify(object));
 
       // ЗАПИСАТЬ В LOCALSTORE
