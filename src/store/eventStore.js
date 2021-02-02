@@ -167,11 +167,12 @@ export default class Event {
       this.warningEventDescription = validation.errors.first('description');
     }else{
       console.log("pass");
+
       axios.post('http://localhost:8000/create', {
         event
       })
       .then(function (response) {
-        console.log("hello");
+
         if(response.status === 200){
           changeValue();
           changeValueFalse();

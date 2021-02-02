@@ -57,19 +57,15 @@ export default class User {
            localStorage.removeItem('ecologyBY');
             return true;
          }else{
+           this.getValue();
            return false;
          }
       }
 
     idUser () {
       const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
-      const now = new Date().getTime() + 3600000;
-      // if(now > idToken.timestamp){
         this.id = idToken.value;
         return idToken.value;
-        // }else{
-        // localStorage.removeItem('ecologyBY');
-        // }
       }
 
     decodeId(){
@@ -89,7 +85,7 @@ export default class User {
      this.range = data[0].range < 1000 ? Math.ceil(data[0].range / 200) : 5 ;
 
      evetnsProfile( this.idUser () ).then(( data ) => {
-       if(this.gameDay !=  undefined){
+       if(this.gameDay !==  undefined){
          const userGame = {
            eventTitle: 'Игру',
            startDate: new Date(this.gameDay),
