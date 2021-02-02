@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as jwt from "jsonwebtoken";
 
 export default function returnOneUser( idUser ) {
 
