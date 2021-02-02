@@ -36,7 +36,7 @@
   display: grid;
   background: rgb(255, 255, 255);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  padding: 5px 10px;
+  padding: 3px 10px;
   background: #5c9f61;
   color: white;
   text-align: center;
@@ -44,7 +44,7 @@
 
 .days_grid {
   background: rgb(255, 255, 255);
-  padding: 10px 10px;
+  padding: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 5px;

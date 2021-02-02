@@ -14,7 +14,6 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
 
   useEffect(() => {
     function createEventsElem(gridId) {
-      console.log(gridId)
       const eventsItems = [];
       if (monthEvents[gridId + 1]) {
         for (let i = 0; i < monthEvents[gridId + 1].length; i++) {

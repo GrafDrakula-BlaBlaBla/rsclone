@@ -52,8 +52,6 @@ export default function DaySection({ dayEvents, selectedYear, selectedMonth, sel
     return words[ (num%100>4 && num%100<20)? 2 : cases[(num%10<5)?num%10:5] ];
   }
 
-// stateCalendar.changeStateDayMounthYear(mouth.day, mouth.mouth, mouth.year, mouth.status);
-
   return(
     <div className={ styles.wrapper }>
       <div>
@@ -68,7 +66,10 @@ export default function DaySection({ dayEvents, selectedYear, selectedMonth, sel
           </ul>
         </div>
       </div>
-      <Link className={ styles.create_event_btn + " green_btn"} to={`/createEvent`} activeClassName="active" >Создать</Link>
+      <Link
+        className={ styles.create_event_btn + " green_btn"}
+        to={`/createEvent`}
+      >Создать</Link>
     </div>
   )
 }
