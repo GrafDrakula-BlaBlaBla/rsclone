@@ -93,7 +93,7 @@ routerEvent.post("/create", async (req, res) => {
 
     await event.save();
 
-    return await res.json();
+    return await res.json({ message: `no error` });
 
   } catch (e) {
     res.send({ message: `SERVWR ERROR ${e}` });
