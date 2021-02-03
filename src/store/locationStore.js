@@ -5,7 +5,7 @@ export default class Location {
   region = "Минская обл.";
   currentCity = "";
   cityList = [];
-  coords = {};
+  coords = { lat: 53.908665, lng: 27.570293 };
 
   constructor() {
     makeObservable(this, {
