@@ -46,7 +46,7 @@ export default function Markers({ event }) {
     shadowSize: [12, 12],
     iconSize: [18, 18]
   });
-console.log(event);
+
   return (
     <Marker position={cord} icon={markerCustom} className="marker-style">
       <Popup>

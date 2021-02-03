@@ -15,7 +15,11 @@ const Footer = inject( "store" ) (observer( ({store}) => {
               <button className={styles.ButtonIconUser}><img src={ image } className={styles.iconUser} alt="icon-user"/></button>
           </Link> :
           <RegModal /> }
-      <button className={styles.github_btn} />
+      <div sclassName={styles.ButtonLinkUser}>
+        <a href="https://github.com/GrafDrakula-BlaBlaBla"> <button className={styles.github_btn} /></a>
+        <a href="https://github.com/koverchik"> <button className={styles.github_btn} /> </a>
+        <a href="https://github.com/AlexLevw"><button className={styles.github_btn} /> </a>
+      </div>
     </div>
   );
 
