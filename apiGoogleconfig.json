@@ -1,6 +1,0 @@
-{
-  "clientId": "bosba9d@gmail.com",
-  "apiKey": "AIzaSyAZueJ1nQv4Nkvo3QLoNz5adnop-aP_MWA",
-  "scope": "https://www.googleapis.com/auth/calendar",
-  "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-}

@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8b774f86.chunk.css",
+    "main.js": "/static/js/main.950110c3.chunk.js",
+    "main.js.map": "/static/js/main.950110c3.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e5a3d27d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e5a3d27d.js.map",
+    "static/js/2.8d3859a6.chunk.js": "/static/js/2.8d3859a6.chunk.js",
+    "static/js/2.8d3859a6.chunk.js.map": "/static/js/2.8d3859a6.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.8b774f86.chunk.css.map": "/static/css/main.8b774f86.chunk.css.map",
+    "static/js/2.8d3859a6.chunk.js.LICENSE.txt": "/static/js/2.8d3859a6.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/background.302242f9.jpg",
+    "static/media/background.jpg": "/static/media/background.d11d98d1.jpg",
+    "static/media/_Header.module.scss": "/static/media/menu-burger.c573ef5c.svg",
+    "static/media/empty-leaf.f56c518b.svg": "/static/media/empty-leaf.f56c518b.svg",
+    "static/media/_RegModal.scss": "/static/media/enter.39472b7f.svg",
+    "static/media/_GameComponent.module.scss": "/static/media/full-screen-exit.af21decf.svg",
+    "static/media/_Footer.module.scss": "/static/media/github-logo.246e76ac.svg",
+    "static/media/glass-container.aaca826f.png": "/static/media/glass-container.aaca826f.png",
+    "static/media/green-array-left.6ce59bd2.svg": "/static/media/green-array-left.6ce59bd2.svg",
+    "static/media/green-array-right.cf071652.svg": "/static/media/green-array-right.cf071652.svg",
+    "static/media/leaf.ffee42ba.svg": "/static/media/leaf.ffee42ba.svg",
+    "static/media/paper-container.76d5a2d0.png": "/static/media/paper-container.76d5a2d0.png",
+    "static/media/plastic-container.a135bd56.png": "/static/media/plastic-container.a135bd56.png",
+    "static/media/play-button.126aea10.svg": "/static/media/play-button.126aea10.svg",
+    "static/media/user.6210975b.svg": "/static/media/user.6210975b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e5a3d27d.js",
+    "static/js/2.8d3859a6.chunk.js",
+    "static/css/main.8b774f86.chunk.css",
+    "static/js/main.950110c3.chunk.js"
+  ]
+}
