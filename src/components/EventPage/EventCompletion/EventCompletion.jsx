@@ -11,7 +11,7 @@ const EventCompletion = inject("store")(({ store }) => {
   useEffect(() => {
     const res = Event.getDataCompletionEvent(hash);
     console.log(res);
-  }, [hash]);
+  }, [Event, hash]);
 
   return (
     <div className={styles.container}>

@@ -6,6 +6,7 @@ const router = Router();
 router.post("/eventCompletion", async (req, res) => {
   try {
     const { idEvent } = await req.body;
+    console.log(idEvent)
 
     const event = await Event.findById(idEvent);
 
