@@ -1,14 +1,13 @@
 /* eslint-disable default-case */
 import axios from "axios";
 import { makeObservable, observable, action } from "mobx";
-import { resources } from "pixi.js";
 import Store from "./index";
 
 export default class Registration {
   email = "";
   userName = "";
   password = "";
-  //
+
   statusApp = this.statusUser();
   isDirty = false; // * покинул ли пользователь input
   isValid = false; //  true - error
@@ -160,8 +159,6 @@ export default class Registration {
       localStorage.setItem("ecologyBY", JSON.stringify(object));
       this.statusApp = this.statusUser();
       Store.User.getValue(response.data.token);
-
-      alert(response.data.message);
     } catch (e) {
       alert("ERROR registration", e);
     }
@@ -187,8 +184,6 @@ export default class Registration {
       localStorage.setItem("ecologyBY", JSON.stringify(object));
       this.statusApp = this.statusUser();
       Store.User.getValue(response.data.token);
-
-      alert(response.data.status);
     } catch (e) {
       alert("ERROR authentication", e);
     }

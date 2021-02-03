@@ -5,7 +5,6 @@ const routerEventInfo = Router();
 
 routerEventInfo.post("/eventInfo", async (req, res) => {
   try {
-    console.log(req)
     const { googleId } = await req.body;
 
     const currentEvent = await Event.findOne({idEventCalendarGoogle: googleId});

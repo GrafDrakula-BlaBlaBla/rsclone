@@ -10,40 +10,39 @@
   width: 100%;
   position: relative;
   font-family: 'Noto Sans JP', sans-serif;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   display: flex;
   justify-content: space-around;
   background: white;
   border-radius: 10px;
 
-  button{
-  background: white;
-  border: none;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 5px;
-  font-weight: 700;
-  cursor: pointer;
-  color: white;
-  font-size: 1.1em;
+  button {
+    background: white;
+    border: none;
+    border-radius: 5px;
+    margin: 6px;
+    padding: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    font-size: 1em;
   }
 
-  .redButton{
-      background: rgb(194, 83, 72);
+  .redButton {
+    background: rgb(194, 83, 72);
   }
-  .yellowButton{
+  .yellowButton {
     background: rgb(242, 205, 81);
   }
-  .greenButton{
+  .greenButton {
     background: rgb(92, 159, 97);
   }
-  .blueButton{
-  background:rgb( 2%, 53%, 68%);
+  .blueButton {
+    background: rgb(2%, 53%, 68%);
   }
-
 }
-button:hover{
-  color:rgba( 25%, 25%, 25%, 0.9);
+button:hover {
+  color: rgba(25%, 25%, 25%, 0.9);
 }
 .cards_list {
   width: 100%;
