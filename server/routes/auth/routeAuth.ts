@@ -22,8 +22,6 @@ router.post("/authentication", async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    console.log(user);
-
     const token = jwt.sign({ id: user.id }, config.get("jwtSecretKey"), {
       expiresIn: "1h",
     });
@@ -37,7 +35,6 @@ router.post("/authentication", async (req, res) => {
       },
     });
   } catch (e) {
-    console.log(e);
     res.send({ message: `Server error` });
   }
 });

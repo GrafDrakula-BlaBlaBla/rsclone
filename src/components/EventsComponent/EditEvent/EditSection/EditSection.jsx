@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import SectionWrapper from "../../../SectionWrapper/SectionWrapper";
 import styles from './_EditSection.module.scss';
-import SelectCity from "./SelectCity/SelectCity";
-import byCities from "../../../../modules/data/by-cities";
 import { Redirect } from 'react-router';
 
-export default function EditSection({ eventData }) {
+export default function EditSection({ eventData, eventHash }) {
   const titleInput = useRef();
   const startTimeInput = useRef();
   const startDateInput = useRef();
@@ -15,13 +13,20 @@ export default function EditSection({ eventData }) {
   const taskTextarea = useRef();
 
   const [location, setLocation] = useState({lng: null, lat: null});
+  const [status, setStatus] = useState('start');
+
+  const [title, setTitle] = useState(eventData.title);
+  const [startTime, setStartTime] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [goal, setGoal] = useState('');
+  const [task, setTaskT] = useState('');
 
   useEffect(() => {
     function addZero(number) {
       return number < 10 ? '0' + number : number;
     }
-
-    titleInput.current.value = eventData.title;
 
     const startDate = new Date(eventData.startDate);
     startTimeInput.current.value = `${startDate.getHours()}:${startDate.getMinutes()}`;
@@ -37,6 +42,13 @@ export default function EditSection({ eventData }) {
     taskTextarea.current.value = eventData.description;
   }, [eventData]);
 
+  function checkFolders() {
+    console.log()
+    if(false) {
+      setStatus('end');
+    }
+  }
+
   return (
     <SectionWrapper>
       <div className={ styles.container }>
@@ -44,12 +56,17 @@ export default function EditSection({ eventData }) {
           <div className={styles.name_top}>
             <p className={styles.title + " font_l"}>Название</p>
             <input
+              ref={ titleInput }
               type="text"
               placeholder="Введите название мероприятия"
-              ref={ titleInput }
+              onChange={(event) => {
+                setTitle(event.target.value)
+              }}
             />
           </div>
-          {/* <span className={styles.warning_event}>{ storeEvent.warningEventTitle }</span> */}
+          
+          {title.trim() === '' && <span className={styles.warning_event}>Оязательное поле</span>}
+          
           <p className={styles.name_description}>
             Название будет отображаться в списке всех мероприятий
           </p>
@@ -64,7 +81,7 @@ export default function EditSection({ eventData }) {
                 <input ref={ startDateInput } type="date" required />
               </div>
 
-              {/* <span className={styles['warning-event-time']}>{ storeEvent.warningEventStartDate }</span> */}
+              {/* {<span className={styles['warning-event-time']}>{ storeEvent.warningEventStartDate }</span>} */}
 
               <div className='wrapper-time'>
                 <label for="eventTime"> ПО </label>
@@ -78,14 +95,6 @@ export default function EditSection({ eventData }) {
         <div className={styles.main_place}>
         <p className={styles.title + " font_l"}>Где</p>
         <div className={styles.right_section}>
-          {/* <select ref={ regionInput }>
-            {byCities.regions.map((elem) => (
-              <option value={elem.name} key={elem.name}>
-                {elem.name}
-              </option>
-            ))}
-          </select> */}
-          {/* <SelectCity locationStore={locationStore} region={region} /> */}
           <div className={styles.coordinates}>
           <p>
             lon: <span>{ location.lng }</span>
@@ -132,16 +141,15 @@ export default function EditSection({ eventData }) {
         </div>
 
         <div className={styles.bottom}>
-          <button className={ styles.disabledCursor + " green_btn"} >
-            {/* <Observer>
-              { () => (
-                storeEvent.linkToPage ? <Redirect to = {{ pathname: "/initiatives" }} />  : ""
-              )}
-            </Observer> */}
+          <button
+            className="green_btn"
+            onClick={ checkFolders }
+          >
             Создать
           </button>
         </div>
       </div>
+      {status === 'end' && <Redirect to = {{ pathname: "/eventInfo", hash: eventHash }} />}
     </SectionWrapper>
   );
 }

@@ -7,18 +7,14 @@ const router = Router();
 
 router.post("/data-profile", async (req, res) => {
   try {
-    const {
-            idUser,
-          } = await req.body
+    const { idUser } = req.body;
 
     const decoded = jwt.decode(idUser);
 
-    const user = await User.find({_id: decoded['id']});
+    const user = await User.find({ _id: decoded["id"] });
 
     return res.json(user);
-
   } catch (e) {
-
     return res.json({ message: "Don't work server!" });
   }
 });

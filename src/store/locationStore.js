@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { action, makeObservable, observable } from "mobx";
 
 export default class Location {
@@ -5,7 +6,7 @@ export default class Location {
   currentCity = "";
   cityList = [];
   coords = {};
- 
+
   constructor() {
     makeObservable(this, {
       region: observable,
@@ -35,9 +36,8 @@ export default class Location {
   getCoordsCurrentArea = (arrayRegions, currentAreaName) => {
     arrayRegions.forEach((el) => {
       if (el.name === currentAreaName) {
-
-        this.coords.lat = el.lat + Math.random()/100;
-        this.coords.lng = el.lng + Math.random()/100;
+        this.coords.lat = el.lat + Math.random() / 100;
+        this.coords.lng = el.lng + Math.random() / 100;
       }
     });
   };

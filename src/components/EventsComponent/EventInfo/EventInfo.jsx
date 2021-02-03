@@ -38,6 +38,10 @@ export default function EventInfo() {
     });
   }, [eventHash]);
 
+  function addZero(number) {
+    return number < 10 ? '0' + number : number;
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.left_section}>
@@ -48,8 +52,8 @@ export default function EventInfo() {
           title={ eventData.title }
           time={
             eventData.startDate && eventData.endDate
-            ? `с ${eventData.startDate.getDate()}.${eventData.startDate.getMonth()}.${eventData.startDate.getFullYear()}
-            - по ${eventData.endDate.getDate()}.${eventData.endDate.getMonth()}.${eventData.endDate.getFullYear()}`
+            ? `с ${addZero(eventData.startDate.getDate())}.${addZero(eventData.startDate.getMonth())}.${eventData.startDate.getFullYear()}
+            - по ${addZero(eventData.endDate.getDate())}.${addZero(eventData.endDate.getMonth())}.${eventData.endDate.getFullYear()}`
             : ''
           }
         >

@@ -12,6 +12,16 @@
   }
 }
 
+.hide {
+  visibility: hidden;
+}
+
+span.error {
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: red;
+}
+
 .reg-modal {
   position: fixed;
   top: 0;
@@ -30,6 +40,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 25px;
 
     .main-top {
       height: 40px;
@@ -45,14 +56,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 88px;
+      padding-top: 60px;
 
       .reg-modal__social-login {
         width: 214px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 52px;
+        margin-bottom: 32px;
 
         .social-icon {
           width: 34px;
@@ -71,7 +82,7 @@
         .reg-folder {
           width: 252px;
           height: 36px;
-          margin-bottom: 36px;
+          margin-bottom: 20px;
           border-radius: 25px;
           border: 0;
           background-color: rgba(0, 0, 0, 0.15);
@@ -82,6 +93,7 @@
       }
 
       .reg-modal__btn {
+        // display
         width: 216px;
         height: 40px;
         background-color: #5c9f61;
@@ -93,6 +105,8 @@
         font-size: 1.25em;
         cursor: pointer;
         user-select: none;
+        border-radius: 25px;
+        margin-bottom: 20px;
 
         &:hover {
           opacity: 0.5;
