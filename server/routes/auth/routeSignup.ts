@@ -24,7 +24,7 @@ router.post(
         return res.status(400).json({ message: `Uncorrect request`, errors });
       }
 
-      const { email, password, name } = req.body;
+      const { email, name, password } = req.body;
 
       const candidate = await User.findOne({ email });
 
@@ -54,6 +54,8 @@ router.post(
       const token = jwt.sign({ id: newUser.id }, config.get("jwtSecretKey"), {
         expiresIn: "1h",
       });
+
+      console.log(res);
 
       res.json({
         token,

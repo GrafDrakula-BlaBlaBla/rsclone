@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './_Marker.module.scss';
 import L from 'leaflet';
-import { Marker, Tooltip } from 'react-leaflet';
+import { Marker, Popup } from 'react-leaflet';
 
 export default function Markers({ event }) {
   function addZero(number) {
@@ -40,7 +40,7 @@ export default function Markers({ event }) {
   const stateHoursEnd = dateOneEnd.getHours();
   const stateMinutesEnd = dateOneEnd.getMinutes();
   const cord = [event.location.lat, event.location.lng];
-  
+
   const markerCustom = L.divIcon({
     className: classNameMarker,
     shadowSize: [12, 12],
@@ -48,15 +48,14 @@ export default function Markers({ event }) {
   });
 
   return (
-    <Marker position={cord} icon={markerCustom}>
-      <Tooltip>
+    <Marker position={cord} icon={markerCustom} className="marker-style">
+      <Popup>
         <div>
-          <h3>{event.summary}</h3>
-          <p> c {stateDayStart} {nameMonth[stateMouthStart]} {stateYearStart} {stateHoursStart}:{addZero(stateMinutesStart)}</p>
-          <p> до {stateDayEnd} {nameMonth[stateMouthEnd]} {stateYearEnd}  {stateHoursEnd}:{addZero(stateMinutesEnd)} </p>
-          <p> {event.description} </p>
+          <h3>{event.eventTitle}</h3>
+          <div><p> {event.description} </p></div>
+          <p> c {stateDayStart} {nameMonth[stateMouthStart]} {stateYearStart} {stateHoursStart}:{addZero(stateMinutesStart)} по {stateDayEnd} {nameMonth[stateMouthEnd]} {stateYearEnd}  {stateHoursEnd}:{addZero(stateMinutesEnd)} </p>
         </div>
-      </Tooltip>
+      </Popup>
     </Marker>
   );
 }

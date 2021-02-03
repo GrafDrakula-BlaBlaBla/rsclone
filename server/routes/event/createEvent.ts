@@ -11,7 +11,6 @@ const SCOPE_CALENDAR = 'https://www.googleapis.com/auth/calendar';
 const SCOPE_EVENTS = 'https://www.googleapis.com/auth/calendar.events';
 const { google } = require('googleapis');
 
-
 const routerEvent = Router();
 
 routerEvent.post("/create", async (req, res) => {
@@ -65,6 +64,7 @@ routerEvent.post("/create", async (req, res) => {
       location,
       goal,
       description,
+      user,
     } = await req.body.event;
 
     startDate = new Date(startDate);
@@ -77,11 +77,7 @@ routerEvent.post("/create", async (req, res) => {
     const auth = await authenticate(key);
     const idEventCalendarGoogle = await createEvent(auth, eventTitle, description, startDate, endDate);
 
-
-
     // Извлечь id пользователя и записать в переменную
-    const user = "6015781f16f2051ff6a5e36b";
-
     const event: any = new Event({
         idEventCalendarGoogle,
         eventTitle,

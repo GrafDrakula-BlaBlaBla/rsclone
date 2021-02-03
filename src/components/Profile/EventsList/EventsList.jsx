@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./_EventsList.module.scss";
-// import loupeIcon from "../../../modules/assets/loupe.svg";
 import { Link } from "react-router-dom";
 import evetnsProfile from "../../../actions/EventsForProfile";
 import dataNowEvents from "../../../actions/dataNowEvents";
@@ -29,9 +28,8 @@ const EventsList = inject("store")(
   observer(({ store }) => {
     const [filteredCards, setFilteredCards] = useState([]);
 
-    const id = store.User.idUser();
-
     useEffect(() => {
+      const id = store.User.getIdinLocalStore();
       evetnsProfile(id).then((data) => {
         const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
@@ -41,7 +39,7 @@ const EventsList = inject("store")(
     const nowEvent = () => {
       dataNowEvents().then((data) => {
         const itemList = createCards(data, store.User.decodeId());
-        setFilteredCards(itemList);
+        const test = setFilteredCards(itemList);
       });
     };
 
@@ -60,6 +58,8 @@ const EventsList = inject("store")(
     };
 
     const userEvent = () => {
+      const id = store.User.getIdinLocalStore();
+
       evetnsProfile(id).then((data) => {
         const itemList = createCards(data, store.User.decodeId());
         setFilteredCards(itemList);
@@ -123,6 +123,9 @@ const EventsList = inject("store")(
           <button className={styles.blueButton} onClick={userEvent}>
             Мои
           </button>
+        </div>
+        <div className={styles.cards_list}>
+          {filteredCards}
         </div>
       </div>
     );

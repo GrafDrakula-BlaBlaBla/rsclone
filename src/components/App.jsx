@@ -11,9 +11,12 @@ import EventInfo from './EventsComponent/EventInfo/EventInfo';
 import EditEvent from './EventsComponent/EditEvent/EditEvent';
 import GamePage from './GamePage/GamePage';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Registration from "./Footer/RegModal/RegModal";
 
+import { observer, inject } from "mobx-react";
 
-function App() {
+const App = inject( "store" ) (observer( ({store}) => {
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -37,7 +40,7 @@ function App() {
               <EventCompletion />
             </Route>
           </Switch>
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={ store.Registration.statusApp ? Profile : Registration} />
           <Route path="/initiatives" component={Initiatives} />
           <Route path="/game" component={GamePage} />
         </div>
@@ -45,6 +48,9 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+
+}))
+
+
 
 export default App;

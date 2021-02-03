@@ -18,10 +18,11 @@ export default class User {
   oxygen = "";
   eventsUser = "";
   gameDay = "";
-  id ="";
+  id = "";
   eventsHistory = "";
   eventsList = "";
-  statusApp = this.statusUser();
+  idWithoutDecode= "";
+
 
 
   constructor() {
@@ -39,43 +40,51 @@ export default class User {
         gameDay:  observable,
         eventsHistory: observable,
         eventsList: observable,
+        idWithoutDecode: observable,
         getValue: action,
         idUser: action,
         decodeId: action,
-        statusUser: action,
-        statusApp: observable,
         })
       }
 
-    statusUser () {
 
-      const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
-      const now = new Date().getTime();
+    idUser ( id ) {
+        this.id = id;
+        return id;
+      }
+
+    getIdinLocalStore(){
       if(localStorage.getItem('ecologyBY') === null){
-        return true;
-        } else if (now > idToken.timestamp + 3600000){
-           localStorage.removeItem('ecologyBY');
-            return true;
-         }else{
-           this.getValue();
-           return false;
+          return null;
+        } else {
+          const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+          const now = new Date().getTime();
+          if (now > idToken.timestamp + 3600000){
+              localStorage.removeItem('ecologyBY');
+              return null;
+           }
+           this.id = idToken.value;
+           return this.id;
+         }
+    }
+
+    decodeId(){
+      if(localStorage.getItem('ecologyBY') === null){
+          return null;
+        } else {
+          const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+           this.id = idToken.value;
+           const decoded = jwt.decode(this.id);
+           return decoded['id'];
          }
       }
 
-    idUser () {
-      const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
-        this.id = idToken.value;
-        return idToken.value;
-      }
+   getValue ( id ) {
 
-    decodeId(){
-      const decoded = jwt.decode(this.idUser());
-      return decoded['id'];
-    }
+     this.id = id;
 
-   getValue () {
+     profile( this.id ).then(( data ) => {
 
-     profile( this.idUser () ).then(( data ) => {
      this.gameDay = data[0].finishedGame;
      this.name = data[0].name;
      const date = new Date(data[0].dataRegistartion);
@@ -84,7 +93,7 @@ export default class User {
      this.oxygen = data[0].range;
      this.range = data[0].range;
 
-     evetnsProfile( this.idUser () ).then(( data ) => {
+     evetnsProfile( this.id ).then(( data ) => {
        if(this.gameDay !==  undefined){
          const userGame = {
            eventTitle: 'Игру',

@@ -7,20 +7,22 @@ import { observer, inject } from "mobx-react";
 
 
 const Footer = inject( "store" ) (observer( ({store}) => {
-
   return (
 
     <div className={styles.footer}>
-      {  store.User.statusApp ?
-        <RegModal /> : <Link to="/profile"><button className={styles.ButtonIconUser}><img src={ image } className={styles.iconUser} alt="icon-user"/></button></Link>
-      }
-      <button className={styles.github_btn} />
+         { store.Registration.statusApp ?
+           <Link to="/profile">
+              <button className={styles.ButtonIconUser}><img src={ image } className={styles.iconUser} alt="icon-user"/></button>
+          </Link> :
+          <RegModal /> }
+      <div sclassName={styles.ButtonLinkUser}>
+        <a href="https://github.com/GrafDrakula-BlaBlaBla"> <button className={styles.github_btn} /></a>
+        <a href="https://github.com/koverchik"> <button className={styles.github_btn} /> </a>
+        <a href="https://github.com/AlexLevw"><button className={styles.github_btn} /> </a>
+      </div>
     </div>
   );
 
 }))
-
-
-
 
 export default Footer;

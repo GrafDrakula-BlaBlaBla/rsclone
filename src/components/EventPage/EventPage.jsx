@@ -1,12 +1,13 @@
 import React from "react";
 import { inject } from "mobx-react";
-import styles from "./_EventPage.module.scss";  
+import styles from "./_EventPage.module.scss";
 import Map from "../Map/Map";
 import EventCompletion from "./EventCompletion/EventCompletion";
 import EventCreation from "./EventCreation/EventCreation";
 import SectionWrapper from "../SectionWrapper/SectionWrapper";
 
 const EventPage = inject("store")(({ store, section }) => {
+
   function checkSection() {
     if (section === "create") {
       return (
