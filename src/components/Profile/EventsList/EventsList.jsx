@@ -124,7 +124,9 @@ const EventsList = inject("store")(
             Мои
           </button>
         </div>
-        {filteredCards}
+        <div className={styles.cards_list}>
+          {filteredCards}
+        </div>
       </div>
     );
   }),
