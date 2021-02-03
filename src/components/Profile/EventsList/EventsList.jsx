@@ -98,7 +98,10 @@ const EventsList = inject("store")(
             <span className={styles.card_type}>Тип: {value.type}</span>
             <span>C {value.start}</span>
             <span>По {value.end}</span>
-            <Link className={styles.more_btn + " green_btn"} to="/event">
+            <Link
+              className={styles.more_btn + " green_btn"}
+              to="/eventCompletion"
+            >
               Подробнее
             </Link>
           </div>
