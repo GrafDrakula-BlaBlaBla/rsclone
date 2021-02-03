@@ -25,7 +25,7 @@ const App = inject( "store" ) (observer( ({store}) => {
           <Switch>
             <Route path="/" exact component={MainPage}></Route>
             <Route path="/createEvent">
-              <EventPage section="create" />
+              <EventPage section="create" store={store.Registration.statusApp} />
             </Route>
             <Route path="/eventMap">
               <EventPage section="completion" />

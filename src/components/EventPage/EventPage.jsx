@@ -15,6 +15,7 @@ const EventPage = inject("store")(({ store, section }) => {
           <EventCreation
             storeEvent={store.Event}
             locationStore={store.Location}
+            store={ store }
           />
         </SectionWrapper>
       );
