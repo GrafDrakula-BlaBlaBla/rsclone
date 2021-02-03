@@ -89,24 +89,40 @@ const EventsList = inject("store")(
             nameMonth[endDate.getMonth()] +
             " " +
             endDate.getFullYear(),
+          endDate: endDate,
+          idEventCalendarGoogle: item.idEventCalendarGoogle,
+          completion: item.completion,
+          userId: item.user
         };
         return oneEvent;
       });
 
       const itemList = result.map((value, id) => {
         const idEvent = value.idEvent;
+        const dateNow = new Date();
+        const currentUserID = store.User.decodeId();
+
         return (
           <div className={styles.card} key={id}>
             <span className={styles.card_title}>{value.title}</span>
             <span className={styles.card_type}>Тип: {value.type}</span>
             <span>C {value.start}</span>
             <span>По {value.end}</span>
-            <Link
-              className={styles.more_btn + " green_btn"}
-              to={{ pathname: "/eventCompletion", hash: idEvent }}
-            >
-              Подробнее
-            </Link>
+            {
+              (dateNow > value.endDate && value.completion && value.userId === currentUserID)
+              ?<Link
+                className={styles.more_btn + " green_btn"}
+                to={{ pathname: "/eventCompletion", hash: idEvent }}
+              >
+                Подтвердить
+              </Link>
+              :<Link
+                className={styles.more_btn + " green_btn"}
+                to={{ pathname: "/eventInfo", hash: value.idEventCalendarGoogle }}
+              >
+                Подробнее
+              </Link>
+            }
           </div>
         );
       });
