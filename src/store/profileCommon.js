@@ -69,7 +69,6 @@ export default class User {
     }
 
     decodeId(){
-
       if(localStorage.getItem('ecologyBY') === null){
           return null;
         } else {
