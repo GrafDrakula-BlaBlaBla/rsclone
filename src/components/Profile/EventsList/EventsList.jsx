@@ -101,7 +101,7 @@ const EventsList = inject("store")(
             <span>C {value.start}</span>
             <span>По {value.end}</span>
             <Link
-              onClick={() => store.Event.getDataCompletionEvent(value.idEvent)}
+              onClick={() => store.Event.getDataCompletionEvent()}
               className={styles.more_btn + " green_btn"}
               to="/eventCompletion"
             >
