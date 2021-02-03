@@ -11,13 +11,10 @@ const Profile = inject( "store" ) (observer( ({store}) => {
 
 useEffect(() => {
 
-  store.User.getValue();
+  store.User.getIdinLocalStore();
+  store.User.getValue(store.User.id);
 
-}, [store.User])
-
-const editProfile = () => {
-// <input type="text" name="nameProfile" value={ store.User.name }/>
-}
+}, [ store.User ])
 
   return (
     <div className="profile-page">
@@ -37,7 +34,6 @@ const editProfile = () => {
                 <RatingLeaves rating={ store.User.range }/>
                 <div className="oxygen"> { store.User.oxygen } кислорода</div>
             </div>
-            <button className="settings-pic" onClick={ editProfile } ><img  src={ process.env.PUBLIC_URL  + "icon-settings.svg" } alt="user"/></button>
           </div>
           <EventsHistory />
         </SectionWrapper>

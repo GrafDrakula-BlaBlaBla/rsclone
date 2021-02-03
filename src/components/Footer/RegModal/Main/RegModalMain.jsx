@@ -28,6 +28,7 @@ const RegModalMain = inject("store")(({ store }) => {
           onClick={() =>
             store.Registration.signup(
               store.Registration.email,
+              store.Registration.userName,
               store.Registration.password,
             )
           }

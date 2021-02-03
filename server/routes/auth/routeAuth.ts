@@ -13,6 +13,7 @@ router.post("/authentication", async (req, res) => {
     const user: any = await User.findOne({ email });
 
     if (!user) {
+
       return res.status(404).json({ message: "User not found" });
     }
 
@@ -34,7 +35,9 @@ router.post("/authentication", async (req, res) => {
         password: user.password,
       },
     });
+
   } catch (e) {
+
     res.send({ message: `Server error` });
   }
 });
