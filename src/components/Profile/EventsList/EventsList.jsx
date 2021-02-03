@@ -98,31 +98,18 @@ const EventsList = inject("store")(
       });
 
       const itemList = result.map((value, id) => {
-        const idEvent = value.idEvent;
-        const dateNow = new Date();
-        const currentUserID = store.User.decodeId();
-
         return (
           <div className={styles.card} key={id}>
             <span className={styles.card_title}>{value.title}</span>
             <span className={styles.card_type}>Тип: {value.type}</span>
             <span>C {value.start}</span>
             <span>По {value.end}</span>
-            {
-              (dateNow > value.endDate && value.completion && value.userId === currentUserID)
-              ?<Link
-                className={styles.more_btn + " green_btn"}
-                to={{ pathname: "/eventCompletion", hash: idEvent }}
-              >
-                Подтвердить
-              </Link>
-              :<Link
+              <Link
                 className={styles.more_btn + " green_btn"}
                 to={{ pathname: "/eventInfo", hash: value.idEventCalendarGoogle }}
               >
                 Подробнее
               </Link>
-            }
           </div>
         );
       });
