@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./_EventCompletion.module.scss";
 import { inject, Observer } from "mobx-react";
 
 const EventCompletion = inject("store")(({ store }) => {
   const { Event } = store;
 
-  useEffect(() => {});
+  const hash = useLocation().hash.slice(1);
+
+  useEffect(() => {
+    const res = Event.getDataCompletionEvent(hash);
+    console.log(res);
+  }, [Event, hash]);
 
   return (
     <div className={styles.container}>
@@ -14,10 +20,10 @@ const EventCompletion = inject("store")(({ store }) => {
           <span>Название</span>
           <Observer>{() => <p>Сбор мусора</p>}</Observer>
         </div>
-        <div className={styles.city}>
+        {/* <div className={styles.city}>
           <span>Локация</span>
           <Observer>{() => <p>Минск</p>}</Observer>
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.middle}>

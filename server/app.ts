@@ -17,7 +17,6 @@ import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 import userInfo from "./routes/userInfo";
 import completionEvent from "./routes/event/completionEvent";
-import editProfile from "./routes/profile/editProfile";
 
 const PORT: Number = config.get("serverPort");
 
@@ -29,6 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routing folders
+app.use("/", completionEvent);
 app.use(`/`, signup);
 app.use(`/`, auth);
 app.use(`/`, createEvent);
@@ -40,8 +40,6 @@ app.use("/", dataAboutNowEvents);
 app.use("/", dataAboutPastEvents);
 app.use("/", dataAboutFeatureEvents);
 app.use("/", userInfo);
-app.use("/", editProfile);
-app.use("/", completionEvent);
 
 const start = async (): Promise<void> => {
   try {

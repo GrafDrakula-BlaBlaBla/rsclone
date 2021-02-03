@@ -5,13 +5,11 @@ const router = Router();
 
 router.post("/eventCompletion", async (req, res) => {
   try {
-    const { idEvent } = req.body;
-    console.info(idEvent);
+    const { idEvent } = await req.body;
+    console.log(idEvent)
 
-    const event = await Event.findOne({ idEventCalendarGoogle: idEvent });
+    const event = await Event.findById(idEvent);
 
-    console.log(event);
-    debugger;
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }
