@@ -74,7 +74,7 @@ const EventsList = inject("store")(
         let endDate = new Date(item["endDate"]);
 
         let oneEvent = {
-          idEvent: item.idEventCalendarGoogle,
+          idEvent: item._id,
           title: item["eventTitle"],
           type: type,
           start:
@@ -94,6 +94,7 @@ const EventsList = inject("store")(
       });
 
       const itemList = result.map((value, id) => {
+        const idEvent = value.idEvent;
         return (
           <div className={styles.card} key={id}>
             <span className={styles.card_title}>{value.title}</span>
@@ -101,9 +102,8 @@ const EventsList = inject("store")(
             <span>C {value.start}</span>
             <span>По {value.end}</span>
             <Link
-              onClick={() => store.Event.getDataCompletionEvent()}
               className={styles.more_btn + " green_btn"}
-              to="/eventCompletion"
+              to={{ pathname: "/eventCompletion", hash: idEvent }}
             >
               Подробнее
             </Link>

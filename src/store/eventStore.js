@@ -185,18 +185,18 @@ export default class Event {
           if (response.status === 200) {
             changeValue();
             changeValueFalse();
-            console.log("200");
           }
-          console.log(response);
         })
         .catch(function (error) {});
     }
   };
   getDataCompletionEvent = (idEvent) => {
     try {
-      axios.post(process.env.REACT_APP_SERVER + "eventCompletion", {
-        idEvent,
-      });
+      axios
+        .post(`http://localhost:8000/eventCompletion`, {
+          idEvent,
+        })
+        .then((response) => response);
     } catch (e) {
       alert("GetDataCompletionEvent", e);
     }

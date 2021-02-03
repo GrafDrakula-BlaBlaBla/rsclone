@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./_EventCompletion.module.scss";
 import { inject, Observer } from "mobx-react";
 
 const EventCompletion = inject("store")(({ store }) => {
   const { Event } = store;
 
-  useEffect(() => {});
+  const hash = useLocation().hash.slice(1);
+
+  useEffect(() => {
+    const res = Event.getDataCompletionEvent(hash);
+    console.log(res);
+  }, [hash]);
 
   return (
     <div className={styles.container}>
