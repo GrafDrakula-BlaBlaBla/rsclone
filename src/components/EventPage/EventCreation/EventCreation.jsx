@@ -8,7 +8,6 @@ import { Redirect } from 'react-router'
 import { Observer } from "mobx-react";
 
 const EventCreation = ({ storeEvent, locationStore, store }) => {
-  console.log(locationStore);
   const region = byCities.regions.find(
     (elem) => elem.name === locationStore.region,
   );
