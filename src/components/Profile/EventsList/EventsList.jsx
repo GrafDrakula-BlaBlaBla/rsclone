@@ -39,7 +39,8 @@ const EventsList = inject("store")(
     const nowEvent = () => {
       dataNowEvents().then((data) => {
         const itemList = createCards(data, store.User.decodeId());
-        const test = setFilteredCards(itemList);
+        // const test = setFilteredCards(itemList);
+        setFilteredCards(itemList);
       });
     };
 
@@ -73,6 +74,7 @@ const EventsList = inject("store")(
         let endDate = new Date(item["endDate"]);
 
         let oneEvent = {
+          idEvent: item.idEventCalendarGoogle,
           title: item["eventTitle"],
           type: type,
           start:
@@ -99,6 +101,7 @@ const EventsList = inject("store")(
             <span>C {value.start}</span>
             <span>По {value.end}</span>
             <Link
+              onClick={() => store.Event.getDataCompletionEvent(value.idEvent)}
               className={styles.more_btn + " green_btn"}
               to="/eventCompletion"
             >

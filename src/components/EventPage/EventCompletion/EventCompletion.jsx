@@ -14,10 +14,10 @@ const EventCompletion = inject("store")(({ store }) => {
           <span>Название</span>
           <Observer>{() => <p>Сбор мусора</p>}</Observer>
         </div>
-        <div className={styles.city}>
+        {/* <div className={styles.city}>
           <span>Локация</span>
           <Observer>{() => <p>Минск</p>}</Observer>
-        </div>
+        </div> */}
       </div>
 
       <div className={styles.middle}>

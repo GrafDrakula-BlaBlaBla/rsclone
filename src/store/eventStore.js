@@ -193,13 +193,9 @@ export default class Event {
   };
   getDataCompletionEvent = (idEvent) => {
     try {
-      const res = axios
-        .post(process.env.REACT_APP_SERVER + "eventCompletion", {
-          idEvent,
-        })
-        .then((response) => response);
-
-      console.log(result);
+      axios.post(process.env.REACT_APP_SERVER + "eventCompletion", {
+        idEvent,
+      });
     } catch (e) {
       alert("GetDataCompletionEvent", e);
     }
