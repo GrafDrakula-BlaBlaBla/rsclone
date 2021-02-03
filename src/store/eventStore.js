@@ -110,6 +110,7 @@ export default class Event {
       location: Store.Location.coords,
       goal: this.goal,
       description: this.description,
+      user: Store.User.decodeId(),
     };
 
     const rules = {

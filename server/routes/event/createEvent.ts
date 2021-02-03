@@ -65,6 +65,7 @@ routerEvent.post("/create", async (req, res) => {
       location,
       goal,
       description,
+      user,
     } = await req.body.event;
 
     startDate = new Date(startDate);
@@ -80,8 +81,6 @@ routerEvent.post("/create", async (req, res) => {
 
 
     // Извлечь id пользователя и записать в переменную
-    const user = "6015781f16f2051ff6a5e36b";
-
     const event: any = new Event({
         idEventCalendarGoogle,
         eventTitle,
