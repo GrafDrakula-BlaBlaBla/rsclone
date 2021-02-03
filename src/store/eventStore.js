@@ -5,6 +5,7 @@ import Store from "./index";
 import result from "../actions/dataForMarkers";
 
 export default class Event {
+  idEvent = "";
   eventTitle = "";
   time = "";
   timeEnd = "";
@@ -19,6 +20,7 @@ export default class Event {
   warningEventDescription = "";
   warningTime = "";
   linkToPage = "";
+  complited = false;
 
   constructor() {
     makeObservable(this, {
@@ -36,6 +38,7 @@ export default class Event {
       warningEventDescription: observable,
       description: observable,
       linkToPage: observable,
+      complited: observable,
       getEventTitle: action,
       getEventTime: action,
       getEventStartDate: action,
@@ -44,6 +47,9 @@ export default class Event {
       getEventDescription: action,
       createEvent: action,
       getDataCompletionEvent: action,
+      changeStatusEvent: action,
+      sendStatusEvent: action,
+      changeDescriptionEvent: action,
     });
   }
 
@@ -190,15 +196,40 @@ export default class Event {
         .catch(function (error) {});
     }
   };
-  getDataCompletionEvent = (idEvent) => {
+  getDataCompletionEvent = async (idEvent) => {
     try {
-      axios
-        .post(`http://localhost:8000/eventCompletion`, {
+      const response = await axios.post(
+        `http://localhost:8000/eventCompletion`,
+        {
           idEvent,
-        })
-        .then((response) => response);
+        },
+      );
+
+      const { _id, description, eventTitle } = response.data.event;
+      this.idEvent = _id;
+      this.eventTitle = eventTitle;
+      this.description = description;
     } catch (e) {
       alert("GetDataCompletionEvent", e);
+    }
+  };
+  changeDescriptionEvent = (value) => {
+    this.description = value;
+  };
+  changeStatusEvent = (status) => {
+    if (!status) {
+      this.complited = true;
+      this.sendStatusEvent(this.idEvent, this.complited);
+    }
+  };
+  sendStatusEvent = async (idEvent, status) => {
+    try {
+      await axios.post(`http://localhost:8000/compliteEvent`, {
+        idEvent,
+        complited: status,
+      });
+    } catch (e) {
+      alert("changeStatusEvent", e);
     }
   };
 }
