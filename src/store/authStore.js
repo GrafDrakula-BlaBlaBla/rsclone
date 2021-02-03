@@ -2,12 +2,14 @@
 import axios from "axios";
 import { makeObservable, observable, action } from "mobx";
 import { resources } from "pixi.js";
+import Store from "./index";
 
 export default class Registration {
   email = "";
   userName = "";
   password = "";
   //
+  statusApp = this.statusUser();
   isDirty = false; // * покинул ли пользователь input
   isValid = false; //  true - error
   isValidEmail = false; //  true - error
@@ -49,6 +51,8 @@ export default class Registration {
       isDirty: observable,
       isValid: observable,
       //
+      statusApp: observable,
+      statusUser: action,
       signup: action,
       auth: action,
       getInputValue: action,
@@ -147,6 +151,16 @@ export default class Registration {
         email,
         password,
       });
+      const object = {
+        value: response.data.token,
+        timestamp: new Date().getTime(),
+      };
+
+      Store.User.idWithoutDecode = response.data.token;
+      localStorage.setItem('ecologyBY', JSON.stringify(object));
+      this.statusApp = this.statusUser();
+      Store.User.getValue(response.data.token);
+
       alert(response.data.message);
     } catch (e) {
       alert("ERROR registration", e);
@@ -154,7 +168,9 @@ export default class Registration {
   };
 
   auth = async (email, password) => {
+
     try {
+
       const response = await axios.post(
         `http://localhost:8000/authentication`,
         {
@@ -163,19 +179,35 @@ export default class Registration {
         },
       );
 
-      console.log(response);
-      const object = "test local store";
       // ЗАПИСАТЬ В LOCALSTORE
-      // const object = {
-      //   value: response.data.token,
-      //   timestamp: new Date().getTime(),
-      // };
-      localStorage.setItem("ecologyBY", JSON.stringify(object));
+      const object = {
+        value: response.data.token,
+        timestamp: new Date().getTime(),
+      };
 
-      // ЗАПИСАТЬ В LOCALSTORE
+      Store.User.idWithoutDecode = response.data.token;
+      localStorage.setItem('ecologyBY', JSON.stringify(object));
+      this.statusApp = this.statusUser();
+      Store.User.getValue(response.data.token);
+
       alert(response.data.status);
     } catch (e) {
       alert("ERROR authentication", e);
     }
   };
+
+  statusUser(){
+
+    if(localStorage.getItem('ecologyBY') === null){
+        return false;
+      } else {
+        const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+        const now = new Date().getTime();
+        if (now > idToken.timestamp + 3600000){
+           localStorage.removeItem('ecologyBY');
+            return false;
+         }
+         return true;
+       }
+    }
 }
