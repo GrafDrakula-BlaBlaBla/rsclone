@@ -9,16 +9,17 @@ const EventCompletion = inject("store")(({ store }) => {
   const hash = useLocation().hash.slice(1);
 
   useEffect(() => {
-    const res = Event.getDataCompletionEvent(hash);
-    console.log(res);
+    Event.getDataCompletionEvent(hash);
   }, [Event, hash]);
+
+  const { description } = Event;
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.title}>
           <span>Название</span>
-          <Observer>{() => <p>Сбор мусора</p>}</Observer>
+          <Observer>{() => <p>{Event.eventTitle}</p>}</Observer>
         </div>
         {/* <div className={styles.city}>
           <span>Локация</span>
@@ -29,7 +30,13 @@ const EventCompletion = inject("store")(({ store }) => {
       <div className={styles.middle}>
         <p className={styles.middle_title}>Подведем итог мероприятия:</p>
         <div className={styles.text_input_wrapper}>
-          <textarea className={styles.text_input} />
+          <textarea
+            onChange={(event) =>
+              Event.changeDescriptionEvent(event.target.value)
+            }
+            className={styles.text_input}
+            defaultValue={description}
+          />
         </div>
         <div className={styles.add_photo}>
           <div className={styles.add_photo_btn}>
@@ -40,7 +47,12 @@ const EventCompletion = inject("store")(({ store }) => {
       </div>
 
       <div className={styles.bottom}>
-        <button className={styles.save_btn}>Сохранить</button>
+        <button
+          onClick={() => Event.changeStatusEvent(Event.complited)}
+          className={styles.save_btn}
+        >
+          Сохранить
+        </button>
       </div>
     </div>
   );

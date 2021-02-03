@@ -6,6 +6,7 @@ import * as logger from "morgan";
 
 import signup from "./routes/auth/routeSignup";
 import auth from "./routes/auth/routeAuth";
+import completionEvent from "./routes/event/completionEvent";
 import createEvent from "./routes/event/createEvent";
 import dataForProfile from "./routes/profile/dataForProfile";
 import dataEventUser from "./routes/profile/dataEventUser";
@@ -15,8 +16,8 @@ import routerEventInfo from "./routes/event/eventInfo";
 import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
+import comleteEvent from "./routes/event/comleteEvent";
 import userInfo from "./routes/userInfo";
-import completionEvent from "./routes/event/completionEvent";
 
 const PORT: Number = config.get("serverPort");
 
@@ -39,6 +40,7 @@ app.use("/", dataEventUser);
 app.use("/", dataAboutNowEvents);
 app.use("/", dataAboutPastEvents);
 app.use("/", dataAboutFeatureEvents);
+app.use("/", comleteEvent);
 app.use("/", userInfo);
 
 const start = async (): Promise<void> => {
