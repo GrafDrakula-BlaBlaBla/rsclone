@@ -144,11 +144,12 @@ export default class Registration {
     }
   };
 
-  signup = async (email, password) => {
+  signup = async (email, userName, password) => {
     try {
       debugger;
       const response = await axios.post(`http://localhost:8000/registration`, {
         email,
+        name: userName,
         password,
       });
       const object = {
@@ -157,7 +158,7 @@ export default class Registration {
       };
 
       Store.User.idWithoutDecode = response.data.token;
-      localStorage.setItem('ecologyBY', JSON.stringify(object));
+      localStorage.setItem("ecologyBY", JSON.stringify(object));
       this.statusApp = this.statusUser();
       Store.User.getValue(response.data.token);
 
@@ -168,9 +169,7 @@ export default class Registration {
   };
 
   auth = async (email, password) => {
-
     try {
-
       const response = await axios.post(
         `http://localhost:8000/authentication`,
         {
@@ -186,7 +185,7 @@ export default class Registration {
       };
 
       Store.User.idWithoutDecode = response.data.token;
-      localStorage.setItem('ecologyBY', JSON.stringify(object));
+      localStorage.setItem("ecologyBY", JSON.stringify(object));
       this.statusApp = this.statusUser();
       Store.User.getValue(response.data.token);
 
@@ -196,18 +195,17 @@ export default class Registration {
     }
   };
 
-  statusUser(){
-
-    if(localStorage.getItem('ecologyBY') === null){
+  statusUser() {
+    if (localStorage.getItem("ecologyBY") === null) {
+      return false;
+    } else {
+      const idToken = JSON.parse(localStorage.getItem("ecologyBY"));
+      const now = new Date().getTime();
+      if (now > idToken.timestamp + 3600000) {
+        localStorage.removeItem("ecologyBY");
         return false;
-      } else {
-        const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
-        const now = new Date().getTime();
-        if (now > idToken.timestamp + 3600000){
-           localStorage.removeItem('ecologyBY');
-            return false;
-         }
-         return true;
-       }
+      }
+      return true;
     }
+  }
 }
