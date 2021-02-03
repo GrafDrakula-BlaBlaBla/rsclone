@@ -9,10 +9,17 @@
     height: 100%;
     z-index: 1;
 
-    .leaflet-tooltip {
+    .leaflet-popup-content {
       h3 {
         margin: 0;
         color: #5c9f61;
+        text-align: center;
+      }
+      div{
+        margin: 5px 0px;
+      }
+      p{
+        margin: 0;
       }
     }
   }
