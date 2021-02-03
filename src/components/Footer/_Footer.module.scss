@@ -20,7 +20,7 @@
   transition: 0.15s;
   margin-bottom: 5px;
   background: url('../../modules/assets/github-logo.svg') 0 0 / cover no-repeat;
-
+  margin-left: 10px;
   &:hover {
     opacity: 0.7;
   }
@@ -32,6 +32,10 @@
     width: 35px;
     border-style: none;
   }
+}
+
+.ButtonLinkUser{
+
 }
 
 @media (max-width: 1200px) {

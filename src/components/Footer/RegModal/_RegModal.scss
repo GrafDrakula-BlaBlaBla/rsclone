@@ -57,6 +57,7 @@ span.error {
       flex-direction: column;
       align-items: center;
       padding-top: 60px;
+      justify-content: center;
 
       .reg-modal__social-login {
         width: 214px;
@@ -70,6 +71,7 @@ span.error {
           height: 34px;
           cursor: pointer;
         }
+
       }
 
       .reg-modal__folders {
@@ -91,7 +93,9 @@ span.error {
           padding: 0 14px;
         }
       }
-
+      a{
+       text-decoration: none;
+        }
       .reg-modal__btn {
         // display
         width: 216px;

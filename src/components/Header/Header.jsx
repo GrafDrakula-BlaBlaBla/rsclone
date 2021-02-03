@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./_Header.module.scss";
-
+import { Link } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 
 function change() {
@@ -22,7 +22,9 @@ export default function Header() {
           <NavBar change={change} />
         </ul>
       </div>
-      <button className={styles.lang_btn}>ru</button>
+      <a href="https://rs.school/js/" className={styles.lang_btn}>
+        <img className="user-pic-img" src={ process.env.PUBLIC_URL  + "/rs_school_js.svg" } alt="shool"/>
+      </a>
     </div>
   );
 }
