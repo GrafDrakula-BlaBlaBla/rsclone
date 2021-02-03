@@ -11,7 +11,7 @@ export default function MainSection() {
           <span style={{ color: "#5C9F61" }}>Эко</span>активисты
         </p>
         <p className={styles.text}>Поддержи экодвижение в Беларуси</p>
-        <Link to="/registration">
+        <Link to="/initiatives">
           <button className="green_btn">Присоедениться</button>
         </Link>
       </div>
