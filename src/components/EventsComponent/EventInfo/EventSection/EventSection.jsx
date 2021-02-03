@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './_EventSection.module.scss';
-import userImg from '../../../modules/assets/user.svg'
-import RatingLeaves from '../../RatingLeaves/RatingLeaves';
+import userImg from '../../../../modules/assets/user.svg'
+import RatingLeaves from '../../../RatingLeaves/RatingLeaves';
 import axios from 'axios';
 
 export default function EventSection({ eventData }) {

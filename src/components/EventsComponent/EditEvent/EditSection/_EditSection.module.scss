@@ -1,36 +1,30 @@
-p {
-  margin: 0;
-}
-
-.warning-event {
+.warning_event {
   font-size: 10px;
   color: red;
   margin: 0;
   padding: 0;
   position: absolute;
 }
+.coordinates {
+  font-size: 0.9em;
+}
+
 .warning-event-time {
   font-size: 10px;
   color: red;
   margin: 0;
   padding: 0;
 }
-.warning-event-name {
-  font-size: 10px;
-  color: red;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-}
+
 .container {
   background-color: white;
   display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
 
-  .textarea-wrapper {
+  .textarea_wrapper {
     flex: 1;
     height: 100%;
 
@@ -126,10 +120,6 @@ p {
   color: rgb(80, 80, 80);
 }
 
-.coordinates {
-  font-size: 0.9em;
-}
-
 .main_task {
   display: flex;
   flex: 1;
@@ -145,7 +135,6 @@ p {
 .bottom {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
 
   button {
     width: 160px;

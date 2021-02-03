@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
 import styles from './_EventInfo.module.scss';
-import Map from "./Map/Map";
-import SectionWrapper from "../SectionWrapper/SectionWrapper";
-import axios from 'axios';
+import Map from "../Map/Map";
+import SectionWrapper from "../../SectionWrapper/SectionWrapper";
 import EventSection from './EventSection/EventSection';
+import axios from 'axios';
 
 export default function EventInfo() {
   const [eventData, setEventData] = useState({
@@ -18,13 +18,12 @@ export default function EventInfo() {
     members: [],
     completed: null
   });
-  
+
   const eventHash = useLocation().hash.slice(1);
-  
+
   useEffect(() => {
     axios.post('http://localhost:8000/eventInfo', { googleId: eventHash}).then((data) => {
       const event = data.data;
-      
       setEventData({
         title: event.eventTitle,
         startDate: new Date(event.startDate),

@@ -5,7 +5,8 @@ import Footer from './Footer/Footer';
 import Initiatives from './Initiatives/Initiatives';
 import MainPage from './MainPage/MainPage';
 import EventPage from './EventPage/EventPage';
-import EventInfo from './EventInfo/EventInfo';
+import EventInfo from './EventsComponent/EventInfo/EventInfo';
+import EditEvent from './EventsComponent/EditEvent/EditEvent';
 import GamePage from './GamePage/GamePage';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Profile from "./Profile/Profile";
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/eventMap">
               <EventPage section="completion" />
+            </Route>
+            <Route path="/edit-event">
+              <EditEvent />
             </Route>
             <Route path="/eventInfo">
               <EventInfo />

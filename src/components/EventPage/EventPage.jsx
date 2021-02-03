@@ -20,7 +20,6 @@ const EventPage = inject("store")(({ store, section }) => {
     } else if (section === "completion") {
       return (
         <SectionWrapper
-          // storeEvent={storeEvent}
           title="Завершение"
           time="с 12.12.2020 - по 02.02.2021"
         >

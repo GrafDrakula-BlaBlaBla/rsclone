@@ -35,7 +35,7 @@ export default class Location {
   getCoordsCurrentArea = (arrayRegions, currentAreaName) => {
     arrayRegions.forEach((el) => {
       if (el.name === currentAreaName) {
-        console.log(this.coords.lat);
+
         this.coords.lat = el.lat + Math.random()/100;
         this.coords.lng = el.lng + Math.random()/100;
       }
