@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './_DaySection.module.scss';
 import user from '../../../components/Calendar/user.svg';
+import axios from 'axios';
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
@@ -35,9 +36,6 @@ export default function DaySection({ dayEvents, selectedYear, selectedMonth, sel
       setEventsList(dayEvents.map((item, id) => {
         return (
           <li key={"event-" + id}>
-            <div className={ styles.event_user }>
-              <img src={ user } alt="user-avatar"/><p>Имя</p>
-            </div>
             <p>{item.summary}</p>
             <Link to={{ pathname: "/eventInfo", hash: item.id }}>{ eventLink }</Link>
           </li>
