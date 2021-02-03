@@ -6,16 +6,14 @@ import SelectArea from "./SelectArea/SelectArea";
 import Coords from "./Coords/Coords";
 import { Redirect } from 'react-router'
 import { Observer } from "mobx-react";
-const EventCreation = ({ storeEvent, locationStore }) => {
 
+const EventCreation = ({ storeEvent, locationStore }) => {
   const region = byCities.regions.find(
     (elem) => elem.name === locationStore.region,
   );
 
-
   return (
     <div className={styles.container}>
-      {/* Event Title */}
       <div className={styles.name}>
         <div className={styles.name_top}>
           <p className={styles.title + " font_l"}>Название</p>
@@ -38,7 +36,7 @@ const EventCreation = ({ storeEvent, locationStore }) => {
           Название будет отображаться в списке всех мероприятий
         </p>
       </div>
-      {/* Event Date */}
+
       <div className={styles.main_date}>
         <p className={styles.title + " font_l"}>Когда</p>
         <Observer>
@@ -100,7 +98,7 @@ const EventCreation = ({ storeEvent, locationStore }) => {
           )}
         </Observer>
       </div>
-      {/* Event Location */}
+
       <div className={styles.main_place}>
         <p className={styles.title + " font_l"}>Где</p>
         <div className={styles.right_section}>
@@ -113,7 +111,7 @@ const EventCreation = ({ storeEvent, locationStore }) => {
       <p className={styles.place_description}>
         Укажите точное место проведения мероприятия на карте
       </p>
-      {/* Event goal */}
+
       <div className={styles.main_goals}>
       <div className={styles.title + " font_l"}>
         <p >Цели</p>
@@ -137,7 +135,7 @@ const EventCreation = ({ storeEvent, locationStore }) => {
           </Observer>
         </div>
       </div>
-      {/* Event description */}
+
       <div className={styles.main_task}>
         <div className={styles["title"]}>
           <p >Описание</p>

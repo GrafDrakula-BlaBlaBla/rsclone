@@ -15,7 +15,7 @@ export default function RatingLeaves({ rating }) {
     <div className={ styles['rating-leaves-container'] }>
       <Leaves rating={ currentRating } setModalState={ setModalState }/>
       <div className={ styles['rating-title'] } onClick={ () => setModalState(true)}>
-        {levels[currentRating - 1]}
+        {levels[currentRating]}
       </div>
       { modalState && <RatingModal setModalState={ setModalState } levels={ levels }/> }
     </div>

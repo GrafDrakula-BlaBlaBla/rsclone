@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './_EventSection.module.scss';
-import userImg from '../../../modules/assets/user.svg'
-import RatingLeaves from '../../RatingLeaves/RatingLeaves';
+import userImg from '../../../../modules/assets/user.svg'
+import RatingLeaves from '../../../RatingLeaves/RatingLeaves';
 import axios from 'axios';
 
 export default function EventSection({ eventData }) {
@@ -32,15 +32,15 @@ export default function EventSection({ eventData }) {
         <RatingLeaves rating={ ownerData.rating }/>
       </div>
       <div className={ styles.tasks }>
-        <p className='font_l'>Задача:</p>
-        <p style={{ marginTop: 20}}>
-          { eventData.description }
-        </p>
-      </div>
-      <div className={ styles.goals }>
         <p className='font_l'>Цели:</p>
         <p style={{ marginTop: 20}}>
           { eventData.goal }
+        </p>
+      </div>
+      <div className={ styles.goals }>
+        <p className='font_l'>Описание:</p>
+        <p style={{ marginTop: 20}}>
+          { eventData.description }
         </p>
       </div>
       <div className={ styles.bottom }>
