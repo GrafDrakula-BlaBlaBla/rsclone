@@ -55,13 +55,10 @@ router.post(
         expiresIn: "1h",
       });
 
-      console.log(res);
-
-      res.json({
+    res.json({
         token,
       });
 
-      return res.json({ message: `User was created` });
     } catch (e) {
       res.send({ message: `SERVER ERROR ${e}` });
     }
