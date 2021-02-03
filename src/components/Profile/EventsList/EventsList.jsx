@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./_EventsList.module.scss";
-// import loupeIcon from "../../../modules/assets/loupe.svg";
 import { Link } from "react-router-dom";
 import evetnsProfile from "../../../actions/EventsForProfile";
 import dataNowEvents from "../../../actions/dataNowEvents";
@@ -26,11 +25,8 @@ const nameMonth = [
 ];
 
 const EventsList = inject("store")(
-
   observer(({ store }) => {
-
     const [filteredCards, setFilteredCards] = useState([]);
-
 
     useEffect(() => {
       const id = store.User.getIdinLocalStore();
@@ -41,11 +37,9 @@ const EventsList = inject("store")(
     }, []);
 
     const nowEvent = () => {
-
       dataNowEvents().then((data) => {
         const itemList = createCards(data, store.User.decodeId());
         const test = setFilteredCards(itemList);
-
       });
     };
 
@@ -73,7 +67,6 @@ const EventsList = inject("store")(
     };
 
     function createCards(data, id) {
-      console.log(data);
       const result = data[0].map((item, index) => {
         let type = id === item["user"] ? "инициатива" : "мероприятие";
         let startDate = new Date(item["startDate"]);
