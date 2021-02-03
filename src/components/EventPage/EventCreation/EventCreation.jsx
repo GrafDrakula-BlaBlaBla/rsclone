@@ -7,13 +7,14 @@ import Coords from "./Coords/Coords";
 import { Redirect } from 'react-router'
 import { Observer } from "mobx-react";
 
-const EventCreation = ({ storeEvent, locationStore }) => {
+const EventCreation = ({ storeEvent, locationStore, store }) => {
   const region = byCities.regions.find(
     (elem) => elem.name === locationStore.region,
   );
-
   return (
     <div className={styles.container}>
+    {!store.Registration.statusApp && <Redirect to="/registration" />}
+
       <div className={styles.name}>
         <div className={styles.name_top}>
           <p className={styles.title + " font_l"}>Название</p>

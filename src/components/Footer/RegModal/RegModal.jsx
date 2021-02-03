@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./_RegModal.scss";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import RegModalMain from "./Main/RegModalMain";
 
 const RegModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const locationPathname = useLocation().pathname;
+  useEffect(() => {
+    locationPathname === '/registration' ? setIsOpen(true) : setIsOpen(false);
+  }, [locationPathname]);
 
   const clickModal = (e) => {
     if (e.target.className === "reg-modal") {
@@ -19,11 +23,11 @@ const RegModal = () => {
         <div className="reg-btn" onClick={() => setIsOpen(!isOpen)}></div>
       </NavLink>
 
-      {isOpen && (
+      {isOpen && 
         <div className="reg-modal" onClick={(e) => clickModal(e)}>
-          <Route path="/registration" component={RegModalMain} />
+          <RegModalMain />
         </div>
-      )}
+      }
     </React.Fragment>
   );
 };
