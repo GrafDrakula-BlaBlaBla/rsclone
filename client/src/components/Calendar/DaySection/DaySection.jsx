@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './_DaySection.module.scss';
-import user from '../../../components/Calendar/user.svg';
-import axios from 'axios';
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];

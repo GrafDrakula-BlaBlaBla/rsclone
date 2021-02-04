@@ -184,7 +184,7 @@ export default class Event {
       console.log("pass");
 
       axios
-        .post("http://localhost:8000/create", {
+        .post("/create", {
           event,
         })
         .then(function (response) {
@@ -199,7 +199,7 @@ export default class Event {
   getDataCompletionEvent = async (idEvent) => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/eventCompletion`,
+        `/eventCompletion`,
         {
           idEvent,
         },
@@ -224,7 +224,7 @@ export default class Event {
   };
   sendStatusEvent = async (idEvent, status) => {
     try {
-      await axios.post(`http://localhost:8000/compliteEvent`, {
+      await axios.post(`/compliteEvent`, {
         idEvent,
         complited: status,
       });

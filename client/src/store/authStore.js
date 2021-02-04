@@ -145,7 +145,7 @@ export default class Registration {
 
   signup = async (email, userName, password) => {
     try {
-      const response = await axios.post(`http://localhost:8000/registration`, {
+      const response = await axios.post(`/registration`, {
         email,
         name: userName,
         password,
