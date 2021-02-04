@@ -106,8 +106,8 @@
   },
   "react-dotenv": {
     "whitelist": [
-      "REACT_APP_IMG",
-      "REACT_APP_SERVER"
+      "REACT_APP_SERVER",
+      "DATABASE_URL"
     ]
   },
   "browserslist": {
