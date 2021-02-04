@@ -4,6 +4,8 @@ import * as mongoose from "mongoose";
 import * as config from "config";
 import * as logger from "morgan";
 
+const path = require('path');
+
 import signup from "./routes/auth/routeSignup";
 import auth from "./routes/auth/routeAuth";
 import completionEvent from "./routes/event/completionEvent";
@@ -23,6 +25,13 @@ const PORT: Number = config.get("serverPort");
 
 // * Создание сервера
 const app = express();
+
+app.get('/', (request, response) => {
+  response.sendFile(path.join(__dirname + '/client/index.html'));
+});
+
+app.use(express.static('/client'));
+
 app.use(corsMiddleware);
 app.use(logger("dev"));
 app.use(express.json());

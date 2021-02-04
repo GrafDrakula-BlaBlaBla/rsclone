@@ -94,9 +94,7 @@
     "startMac": "BROWSER='firefox' node scripts/start.js",
     "start": "react-dotenv && node scripts/start.js",
     "build": "react-dotenv && node scripts/build.js",
-    "test": "react-dotenv && node scripts/test.js",
-    "server": "npm run dev --prefix server",
-    "dev": "concurrently \"yarn start\" \"yarn server\""
+    "test": "react-dotenv && node scripts/test.js"
   },
   "eslintConfig": {
     "extends": [
