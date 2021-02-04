@@ -4,7 +4,8 @@ import * as mongoose from "mongoose";
 import * as config from "config";
 import * as logger from "morgan";
 
-import path = require('path');
+const path = require('path');
+
 import signup from "./routes/auth/routeSignup";
 import auth from "./routes/auth/routeAuth";
 import completionEvent from "./routes/event/completionEvent";

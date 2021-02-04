@@ -1,8 +1,6 @@
 import { Router } from "express";
 import Event from "../../models/Event";
 
-// completed
-
 const router = Router();
 
 router.post("/compliteEvent", async (req, res) => {
@@ -17,9 +15,7 @@ router.post("/compliteEvent", async (req, res) => {
 
     Event.updateOne({ _id: idEvent }, { $set: { completed: true } });
 
-    // await Event.updateOne({ _id: idEvent }, { $set: { completed: completed } });
-
-    res.json({
+  res.json({
       status,
     });
   } catch (e) {
