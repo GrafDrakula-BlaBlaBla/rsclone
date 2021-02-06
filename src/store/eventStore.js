@@ -181,10 +181,9 @@ export default class Event {
       this.warningEventGoal = validation.errors.first("goal");
       this.warningEventDescription = validation.errors.first("description");
     } else {
-      console.log("pass");
 
       axios
-        .post("http://localhost:8000/create", {
+        .post(process.env.REACT_APP_SERVER + "create", {
           event,
         })
         .then(function (response) {
@@ -199,7 +198,7 @@ export default class Event {
   getDataCompletionEvent = async (idEvent) => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/eventCompletion`,
+        process.env.REACT_APP_SERVER + `eventCompletion`,
         {
           idEvent,
         },
@@ -224,7 +223,7 @@ export default class Event {
   };
   sendStatusEvent = async (idEvent, status) => {
     try {
-      await axios.post(`http://localhost:8000/compliteEvent`, {
+      await axios.post(process.env.REACT_APP_SERVER + `compliteEvent`, {
         idEvent,
         complited: status,
       });

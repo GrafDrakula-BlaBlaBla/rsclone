@@ -11,7 +11,7 @@ class stateMap {
   }
 
   createMarkerTooltip() {
-    axios.post('http://localhost:8000/create-map-main', {}).then((data) => {
+    axios.post(process.env.REACT_APP_SERVER + 'create-map-main', {}).then((data) => {
       const now = new Date();
       const events = data.data;
 
@@ -52,7 +52,7 @@ class stateMap {
         const stateHoursEnd = dateOneEnd.getHours();
         const stateMinutesEnd = dateOneEnd.getMinutes();
         const cord = [oneEvent.location.lat, oneEvent.location.lng];
-        
+
         const markerCustom = L.divIcon({
           className: classNameMarker,
           shadowSize: [12, 12],

@@ -29,7 +29,7 @@ export default class EventStore {
   }
 
   getData(googleId) {
-    axios.post('http://localhost:8000/eventInfo', { googleId: googleId}).then((data) => {
+    axios.post(process.env.REACT_APP_SERVER + 'eventInfo', { googleId: googleId}).then((data) => {
       const event = data.data;
       this.title = event.eventTitle;
       this.startDate = new Date(event.startDate);

@@ -27,7 +27,7 @@ const EditEvent = observer(() => {
   useEffect(() => {
     eventStore.getData(eventHash)
 
-    // axios.post('http://localhost:8000/eventInfo', { googleId: eventHash}).then((data) => {
+    // axios.post(process.env.REACT_APP_SERVER + 'eventInfo', { googleId: eventHash}).then((data) => {
     //   const event = data.data;
 
     //   setEventData({
@@ -43,7 +43,7 @@ const EditEvent = observer(() => {
     //   });
     // });
   }, [eventHash]);
-  console.log(eventStore.title);
+
 
   return (
     <div className={styles.container}>

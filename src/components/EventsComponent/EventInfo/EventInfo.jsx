@@ -22,7 +22,7 @@ export default function EventInfo() {
   const eventHash = useLocation().hash.slice(1);
 
   useEffect(() => {
-    axios.post('http://localhost:8000/eventInfo', { googleId: eventHash}).then((data) => {
+    axios.post( process.env.REACT_APP_SERVER + 'eventInfo', { googleId: eventHash}).then((data) => {
       const event = data.data;
       setEventData({
         title: event.eventTitle,
@@ -35,7 +35,7 @@ export default function EventInfo() {
         members: event.members,
         completed: event.completed
       });
-      console.log(event)
+
     });
   }, [eventHash]);
 
