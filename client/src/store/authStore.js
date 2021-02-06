@@ -175,7 +175,6 @@ export default class Registration {
         },
       );
 
-      // ЗАПИСАТЬ В LOCALSTORE
       const object = {
         value: response.data.token,
         timestamp: new Date().getTime(),

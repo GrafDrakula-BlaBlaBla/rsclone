@@ -1,7 +1,7 @@
 import { Router } from "express";
 import Event from "../../models/Event";
 import * as config from "config";
-
+import User from "../../models/User";
 
 const fs = require('fs');
 const path = require('path');
@@ -89,6 +89,8 @@ routerEvent.post("/create", async (req, res) => {
         user,
         completed,
       });
+
+    await User.update({_id : user}, {$inc: {range: 100}});
 
     await event.save();
 
