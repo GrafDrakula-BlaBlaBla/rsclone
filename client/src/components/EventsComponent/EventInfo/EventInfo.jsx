@@ -35,7 +35,6 @@ export default function EventInfo() {
         members: event.members,
         completed: event.completed
       });
-      console.log(event)
     });
   }, [eventHash]);
 

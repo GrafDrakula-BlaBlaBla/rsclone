@@ -167,7 +167,7 @@ export default class Registration {
   auth = async (email, password) => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/authentication`,
+        `/authentication`,
         {
           email,
           password,

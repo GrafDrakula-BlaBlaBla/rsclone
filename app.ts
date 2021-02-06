@@ -21,16 +21,16 @@ import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 import comleteEvent from "./routes/event/comleteEvent";
 import userInfo from "./routes/userInfo";
 
-const PORT: Number = config.get("serverPort");
+const PORT = process.env.PORT || 5000;
 
 // * Создание сервера
 const app = express();
 
 app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname + '/client/index.html'));
+  response.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
-app.use(express.static('/client'));
+app.use(express.static('./client/build'));
 
 app.use(corsMiddleware);
 app.use(logger("dev"));
@@ -64,3 +64,5 @@ const start = async (): Promise<void> => {
   }
 };
 start();
+
+export default app;

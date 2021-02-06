@@ -7,7 +7,7 @@ routerEventInfo.post("/userInfo", async (req, res) => {
   try {
     const { userId } = await req.body;
 
-    const currentUser: JSON = await User.findById(userId);
+    const currentUser = await User.findById(userId);
 
     return res.json(currentUser);
   } catch (e) {
