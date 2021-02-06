@@ -21,6 +21,19 @@
       .user-rate{
         text-align: center;
       }
+
+      .setting-button{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .leave-button{
+          width: 45px;
+        }
+        .navigation-button{
+            width: 30px;
+        }
+      }
       .settings-pic{
         align-self: self-end;
         background: white;

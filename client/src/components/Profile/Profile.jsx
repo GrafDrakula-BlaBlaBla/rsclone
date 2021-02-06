@@ -6,6 +6,7 @@ import EventsList from './EventsList/EventsList';
 import RatingLeaves from '../RatingLeaves/RatingLeaves';
 import { observer, inject } from "mobx-react";
 
+
 const Profile = inject( "store" ) (observer( ({store}) => {
 
 
@@ -33,6 +34,10 @@ useEffect(() => {
             <div className="user-rate">
                 <RatingLeaves rating={ store.User.range }/>
                 <div className="oxygen"> { store.User.oxygen } кислорода</div>
+            </div>
+            <div className="setting-button">
+              <img className="navigation-button" src={ process.env.PUBLIC_URL + "icon-settings.svg"} alt="user"/>
+              <img  className="leave-button" src={ process.env.PUBLIC_URL + "leave-profile.png"} alt="user" onClick={store.User.logOutOfProfile}/>
             </div>
           </div>
           <EventsHistory />

@@ -17,6 +17,7 @@ router.post(
     ).isLength({ min: 4, max: 12 }),
   ],
   async (req, res) => {
+
     try {
       const errors = validationResult(req);
 

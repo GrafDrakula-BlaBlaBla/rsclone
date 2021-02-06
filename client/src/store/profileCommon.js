@@ -2,6 +2,7 @@ import { action, makeObservable, observable } from "mobx";
 import  profile from '../actions/profile';
 import  evetnsProfile from '../actions/EventsForProfile';
 import * as jwt from "jsonwebtoken";
+import  Store from './index';
 
 
 const nameMonth = [ 'января', 'февраля', 'марта', 'апреля', 'мая',
@@ -22,8 +23,6 @@ export default class User {
   eventsHistory = "";
   eventsList = "";
   idWithoutDecode= "";
-
-
 
   constructor() {
 
@@ -68,16 +67,26 @@ export default class User {
          }
     }
 
-    decodeId(){
+  decodeId(){
+    if(localStorage.getItem('ecologyBY') === null){
+        return null;
+      } else {
+        const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
+         this.id = idToken.value;
+         const decoded = jwt.decode(this.id);
+         return decoded['id'];
+       }
+    }
+
+  logOutOfProfile(){
+
       if(localStorage.getItem('ecologyBY') === null){
           return null;
         } else {
-          const idToken = JSON.parse(localStorage.getItem('ecologyBY'));
-           this.id = idToken.value;
-           const decoded = jwt.decode(this.id);
-           return decoded['id'];
-         }
-      }
+          localStorage.removeItem('ecologyBY');
+          Store.Registration.statusApp = false;
+        }
+  }
 
    getValue ( id ) {
 
