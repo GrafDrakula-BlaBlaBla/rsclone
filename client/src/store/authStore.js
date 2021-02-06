@@ -144,6 +144,7 @@ export default class Registration {
   };
 
   signup = async (email, userName, password) => {
+    console.log(process.env.REACT_APP_SERVER);
     try {
       const response = await axios.post(process.env.REACT_APP_SERVER + `registration`, {
         email,
