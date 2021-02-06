@@ -1,0 +1,17 @@
+.rating-leaves-container {
+  width: 166px;
+  justify-content: center;
+}
+
+.rating-title {
+  margin-top: 4px;
+  text-decoration: underline;
+  font-size: 1.1em;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    color: #555;
+  }
+}
