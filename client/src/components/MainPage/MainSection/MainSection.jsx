@@ -12,7 +12,7 @@ export default function MainSection() {
         </p>
         <p className={styles.text}>Поддержи экодвижение в Беларуси</p>
         <Link to="/initiatives">
-          <button className="green_btn">Присоедениться</button>
+          <button className="green_btn">Присоединиться</button>
         </Link>
       </div>
     </SectionWrapper>

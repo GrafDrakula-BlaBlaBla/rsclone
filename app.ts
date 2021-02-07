@@ -17,6 +17,7 @@ import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 import comleteEvent from "./routes/event/comleteEvent";
+import eventaddUserEvent from "./routes/event/addUserEvent";
 import userInfo from "./routes/userInfo";
 
 const PORT: Number = config.get("serverPort");
@@ -42,6 +43,8 @@ app.use("/", dataAboutPastEvents);
 app.use("/", dataAboutFeatureEvents);
 app.use("/", comleteEvent);
 app.use("/", userInfo);
+app.use("/", eventaddUserEvent);
+
 
 const start = async (): Promise<void> => {
   try {

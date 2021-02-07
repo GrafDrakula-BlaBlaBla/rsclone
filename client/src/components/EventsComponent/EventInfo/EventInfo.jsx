@@ -4,9 +4,11 @@ import styles from './_EventInfo.module.scss';
 import Map from "../Map/Map";
 import SectionWrapper from "../../SectionWrapper/SectionWrapper";
 import EventSection from './EventSection/EventSection';
+
 import axios from 'axios';
 
 export default function EventInfo() {
+
   const [eventData, setEventData] = useState({
     title: '',
     startDate: null,
@@ -16,7 +18,8 @@ export default function EventInfo() {
     goal: '',
     eventLocation: [],
     members: [],
-    completed: null
+    completed: null,
+    idEvent: ''
   });
 
   const eventHash = useLocation().hash.slice(1);
@@ -24,6 +27,7 @@ export default function EventInfo() {
   useEffect(() => {
     axios.post( process.env.REACT_APP_SERVER + 'eventInfo', { googleId: eventHash}).then((data) => {
       const event = data.data;
+
       setEventData({
         title: event.eventTitle,
         startDate: new Date(event.startDate),
@@ -33,7 +37,8 @@ export default function EventInfo() {
         goal: event.goal,
         eventLocation: event.location,
         members: event.members,
-        completed: event.completed
+        completed: event.completed,
+        idEvent: event._id
       });
 
     });
