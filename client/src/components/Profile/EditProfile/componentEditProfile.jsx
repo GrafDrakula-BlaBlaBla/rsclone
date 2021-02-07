@@ -71,13 +71,18 @@ function onloadFile() {
               </div>
               <div className="location-user">
                 <p>Город</p>
+<<<<<<< HEAD
                 <select>
+=======
+                <select  >
+>>>>>>> 1a439ee (add: structure edit profile)
                 { cities }
                 </select>
               </div>
             </div>
             <div className="contacts-user">
               <p>Контакты</p>
+<<<<<<< HEAD
               <div className="contacts-icon">
                 <div><i class="fa fa-paper-plane" aria-hidden="true"></i><input type="text" size="40"/></div>
                 <div><i class="fa fa-instagram" aria-hidden="true"></i><input type="text" size="40"/></div>
@@ -86,6 +91,8 @@ function onloadFile() {
                 <div><i class="fa fa-vk" aria-hidden="true"></i><input type="text" size="40"/></div>
                 <div><i class="fa fa-facebook-official" aria-hidden="true"></i><input type="text" size="40"/></div>
               </div>
+=======
+>>>>>>> 1a439ee (add: structure edit profile)
               <button className="button-contacts-user"><i class="fa fa-plus" aria-hidden="true"></i></button>
             </div>
             <div className="change-pic">
@@ -97,10 +104,15 @@ function onloadFile() {
                 </label>
                 </div>
             </div>
+<<<<<<< HEAD
             <div>
               <button className={ "button-save" + " green_btn"}>Сохранить</button>
             </div>
           </div>
+=======
+          </div>
+
+>>>>>>> 1a439ee (add: structure edit profile)
     </div>
     );
   })
