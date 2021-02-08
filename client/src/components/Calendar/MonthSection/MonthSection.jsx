@@ -15,9 +15,9 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
   useEffect(() => {
     function createEventsElem(gridId) {
       const eventsItems = [];
-      if (monthEvents[gridId + 1]) {
-        for (let i = 0; i < monthEvents[gridId + 1].length; i++) {
-          const idEvent = monthEvents[gridId + 1][i].id;
+      if (gridId && monthEvents[gridId]) {
+        for (let i = 0; i < monthEvents[gridId].length; i++) {
+          const idEvent = monthEvents[gridId][i].id;
           const item =
             <Link
               to = {{ pathname: "/eventInfo", hash: idEvent }}
@@ -25,7 +25,7 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
               data-target={ idEvent }
               key={ idEvent }
             >
-              { monthEvents[gridId + 1][i].summary }
+              { monthEvents[gridId][i].summary }
             </Link>
           eventsItems.push(item);
         }
@@ -34,13 +34,13 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
     }
 
     function createGridOneMont() {
-      const nowDaysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
-      const firstDayForWeek = new Date(selectedYear, selectedMonth, 1);
+      const nowDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
+      const firstDayForWeek = new Date(selectedYear, selectedMonth + 1, 1);
       const nowDayOfWeek = firstDayForWeek.getDay();
       let position;
       const dataGrid = new Array(35);
       dataGrid.fill(null);
-      (nowDayOfWeek !== 0) ? position = nowDayOfWeek - 1 :  position = 7 ;
+      (nowDayOfWeek !== 0) ? position = nowDayOfWeek :  position = 7 ;
       for (let i = 0; i < nowDaysInMonth; i++) {
         dataGrid[position + i] = i + 1 ;
       }

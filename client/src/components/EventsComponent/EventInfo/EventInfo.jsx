@@ -57,8 +57,8 @@ export default function EventInfo() {
           title={ eventData.title }
           time={
             eventData.startDate && eventData.endDate
-            ? `с ${addZero(eventData.startDate.getDate())}.${addZero(eventData.startDate.getMonth())}.${eventData.startDate.getFullYear()}
-            - по ${addZero(eventData.endDate.getDate())}.${addZero(eventData.endDate.getMonth())}.${eventData.endDate.getFullYear()}`
+            ? `с ${addZero(eventData.startDate.getDate())}.${addZero(eventData.startDate.getMonth() + 1)}.${eventData.startDate.getFullYear()}
+            - по ${addZero(eventData.endDate.getDate())}.${addZero(eventData.endDate.getMonth() + 1)}.${eventData.endDate.getFullYear()}`
             : ''
           }
         >

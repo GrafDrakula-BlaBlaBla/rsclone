@@ -11,7 +11,6 @@ import EventInfo from './EventsComponent/EventInfo/EventInfo';
 import EditEvent from './EventsComponent/EditEvent/EditEvent';
 import GamePage from './GamePage/GamePage';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Registration from "./Footer/RegModal/RegModal";
 
 import { observer, inject } from "mobx-react";
 
