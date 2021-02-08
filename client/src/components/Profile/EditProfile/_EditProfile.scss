@@ -1,0 +1,99 @@
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.file-preview {
+  margin: 0 10px;
+}
+.profile-page{
+  overflow: auto;
+}
+.button-save{
+  margin-top: 10px;
+  float: right;
+}
+.location-block-user{
+  margin-top: 10px;
+  padding:  10px 10px;
+  border: 2px solid;
+  border-radius: 5px;
+  .location-user{
+    display: flex;
+    flex-direction: row;
+    margin:  10px 0;
+
+    p{
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    select{
+      border-radius: 5px;
+    }
+  }
+}
+.sex-user{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  padding:  10px 10px;
+  border: 2px solid;
+  border-radius: 5px;
+  p{
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  select{
+    border-radius: 5px;
+  }
+}
+
+.custom-file-upload{
+  border-radius: 5px;
+  background: #5c9f61;
+  color: white;
+  margin:  10px 0;
+}
+
+.contacts-user{
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding:  10px 10px;
+  border: 2px solid;
+  border-radius: 5px;
+  .contacts-icon{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    i{
+      margin: 5px;
+      width: 20px;
+      }
+    }
+}
+
+.change-pic{
+    font-weight: bold;
+    border: 2px solid;
+    border-radius: 5px;
+    padding:  10px 10px;
+}
+.button-contacts-user {
+  cursor: pointer;
+  margin: 0;
+  padding: 0 2px ;
+  text-align: center;
+
+  i{
+    margin: 5px;
+  }
+  &:hover{
+    opacity: 0.8;
+  }
+}

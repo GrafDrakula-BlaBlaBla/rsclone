@@ -19,6 +19,7 @@ import dataAboutNowEvents from "./routes/profile/dataAboutNowEvents";
 import dataAboutPastEvents from "./routes/profile/dataAboutPastEvents";
 import dataAboutFeatureEvents from "./routes/profile/dataAboutFeatureEvents";
 import comleteEvent from "./routes/event/comleteEvent";
+import eventaddUserEvent from "./routes/event/addUserEvent";
 import userInfo from "./routes/userInfo";
 
 const PORT = process.env.PORT || 5000;
@@ -39,11 +40,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // routing folders
 app.use("/", completionEvent);
-app.use(`/`, signup);
-app.use(`/`, auth);
-app.use(`/`, createEvent);
-app.use(`/`, createMapMain);
-app.use(`/`, dataForProfile);
+app.use("/", signup);
+app.use("/", auth);
+app.use("/", createEvent);
+app.use("/", createMapMain);
+app.use("/", dataForProfile);
 app.use("/", routerEventInfo);
 app.use("/", dataEventUser);
 app.use("/", dataAboutNowEvents);
@@ -51,10 +52,12 @@ app.use("/", dataAboutPastEvents);
 app.use("/", dataAboutFeatureEvents);
 app.use("/", comleteEvent);
 app.use("/", userInfo);
+app.use("/", eventaddUserEvent);
+
 
 const start = async (): Promise<void> => {
   try {
-    await mongoose.connect(config.get("urlDB"));
+    await mongoose.connect(config.get("urlDB"), { useNewUrlParser: true, useUnifiedTopology: true });
 
     app.listen(PORT, () => {
       console.info(`Server has been started on port ${PORT}`);

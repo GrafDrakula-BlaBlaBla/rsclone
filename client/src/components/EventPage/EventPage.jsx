@@ -7,7 +7,6 @@ import EventCreation from "./EventCreation/EventCreation";
 import SectionWrapper from "../SectionWrapper/SectionWrapper";
 
 const EventPage = inject("store")(({ store, section }) => {
-  console.log(store.Location)
   function checkSection() {
     if (section === "create") {
       return (

@@ -1,7 +1,6 @@
 import React from "react";
 import { Observer } from "mobx-react";
 import { runInAction } from "mobx";
-
 import styles from "../_EventCreation.module.scss";
 
 const Coords = ({ locationStore }) => {

@@ -181,7 +181,6 @@ export default class Event {
       this.warningEventGoal = validation.errors.first("goal");
       this.warningEventDescription = validation.errors.first("description");
     } else {
-      console.log("pass");
 
       axios
         .post("/create", {

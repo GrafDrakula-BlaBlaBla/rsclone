@@ -9,7 +9,7 @@ const User = new Schema({
   dataRegistartion: { type: Date },
   sex: { type: String },
   contacts: { type: Array },
-  location: { type: Object },
+  location: { type: String },
   finishedGameDate: { type: Date },
 });
 

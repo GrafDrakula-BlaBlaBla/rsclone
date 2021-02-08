@@ -35,7 +35,7 @@ export default function EditSection({ eventData, eventHash }) {
     const endDate = new Date(eventData.endDate);
     endTimeInput.current.value = `${endDate.getHours()}:${endDate.getMinutes()}`;
     endDateInput.current.value = `${endDate.getFullYear()}-${addZero(endDate.getMonth())}-${addZero(endDate.getDate())}`;
-  
+
     setLocation(eventData.location);
 
     goalTextarea.current.value = eventData.goal;
@@ -43,7 +43,7 @@ export default function EditSection({ eventData, eventHash }) {
   }, [eventData]);
 
   function checkFolders() {
-    console.log()
+
     if(false) {
       setStatus('end');
     }
@@ -64,9 +64,9 @@ export default function EditSection({ eventData, eventHash }) {
               }}
             />
           </div>
-          
+
           {title.trim() === '' && <span className={styles.warning_event}>Оязательное поле</span>}
-          
+
           <p className={styles.name_description}>
             Название будет отображаться в списке всех мероприятий
           </p>

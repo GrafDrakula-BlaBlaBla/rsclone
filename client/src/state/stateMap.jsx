@@ -52,7 +52,7 @@ class stateMap {
         const stateHoursEnd = dateOneEnd.getHours();
         const stateMinutesEnd = dateOneEnd.getMinutes();
         const cord = [oneEvent.location.lat, oneEvent.location.lng];
-        
+
         const markerCustom = L.divIcon({
           className: classNameMarker,
           shadowSize: [12, 12],

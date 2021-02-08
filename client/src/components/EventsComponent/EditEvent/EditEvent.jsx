@@ -43,7 +43,7 @@ const EditEvent = observer(() => {
     //   });
     // });
   }, [eventHash]);
-  console.log(eventStore.title);
+
 
   return (
     <div className={styles.container}>

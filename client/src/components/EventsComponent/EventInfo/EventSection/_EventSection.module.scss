@@ -11,17 +11,29 @@ p {
   padding: 20px;
 }
 
+.title_disctiption{
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 10px;
+
+}
+
+
 .owner {
   display: flex;
   justify-content: space-between;
 }
 
+.link_btn{
+
+}
 .user_pic {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   overflow: hidden;
   background-color: #d7d7d7;
+
 }
 
 .user_pic_img {
@@ -31,6 +43,7 @@ p {
 
 .user_name {
   margin-bottom: 20px;
+  font-weight: bold
 }
 
 .bottom {
@@ -43,6 +56,12 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  a{
+    color: white;
+    text-decoration: none;
+    min-width: 130px;
+    display: inline-block;
+  }
 }
 
 .connect_title {

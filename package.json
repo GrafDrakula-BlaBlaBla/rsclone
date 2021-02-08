@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "client": "npm run start --prefix client",
-    "dev": "ts-node-dev --respawn app.ts",
+    "dev": "concurrently \"ts-node-dev --respawn app.ts\" \"cd ./client && yarn build\"",
     "test": "jest"
   },
   "dependencies": {

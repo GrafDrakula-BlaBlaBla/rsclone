@@ -15,7 +15,7 @@ export default function DaySection({ dayEvents, selectedYear, selectedMonth, sel
     const year = date.getFullYear();
     const month = date.getMonth();
     const day = date.getDate();
-    
+
     if ((selectedYear < year) || (selectedYear === year && selectedMonth < month) ||
       ( selectedYear === year && selectedMonth === month && selectedDay < day) ){
         setStatus('Прошедшие');
@@ -65,7 +65,7 @@ export default function DaySection({ dayEvents, selectedYear, selectedMonth, sel
       <Link
         className={ styles.create_event_btn + " green_btn"}
         to={`/createEvent`}
-      >Создать</Link>
+      >Создать <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></Link>
     </div>
   )
 }
