@@ -3,6 +3,7 @@ import './_Profile.scss';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import EventsHistory from './EventsHistory/EventsHistory';
 import EventsList from './EventsList/EventsList';
+import EditProfile from './EditProfile/componentEditProfile';
 import RatingLeaves from '../RatingLeaves/RatingLeaves';
 import { observer, inject } from "mobx-react";
 
@@ -16,6 +17,11 @@ useEffect(() => {
   store.User.getValue(store.User.id);
 
 }, [ store.User ])
+
+function changeSettings() {
+  store.User.editProfile = !store.User.editProfile;
+}
+
 
   return (
     <div className="profile-page">
@@ -36,11 +42,11 @@ useEffect(() => {
                 <div className="oxygen"> { store.User.oxygen } кислорода</div>
             </div>
             <div className="setting-button">
-              <img className="navigation-button" src={ process.env.PUBLIC_URL + "icon-settings.svg"} alt="user"/>
+              <img className="navigation-button" onClick={changeSettings} src={ process.env.PUBLIC_URL + "icon-settings.svg"} alt="user"/>
               <img  className="leave-button" src={ process.env.PUBLIC_URL + "leave-profile.png"} alt="user" onClick={store.User.logOutOfProfile}/>
             </div>
           </div>
-          <EventsHistory />
+          {store.User.editProfile ? <EditProfile/> : <EventsHistory />}
         </SectionWrapper>
       </div>
       <div className="event-list-section">

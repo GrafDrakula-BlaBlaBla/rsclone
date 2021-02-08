@@ -23,6 +23,7 @@ export default class User {
   eventsHistory = "";
   eventsList = "";
   idWithoutDecode= "";
+  editProfile = false;
 
   constructor() {
 
@@ -40,6 +41,7 @@ export default class User {
         eventsHistory: observable,
         eventsList: observable,
         idWithoutDecode: observable,
+        editProfile: observable,
         getValue: action,
         idUser: action,
         decodeId: action,
