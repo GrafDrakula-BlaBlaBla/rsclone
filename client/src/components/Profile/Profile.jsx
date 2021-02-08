@@ -19,11 +19,7 @@ useEffect(() => {
 }, [ store.User ])
 
 function changeSettings() {
-<<<<<<< HEAD
   store.User.editProfile = !store.User.editProfile;
-=======
-  store.User.editProfile = true;
->>>>>>> 1a439ee (add: structure edit profile)
 }
 
 
