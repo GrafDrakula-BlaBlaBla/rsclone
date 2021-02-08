@@ -35,8 +35,9 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
 
     function createGridOneMont() {
       const nowDaysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
-      const firstDayForWeek = new Date(selectedYear, selectedMonth + 1, 1);
+      const firstDayForWeek = new Date(selectedYear, selectedMonth, 1);
       const nowDayOfWeek = firstDayForWeek.getDay();
+      console.log(nowDayOfWeek)
       let position;
       const dataGrid = new Array(35);
       dataGrid.fill(null);
