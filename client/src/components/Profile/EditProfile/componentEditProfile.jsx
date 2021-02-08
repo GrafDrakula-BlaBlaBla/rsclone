@@ -71,13 +71,21 @@ function onloadFile() {
               </div>
               <div className="location-user">
                 <p>Город</p>
-                <select  >
+                <select>
                 { cities }
                 </select>
               </div>
             </div>
             <div className="contacts-user">
               <p>Контакты</p>
+              <div className="contacts-icon">
+                <div><i class="fa fa-paper-plane" aria-hidden="true"></i><input type="text" size="40"/></div>
+                <div><i class="fa fa-instagram" aria-hidden="true"></i><input type="text" size="40"/></div>
+                <div><i class="fa fa-youtube-play" aria-hidden="true"></i><input type="text" size="40"/></div>
+                <div><i class="fa fa-twitter" aria-hidden="true"></i><input type="text" size="40"/></div>
+                <div><i class="fa fa-vk" aria-hidden="true"></i><input type="text" size="40"/></div>
+                <div><i class="fa fa-facebook-official" aria-hidden="true"></i><input type="text" size="40"/></div>
+              </div>
               <button className="button-contacts-user"><i class="fa fa-plus" aria-hidden="true"></i></button>
             </div>
             <div className="change-pic">
@@ -89,8 +97,10 @@ function onloadFile() {
                 </label>
                 </div>
             </div>
+            <div>
+              <button className={ "button-save" + " green_btn"}>Сохранить</button>
+            </div>
           </div>
-
     </div>
     );
   })

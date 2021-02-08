@@ -19,7 +19,7 @@ useEffect(() => {
 }, [ store.User ])
 
 function changeSettings() {
-  store.User.editProfile = true;
+  store.User.editProfile = !store.User.editProfile;
 }
 
 
