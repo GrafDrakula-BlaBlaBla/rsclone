@@ -25,7 +25,7 @@ export default function EventInfo() {
   const eventHash = useLocation().hash.slice(1);
 
   useEffect(() => {
-    axios.post('/eventInfo', { googleId: eventHash}).then((data) => {
+    axios.post(process.env.REACT_APP_SERVER + '/eventInfo', { googleId: eventHash}).then((data) => {
       const event = data.data;
 
       setEventData({

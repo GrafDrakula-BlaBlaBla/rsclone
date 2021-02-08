@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function returnAddUser( idEvent, idUser ) {
 
-  const result = axios.post(process.env.REACT_APP_SERVER + 'add-user-event', {
+  const result = axios.post(process.env.REACT_APP_SERVER + '/add-user-event', {
     idEvent,
     idUser
   })

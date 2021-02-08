@@ -183,7 +183,7 @@ export default class Event {
     } else {
 
       axios
-        .post("/create", {
+        .post(process.env.REACT_APP_SERVER + "/create", {
           event,
         })
         .then(function (response) {
@@ -198,7 +198,7 @@ export default class Event {
   getDataCompletionEvent = async (idEvent) => {
     try {
       const response = await axios.post(
-        `/eventCompletion`,
+        process.env.REACT_APP_SERVER + `/eventCompletion`,
         {
           idEvent,
         },
@@ -223,7 +223,7 @@ export default class Event {
   };
   sendStatusEvent = async (idEvent, status) => {
     try {
-      await axios.post(`/compliteEvent`, {
+      await axios.post(process.env.REACT_APP_SERVER + `/compliteEvent`, {
         idEvent,
         complited: status,
       });

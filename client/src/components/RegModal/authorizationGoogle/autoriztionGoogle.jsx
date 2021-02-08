@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default function signIn() {
 
-  axios.get('/authentication-google', {
+  axios.get(process.env.REACT_APP_SERVER + '/authentication-google', {
       params: {
         ID: 12345
       }

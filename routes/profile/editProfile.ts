@@ -3,7 +3,7 @@ import * as jwt from "jsonwebtoken";
 
 export default function returnOneUser( idUser, data ) {
 
-  const result = axios.post(process.env.REACT_APP_SERVER + 'data-edit-profile', {
+  const result = axios.post(process.env.REACT_APP_SERVER + '/data-edit-profile', {
     idUser,
     data
   })

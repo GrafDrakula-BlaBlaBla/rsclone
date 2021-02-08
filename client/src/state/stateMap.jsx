@@ -11,7 +11,7 @@ class stateMap {
   }
 
   createMarkerTooltip() {
-    axios.post('/create-map-main', {}).then((data) => {
+    axios.post(process.env.REACT_APP_SERVER + '/create-map-main', {}).then((data) => {
       const now = new Date();
       const events = data.data;
 

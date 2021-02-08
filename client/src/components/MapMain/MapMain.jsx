@@ -10,7 +10,7 @@ export default function MapMain() {
 
 
   useEffect(() => {
-    axios.post('/create-map-main', {}).then((data) => {
+    axios.post(process.env.REACT_APP_SERVER + '/create-map-main', {}).then((data) => {
       setMarkers(data.data.map((event, id) => <Marker event={event} key={id}/>));
     });
   }, []);

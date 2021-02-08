@@ -10,7 +10,7 @@ var User = new mongoose_1.Schema({
     dataRegistartion: { type: Date },
     sex: { type: String },
     contacts: { type: Array },
-    location: { type: Object },
+    location: { type: String },
     finishedGameDate: { type: Date },
 });
 exports.default = mongoose_1.model("User", User);

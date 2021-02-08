@@ -11,7 +11,7 @@ export default function EventSection({ eventData }) {
   });
 
   useEffect(() => {
-    eventData.ownerId && axios.post('/userInfo', { userId: eventData.ownerId}).then((data) => {
+    eventData.ownerId && axios.post(process.env.REACT_APP_SERVER + '/userInfo', { userId: eventData.ownerId}).then((data) => {
       const user = data.data;
       
       setOwnerData({

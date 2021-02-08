@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var Event_1 = require("../../models/Event");
+var User_1 = require("../../models/User");
 var fs = require('fs');
 var path = require('path');
 var KEYFILE = "key/keyGoogleCalandar.json";
@@ -107,7 +108,7 @@ routerEvent.post("/create", function (req, res) { return __awaiter(void 0, void 
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _b.trys.push([0, 7, , 8]);
+                _b.trys.push([0, 8, , 9]);
                 return [4 /*yield*/, req.body.event];
             case 1:
                 _a = _b.sent(), eventTitle = _a.eventTitle, startDate = _a.startDate, endDate = _a.endDate, location_1 = _a.location, goal = _a.goal, description = _a.description, user = _a.user;
@@ -136,16 +137,19 @@ routerEvent.post("/create", function (req, res) { return __awaiter(void 0, void 
                     user: user,
                     completed: completed,
                 });
-                return [4 /*yield*/, event_1.save()];
+                return [4 /*yield*/, User_1.default.update({ _id: user }, { $inc: { range: 100 } })];
             case 5:
                 _b.sent();
+                return [4 /*yield*/, event_1.save()];
+            case 6:
+                _b.sent();
                 return [4 /*yield*/, res.json({ message: "no error" })];
-            case 6: return [2 /*return*/, _b.sent()];
-            case 7:
+            case 7: return [2 /*return*/, _b.sent()];
+            case 8:
                 e_1 = _b.sent();
                 res.send({ message: "SERVWR ERROR " + e_1 });
-                return [3 /*break*/, 8];
-            case 8: return [2 /*return*/];
+                return [3 /*break*/, 9];
+            case 9: return [2 /*return*/];
         }
     });
 }); });

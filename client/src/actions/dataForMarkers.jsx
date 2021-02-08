@@ -6,7 +6,7 @@ export default function result() {
   const dataMarker = resultFetch().then((arrayData) => {
     // перебор данных (списка) пришедших из базы
     const result = axios
-      .post("/create-map-main", {})
+      .post(process.env.REACT_APP_SERVER + "/create-map-main", {})
       .then(function (response) {
         if (response.status === 200) {
           return Array.from(response.data);
