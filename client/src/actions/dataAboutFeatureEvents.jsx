@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function returnEvents() {
 
-  const result = axios.post(process.env.REACT_APP_SERVER + 'data-feature-event', {
+  const result = axios.post(process.env.REACT_APP_SERVER + '/data-feature-event', {
 
   })
   .then(function (response) {

@@ -79,7 +79,8 @@
 }
 
 .event {
-  width: 100%;
+  overflow-wrap: anywhere;
+  overflow: hidden;
   text-align: left;
   background: white;
   color: black;

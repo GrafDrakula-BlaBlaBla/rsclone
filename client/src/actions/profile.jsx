@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function returnOneUser( idUser ) {
 
-  const result = axios.post(process.env.REACT_APP_SERVER + 'data-profile', {
+  const result = axios.post(process.env.REACT_APP_SERVER + '/data-profile', {
     idUser
   })
   .then(function (response) {

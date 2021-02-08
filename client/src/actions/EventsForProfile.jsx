@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function returnEvents( idUser ) {
 
-  const result = axios.post(process.env.REACT_APP_SERVER + 'data-event-profile', {
+  const result = axios.post(process.env.REACT_APP_SERVER + '/data-event-profile', {
     idUser
   })
   .then(function (response) {

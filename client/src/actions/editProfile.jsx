@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default function returnOneUser( idUser ) {
 
-  const result = axios.post(process.env.REACT_APP_SERVER + 'data-edit-profile', {
+  const result = axios.post(process.env.REACT_APP_SERVER + '/data-edit-profile', {
     idUser
   })
   .then(function (response) {
