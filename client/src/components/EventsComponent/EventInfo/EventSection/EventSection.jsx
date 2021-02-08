@@ -81,8 +81,8 @@ const wordForm = function( num ){
           <p className='font_s' style={{ marginBottom: 20}}>
           { mambers }</p>
           { Store.User.decodeId() === eventData.ownerId || Store.User.decodeId() === null || eventData.members.indexOf(Store.User.decodeId()) !== -1?
-            <button className='green_btn'> <Link to="/createEvent"> Создать</Link></button> :
-            <button className='green_btn' onClick={ addToTheEvent }> Присоедениться </button>
+            <button className='green_btn'> <Link to="/createEvent"> Создать <i class="fa fa-calendar-plus-o" aria-hidden="true"></i></Link></button> :
+            <button className='green_btn' onClick={ addToTheEvent }> Присоедениться <i class="fa fa-user-plus" aria-hidden="true"></i></button>
           }
         </div>
       </div>

@@ -71,7 +71,7 @@ function onloadFile() {
               </div>
               <div className="location-user">
                 <p>Город</p>
-                <select  >
+                <select>
                 { cities }
                 </select>
               </div>
