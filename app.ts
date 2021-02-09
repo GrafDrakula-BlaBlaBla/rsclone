@@ -28,10 +28,10 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname + '/client/build/index.html'));
+  response.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
-app.use(express.static('./client/build'));
+app.use(express.static(path.join(__dirname + '/build/')));
 
 app.use(corsMiddleware);
 app.use(logger("dev"));

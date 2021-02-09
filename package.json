@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
+    "start": "node ./server-build/app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"ts-node-dev --respawn app.ts\" \"cd ./client && yarn start\"",
     "test": "jest"
