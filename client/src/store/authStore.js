@@ -152,7 +152,9 @@ export default class Registration {
   };
 
   signup = async (email, userName, password) => {
-
+    this.errorEmailSendButton = "";
+    this.errorPasswordSendButton = "";
+    this.errorNameSendButton = "";
     try {
 
     let data = {
@@ -209,24 +211,56 @@ export default class Registration {
   };
 
   auth = async (email, password) => {
+
+    this.errorEmailSendButton = "";
+    this.errorPasswordSendButton = "";
+    this.errorNameSendButton = "";
+
+    let data = {
+      email: email,
+      password: password
+    };
+
+    let rules = {
+      email: 'required|email',
+      password: 'required'
+    };
+
+    let validation = new Validator(data, rules, {
+    "required.email": {
+      string: 'Введите email'
+    },
+    "required.password": {
+      string: 'Введите пароль'
+    },
+  });
+
     try {
-      const response = await axios.post(
-        process.env.REACT_APP_SERVER + `/authentication`,
-        {
-          email,
-          password,
-        },
-      );
+      if(validation.passes()){
+        const response = await axios.post(
+          process.env.REACT_APP_SERVER + `/authentication`,
+          {
+            email,
+            password,
+          },
+        );
 
-      const object = {
-        value: response.data.token,
-        timestamp: new Date().getTime(),
-      };
+        const object = {
+          value: response.data.token,
+          timestamp: new Date().getTime(),
+        };
 
-      Store.User.idWithoutDecode = response.data.token;
-      localStorage.setItem("ecologyBY", JSON.stringify(object));
-      this.statusApp = this.statusUser();
-      Store.User.getValue(response.data.token);
+        Store.User.idWithoutDecode = response.data.token;
+        localStorage.setItem("ecologyBY", JSON.stringify(object));
+        this.statusApp = this.statusUser();
+        Store.User.getValue(response.data.token);
+
+      }else{
+        validation.fails();
+        this.errorEmailSendButton = validation.errors.first('email');
+        this.errorPasswordSendButton = validation.errors.first('password');
+
+      }
 
     } catch (e) {
       alert("ERROR authentication", e);
