@@ -1,7 +1,8 @@
-/* eslint-disable default-case */
+
 import axios from "axios";
 import { makeObservable, observable, action } from "mobx";
 import Store from "./index";
+import * as Validator from "validatorjs";
 
 export default class Registration {
   email = "";
@@ -13,6 +14,9 @@ export default class Registration {
   isValid = false; //  true - error
   isValidEmail = false; //  true - error
   isValidPassword = false; // true - error
+  errorEmailSendButton = "";
+  errorPasswordSendButton = "";
+  errorNameSendButton = "";
   //
   //* Хранит информацию о видах валидации
   inputs = [
@@ -51,6 +55,9 @@ export default class Registration {
       isValid: observable,
       //
       statusApp: observable,
+      errorEmailSendButton: observable,
+      errorPasswordSendButton: observable,
+      errorNameSendButton: observable,
       statusUser: action,
       signup: action,
       auth: action,
@@ -124,6 +131,7 @@ export default class Registration {
   };
 
   showError = (typeInput) => {
+
     const span = document.querySelector(`.${typeInput}`);
 
     if (typeInput === "email") {
@@ -144,22 +152,57 @@ export default class Registration {
   };
 
   signup = async (email, userName, password) => {
-    console.log(process.env.REACT_APP_SERVER);
+
     try {
+
+    let data = {
+      userName: userName,
+      email: email,
+      password: password
+    };
+
+    let rules = {
+      userName: 'required',
+      email: 'required|email',
+      password: 'required'
+    };
+
+    let validation = new Validator(data, rules, {
+    "required.email": {
+      string: 'Введите email'
+    },
+    "required.password": {
+      string: 'Введите пароль'
+    },
+    "required.userName": {
+      string: 'Укажите имя'
+    },
+  });
+
+    if(validation.passes()){
+
       const response = await axios.post(process.env.REACT_APP_SERVER + `/registration`, {
         email,
         name: userName,
         password,
       });
       const object = {
-        value: response.data.token,
-        timestamp: new Date().getTime(),
-      };
+          value: response.data.token,
+          timestamp: new Date().getTime(),
+        };
+        Store.User.idWithoutDecode = response.data.token;
+        localStorage.setItem("ecologyBY", JSON.stringify(object));
+        this.statusApp = this.statusUser();
+        Store.User.getValue(response.data.token);
 
-      Store.User.idWithoutDecode = response.data.token;
-      localStorage.setItem("ecologyBY", JSON.stringify(object));
-      this.statusApp = this.statusUser();
-      Store.User.getValue(response.data.token);
+    }else{
+        validation.fails();
+        this.errorEmailSendButton = validation.errors.first('email');
+        this.errorPasswordSendButton = validation.errors.first('password');
+        this.errorNameSendButton = validation.errors.first('userName');
+
+    }
+
     } catch (e) {
       alert("ERROR registration", e);
     }
@@ -184,6 +227,7 @@ export default class Registration {
       localStorage.setItem("ecologyBY", JSON.stringify(object));
       this.statusApp = this.statusUser();
       Store.User.getValue(response.data.token);
+
     } catch (e) {
       alert("ERROR authentication", e);
     }

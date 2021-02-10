@@ -157,12 +157,6 @@ export default class Event {
       "Укажите правильную последовательность начала и окончания мероприятия",
     );
 
-    Validator.register(
-      "valueTime",
-      checkTime,
-      "Укажите правильную последовательность начала и окончания мероприятия",
-    );
-
     let validation = new Validator(event, rules, {
       "required.eventTitle": "Оязательное поле",
       "numeric.startDate": "Выберите время и дату начала мероприятия",
@@ -171,7 +165,7 @@ export default class Event {
       "required.description": "Обязательное поле",
       "string.description": "Опишите словами мероприятие",
       "valueTime.startDate":
-        "Время начала мероприятия должно быть меньше окончания",
+      "Время начала мероприятия должно быть меньше окончания",
     });
 
     if (validation.fails()) {

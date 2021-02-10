@@ -41,7 +41,9 @@ span.error {
     flex-direction: column;
     align-items: center;
     border-radius: 25px;
-
+    .warning-message{
+      color: red;
+    }   
     .main-top {
       height: 40px;
       padding-top: 20px;
