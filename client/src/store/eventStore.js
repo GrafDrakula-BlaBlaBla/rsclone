@@ -2,7 +2,6 @@ import { makeObservable, action, observable } from "mobx";
 import axios from "axios";
 import * as Validator from "validatorjs";
 import Store from "./index";
-import result from "../actions/dataForMarkers";
 
 export default class Event {
   idEvent = "";

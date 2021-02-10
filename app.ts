@@ -22,7 +22,7 @@ import comleteEvent from "./routes/event/comleteEvent";
 import eventaddUserEvent from "./routes/event/addUserEvent";
 import userInfo from "./routes/userInfo";
 
-const PORT = process.env.PORT || 5000;
+const PORT = config.get('serverPort') || 5000;
 
 // * Создание сервера
 const app = express();
@@ -66,6 +66,7 @@ const start = async (): Promise<void> => {
     console.warn(`An error has occurred: ${e}`);
   }
 };
+
 start();
 
 export default app;

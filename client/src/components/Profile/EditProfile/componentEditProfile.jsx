@@ -1,21 +1,16 @@
-import React, { useEffect, setState, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './../_Profile.scss';
 import styles from './_EditProfile.scss';
-import SectionWrapper from '../../SectionWrapper/SectionWrapper';
-import RatingLeaves from '../../RatingLeaves/RatingLeaves';
 import { observer, inject } from "mobx-react";
 import byCities from "../../../modules/data/by-cities";
 
 const EditProfile = inject( "store" ) (observer( ({store}) => {
+  useEffect(() => {
 
+    store.User.getIdinLocalStore();
+    store.User.getValue(store.User.id);
 
-
-useEffect(() => {
-
-  store.User.getIdinLocalStore();
-  store.User.getValue(store.User.id);
-
-}, [ store.User ])
+  }, [ store.User ])
 
 
   const city = byCities['regions'][0]['cities'].map(( item, index ) => {
@@ -98,7 +93,7 @@ function onloadFile() {
                 </div>
             </div>
             <div>
-              <button className={ "button-save" + " green_btn"}>Сохранить</button>
+              <button className="button-save green_btn">Сохранить</button>
             </div>
           </div>
     </div>

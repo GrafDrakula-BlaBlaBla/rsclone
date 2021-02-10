@@ -13,6 +13,7 @@ export default function MonthSection({ selectedYear, selectedMonth, setSelectedD
   const WeekDays = dayOfWeek.map((elem, id) => <div key={ id }>{elem}</div>);
 
   useEffect(() => {
+    console.log(monthEvents)
     function createEventsElem(gridId) {
       const eventsItems = [];
       if (gridId && monthEvents[gridId]) {

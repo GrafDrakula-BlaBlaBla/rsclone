@@ -27,8 +27,8 @@ export default function Calendar() {
     if(allEvents) {
       if(allEvents[selectedYear] && allEvents[selectedYear][selectedMonth]) {
         setMonthEvents(allEvents[selectedYear][selectedMonth]);
-        if(allEvents[selectedYear][selectedMonth][selectedDay + 1]) {
-          setDayEvents(allEvents[selectedYear][selectedMonth][selectedDay + 1]);
+        if(allEvents[selectedYear][selectedMonth][selectedDay]) {
+          setDayEvents(allEvents[selectedYear][selectedMonth][selectedDay]);
         } else {
           setDayEvents([]);
         }
