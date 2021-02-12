@@ -27,10 +27,6 @@ const PORT = config.get('serverPort') || 5000;
 // * Создание сервера
 const app = express();
 
-app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname + '/build/index.html'));
-});
-
 app.use(express.static(path.join(__dirname + '/build/')));
 
 app.use(corsMiddleware);
@@ -53,6 +49,10 @@ app.use("/", dataAboutFeatureEvents);
 app.use("/", comleteEvent);
 app.use("/", userInfo);
 app.use("/", eventaddUserEvent);
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname + '/build/index.html'));
+});
 
 
 const start = async (): Promise<void> => {

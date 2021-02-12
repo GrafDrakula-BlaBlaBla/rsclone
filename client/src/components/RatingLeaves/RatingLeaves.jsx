@@ -5,7 +5,6 @@ import RatingModal from './RatingModal/RatingModal';
 
 const levels = [ 'Новичок', 'Любитель', 'Специалист', 'Эксперт', 'Эколог' ];
 
-
 export default function RatingLeaves({ rating }) {
   const [modalState, setModalState] = useState(false);
 
@@ -15,7 +14,7 @@ export default function RatingLeaves({ rating }) {
     <div className={ styles['rating-leaves-container'] }>
       <Leaves rating={ currentRating } setModalState={ setModalState }/>
       <div className={ styles['rating-title'] } onClick={ () => setModalState(true)}>
-        {levels[currentRating]}
+        {levels[currentRating - 1]}
       </div>
       { modalState && <RatingModal setModalState={ setModalState } levels={ levels }/> }
     </div>
