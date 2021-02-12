@@ -1,4 +1,4 @@
-import React, { useEffect, setState } from 'react';
+import React, { useEffect } from 'react';
 import './_Profile.scss';
 import SectionWrapper from '../SectionWrapper/SectionWrapper';
 import EventsHistory from './EventsHistory/EventsHistory';

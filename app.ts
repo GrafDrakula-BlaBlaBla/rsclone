@@ -22,7 +22,7 @@ import comleteEvent from "./routes/event/comleteEvent";
 import eventaddUserEvent from "./routes/event/addUserEvent";
 import userInfo from "./routes/userInfo";
 
-const PORT = process.env.PORT || 5000;
+const PORT = config.get('serverPort') || 5000;
 
 // * Создание сервера
 const app = express();
@@ -57,7 +57,11 @@ app.use("/", eventaddUserEvent);
 
 const start = async (): Promise<void> => {
   try {
-    await mongoose.connect(config.get("urlDB"), { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(config.get("urlDB"), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
 
     app.listen(PORT, () => {
       console.info(`Server has been started on port ${PORT}`);
@@ -66,6 +70,7 @@ const start = async (): Promise<void> => {
     console.warn(`An error has occurred: ${e}`);
   }
 };
+
 start();
 
 export default app;
