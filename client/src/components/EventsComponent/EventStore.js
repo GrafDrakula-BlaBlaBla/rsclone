@@ -24,11 +24,11 @@ export default class EventStore {
       location: observable,
       members: observable,
       completed: observable,
-      getData: action,
+      getEventData: action,
     });
   }
 
-  getData(googleId) {
+  getEventData(googleId) {
     axios.post(process.env.REACT_APP_SERVER + '/eventInfo', { googleId: googleId}).then((data) => {
       const event = data.data;
       this.title = event.eventTitle;
@@ -42,5 +42,4 @@ export default class EventStore {
       this.completed = event.completed;
     });
   }
-
 }

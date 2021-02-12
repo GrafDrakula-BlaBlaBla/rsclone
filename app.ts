@@ -57,7 +57,11 @@ app.use("/", eventaddUserEvent);
 
 const start = async (): Promise<void> => {
   try {
-    await mongoose.connect(config.get("urlDB"), { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(config.get("urlDB"), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
 
     app.listen(PORT, () => {
       console.info(`Server has been started on port ${PORT}`);

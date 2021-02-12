@@ -29,7 +29,7 @@ const App = inject( "store" ) (observer( ({store}) => {
             <Route path="/eventMap">
               <EventPage section="completion" />
             </Route>
-            <Route path="/edit-event">
+            <Route path="/editEvent">
               <EditEvent />
             </Route>
             <Route path="/eventInfo">

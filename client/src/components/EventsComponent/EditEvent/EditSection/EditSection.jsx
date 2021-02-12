@@ -16,12 +16,12 @@ export default function EditSection({ eventData, eventHash }) {
   const [status, setStatus] = useState('start');
 
   const [title, setTitle] = useState(eventData.title);
-  const [startTime, setStartTime] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [goal, setGoal] = useState('');
-  const [task, setTaskT] = useState('');
+  // const [startTime, setStartTime] = useState('');
+  // const [startDate, setStartDate] = useState('');
+  // const [endTime, setEndTime] = useState('');
+  // const [endDate, setEndDate] = useState('');
+  // const [goal, setGoal] = useState('');
+  // const [task, setTaskT] = useState('');
 
   useEffect(() => {
     function addZero(number) {

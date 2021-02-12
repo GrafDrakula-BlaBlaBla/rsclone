@@ -32,7 +32,7 @@ export default function EventSection({ eventData }) {
       setMembers("С нами уже " + eventData.members.length + " " + wordForm(eventData.members.length));
     }
 
-  }, [eventData.ownerId]);
+  }, [eventData]);
 
 
  const addToTheEvent = (e) => {

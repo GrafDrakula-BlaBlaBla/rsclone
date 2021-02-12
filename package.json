@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./server-build/app.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"ts-node-dev --respawn app.ts\" \"cd ./client && yarn start\"",
+    "server": "ts-node-dev --respawn app.ts",
+    "client": "cd ./client && yarn start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "jest"
   },
   "dependencies": {
